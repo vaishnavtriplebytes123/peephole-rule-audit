@@ -1,15 +1,19 @@
-# Single-run experiments and removal witnesses (schema 1)
+# Single-run experiments and removal witnesses
 
 M3 introduces a single-run configuration. M6 will add an explicit matrix of
-these runs. A configuration has exactly `schema_version` (integer 1),
+these runs. A configuration has exactly `schema_version` (integer 1 or 2),
 `schedule`, `run`, `search`, `generation`, `solver`, `seconds`, and
 `max_output_bytes`. The nested schedule/run/search/solver fields are the full
 fields of the corresponding typed library objects; no unknown fields are allowed.
 The schedule lists every corpus rule ID exactly once. Removing a target filters
 that one ID from the same schedule and corpus order, preserving all other settings.
 
-Generation has exactly `strategy`, `seed`, `cases`, `attempts`, `depth`,
-`constants`, and `contexts`. M3 supports `target` and `contexts: ["hole"]`.
+Version-1 generation has exactly `strategy`, `seed`, `cases`, `attempts`, `depth`,
+`constants`, and `contexts`, supporting `target` and `contexts: ["hole"]`.
+M4 writes version 2, additionally requiring `max_nodes` (1–1000), `max_depth`
+(1–64) and `max_match_attempts` (0–1,000,000, default 100,000). Old version-1
+configs/witnesses retain the original target/hole streams and input limits.
+Unknown versions/fields are rejected. The witness envelope remains version 1.
 Bounds: unsigned 64-bit seed, 1–10,000 requested unique cases, 0–1,000,000
 attempts, depth 0–4, and 1–16 distinct unsigned 32-bit constants. Each attempt
 uses `depth` expansion levels for expression metavariable substitutions (0 means
@@ -20,7 +24,37 @@ strategy, attempt index, and stream name. Attempt indices start at 1. This lets
 replay regenerate a specific attempt directly, without trusting recorded bindings.
 Target generation receives no alternative derivations. Invalid guards, duplicates,
 and size exclusions consume attempts. Exhaustion is explicitly partial, including
-zero coverage. Expressions remain within the M1 input bounds.
+zero coverage. Expressions remain within the shared complete-input bounds.
+
+Version 2 supports `random`, `target`, and `guided`. Contexts are a nonempty
+unique list from `hole`, `not`, and `OP-left`/`OP-right` for
+`add/sub/and/or/xor`. The name denotes the child occupied by the generated core;
+the other child is an independently generated sibling. Context and sibling use
+separate deterministic RNG streams. Baseline functions accept no derivations.
+All modes share the constant domain, expansion limit, full-input bounds,
+context vocabulary, accepted-case/attempt ceilings and end-to-end clock.
+
+Guided generation instantiates verified two-step templates and checks every
+concrete path step, guard, growth bound and structural endpoint. At the state
+after its first step, it finds the actual first target-free scheduled match.
+The match must differ from the next expected step and overlap its location
+(ancestor/same/descendant). A first match in a disjoint sibling is not accepted
+as overlap. A growth-stopped match is not a chosen rewrite. Provenance records
+the template, target location, concrete prefix, full intermediate tree, expected
+step and competing step, including bindings/guards. Replay verifies the template
+and regenerates these facts rather than trusting labels. A hint is not evidence
+of a positive removal delta. One-step-only alternatives and no-overlap templates
+produce no guided cases; no baseline fallback occurs. Zero coverage records
+`no-overlap-candidate-within-bounds` and partial status.
+
+Guidance matching consumes one cumulative `max_match_attempts` budget per run,
+including declared-step matching and all rejected competing matches. Checks at
+each match also enforce the soft overall deadline. Reports include the actual
+`generation.match_attempts`; baseline modes consume zero. Deduplication happens
+after generation, so duplicate guided cases still consume scan work. All modes
+currently share derivation preparation for optional finding qualification;
+baseline generation does not receive those templates. Preparation time and
+solver calls are included for every mode; M6 must retain this accounting.
 
 `seconds` is a 0–3,600 s overall soft deadline, checked at work boundaries.
 Each optimizer arm separately has the identical `run.seconds` ceiling. A pair

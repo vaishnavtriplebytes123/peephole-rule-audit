@@ -1,6 +1,6 @@
 # Implementation plan
 
-Status: **all six milestones authorized — M1–M3 implemented**. Prepared 2026-10-22.
+Status: **all six milestones authorized — M1–M4 implemented**. Prepared 2026-10-22.
 On 2026-10-22 the user explicitly authorized continuation through all six
 milestones, periodic pushes, and creation of a new GitHub repository with a name
 other than DesiCompiler. Milestones remain sequential and require recorded
@@ -238,7 +238,8 @@ inferred from these foundation/core checks.
 | M1 | Complete | Python 3.12.14 venv, exact runtime/dev SHA-256 locks (23 dev-environment packages), hash-required reinstall and editable installation verified. Typed IR/input contracts, help/version, Ruff, mypy and sdist/wheel build pass. |
 | M2 | Complete | 95 tests pass in the locked environment; Ruff/format/mypy/build pass. Matcher/guards/solver/optimizer and validate CLI verified; 26/26 source rules verified, 94 scoped exclusions recorded. Commands/evidence in docs/DEVELOPMENT.md. |
 | M3 | Complete | Derive/audit/replay CLI, strict config, seeded target generation, paired runs, snapshots/hashes and independent replay implemented. Full 146-test regression including saved-v1 replay passes; Ruff/mypy/build and manual CLI journey pass. Synthetic H=1/2 and H=4 criteria reproduced; 9/9 manual witnesses replayed. Detailed commands/results in docs/DEVELOPMENT.md. |
-| M4–M6 | Authorized, not started | All generators, reduction, robust reports and evaluation remain. |
+| M4 | Complete | Seeded random/target/guided modes, shared complete-input/attempt/work bounds, explicit contexts/overlap provenance, independent replay and no-fallback tests. Twelve equal-cap smoke trials on synthetic/source corpora; 49/49 emitted witnesses verified on sequential replay, with an earlier inconclusive replay retained in the record. Checks and limits in docs/DEVELOPMENT.md and experiments/README.md. |
+| M5–M6 | Authorized, not started | Reduction, robust reports and controlled evaluation remain. |
 
 ## Security and operational risks
 

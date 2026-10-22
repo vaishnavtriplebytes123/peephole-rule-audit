@@ -11,7 +11,7 @@ from ruleaudit.audit import audit_case, check_corpus
 from ruleaudit.config import Config, config_document
 from ruleaudit.corpus import Corpus, corpus_document
 from ruleaudit.derive import DeriveResult, derive
-from ruleaudit.generate import target_attempt
+from ruleaudit.generate import GuidanceBudget, guided_attempt, random_attempt, target_attempt
 from ruleaudit.io import InputError, JSONValue, content_hash, expression_node
 from ruleaudit.records import EncodingBudget, case_document, derivation_document, make_witness
 from ruleaudit.report import IncompleteError, ReportWriter
@@ -112,13 +112,36 @@ def audit_experiment(corpus: Corpus, config: Config, target: Rule, writer: Repor
     seen = set()
     attempts = duplicates = rejections = generated = findings = comparable = qualified = 0
     first_finding: float | None = None
+    guidance_budget = GuidanceBudget(
+        config.generation.max_match_attempts,
+        allow_work=lambda: perf_counter() - started < config.seconds,
+    )
     for attempt in range(1, config.generation.attempts + 1):
         if perf_counter() - started >= config.seconds:
             partial = True
             reasons.append("overall-time-limit")
             break
         attempts = attempt
-        case = target_attempt(target, config.generation, attempt)
+        if config.generation.strategy == "random":
+            case = random_attempt(config.generation, attempt)
+        elif config.generation.strategy == "target":
+            case = target_attempt(target, config.generation, attempt)
+        else:
+            try:
+                case = guided_attempt(
+                    target,
+                    config.generation,
+                    attempt,
+                    derived.witnesses,
+                    corpus.rules,
+                    config.schedule,
+                    config.run,
+                    budget=guidance_budget,
+                )
+            except IncompleteError as error:
+                partial = True
+                reasons.append(str(error))
+                break
         if case is None:
             rejections += 1
             continue
@@ -173,6 +196,8 @@ def audit_experiment(corpus: Corpus, config: Config, target: Rule, writer: Repor
     if generated < config.generation.cases:
         partial = True
         reasons.append("generation-incomplete")
+        if config.generation.strategy == "guided" and generated == 0:
+            reasons.append("no-overlap-candidate-within-bounds")
     report: dict[str, JSONValue] = {
         **snapshots(corpus, config, target),
         "status": "partial" if partial else "completed",
@@ -183,7 +208,12 @@ def audit_experiment(corpus: Corpus, config: Config, target: Rule, writer: Repor
         "findings": findings,
         "checked_alternative_findings": qualified,
         "records": records,
-        "generation": {"attempts": attempts, "duplicates": duplicates, "rejections": rejections},
+        "generation": {
+            "attempts": attempts,
+            "duplicates": duplicates,
+            "rejections": rejections,
+            "match_attempts": guidance_budget.matches,
+        },
         "derivation": derivation_result_document(derived),
         "solver_calls": backend.calls,
         "preprocessing_seconds": preprocessing,

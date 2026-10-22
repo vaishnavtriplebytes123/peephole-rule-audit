@@ -7,7 +7,7 @@ from ruleaudit import __version__
 from ruleaudit.audit import audit_case, check_corpus
 from ruleaudit.config import parse_config
 from ruleaudit.corpus import parse_corpus
-from ruleaudit.generate import target_attempt
+from ruleaudit.generate import GuidanceBudget, guided_attempt, random_attempt, target_attempt
 from ruleaudit.io import InputError, JSONValue, content_hash, object_fields, parse_expression
 from ruleaudit.records import (
     EncodingBudget,
@@ -94,7 +94,59 @@ def replay(value: JSONValue) -> dict[str, JSONValue]:
     attempt = provenance["attempt"]
     if type(attempt) is not int or not 1 <= attempt <= config.generation.attempts:
         raise InputError("provenance.attempt", "attempt is outside generation limits")
-    case = target_attempt(target, config.generation, attempt)
+    backend = Z3Backend(config.solver, deadline=started + config.seconds)
+    validation = check_corpus(corpus, backend=backend)
+    if validation.status == "unknown":
+        raise IncompleteError("corpus validation inconclusive during replay")
+    if validation.checked is None:
+        raise InputError("corpus", "corpus contains unusable rules")
+    if config.generation.strategy == "random":
+        case = random_attempt(config.generation, attempt)
+    elif config.generation.strategy == "target":
+        case = target_attempt(target, config.generation, attempt)
+    else:
+        guidance = object_fields(
+            provenance["guidance"],
+            {
+                "template",
+                "target_location",
+                "prefix",
+                "intermediate",
+                "expected_rule",
+                "expected_location",
+                "competing",
+            },
+            "provenance.guidance",
+        )
+        template = verify_template(
+            guidance["template"],
+            target,
+            corpus,
+            RunLimits(
+                h=2,
+                max_nodes=config.search.max_nodes,
+                max_depth=config.search.max_depth,
+                seconds=config.search.seconds,
+            ),
+            backend,
+        )
+        if len(template.steps) > config.search.max_steps or any(
+            value not in config.generation.constants for _, value in template.constant_bindings
+        ):
+            raise InputError("provenance.guidance", "template exceeds declared search scope")
+        case = guided_attempt(
+            target,
+            config.generation,
+            attempt,
+            (template,),
+            corpus.rules,
+            config.schedule,
+            config.run,
+            budget=GuidanceBudget(
+                config.generation.max_match_attempts,
+                allow_work=lambda: perf_counter() < started + config.seconds,
+            ),
+        )
     if case is None or content_hash(case_document(case, EncodingBudget())) != content_hash(
         provenance
     ):
@@ -102,12 +154,6 @@ def replay(value: JSONValue) -> dict[str, JSONValue]:
     expression = parse_expression({"schema_version": 1, "expression": payload["input"]})
     if expression != case.expression:
         raise InputError("input", "input differs from regenerated candidate")
-    backend = Z3Backend(config.solver, deadline=started + config.seconds)
-    validation = check_corpus(corpus, backend=backend)
-    if validation.status == "unknown":
-        raise IncompleteError("corpus validation inconclusive during replay")
-    if validation.checked is None:
-        raise InputError("corpus", "corpus contains unusable rules")
     try:
         pair = audit_case(
             expression, target.id, validation.checked, config.schedule, config.run, backend=backend

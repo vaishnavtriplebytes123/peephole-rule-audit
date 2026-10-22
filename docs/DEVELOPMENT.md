@@ -311,3 +311,61 @@ exercise zero-coverage partial generation, solver exhaustion and snapshot/trace
 tampering, and verify depth-128 report containers without relaxing depth-64
 expression inputs. Linux, clean-wheel installation, CSV/reduction, all three
 generators and the research matrix remain M4–M6 work.
+
+## M4 — generation modes and overlap evidence
+
+M4 adds seeded random and guided modes, one-operator contexts and generated
+siblings, common complete-input bounds, a cumulative guidance-match cap and
+per-match deadline checks. Configuration version 2 makes new bounds explicit;
+version 1 remains supported without changing saved target/hole provenance.
+Replay verifies guided templates and recomputes the actual competing match,
+prefix, intermediate state, guards, context, traces and costs. No dependency added.
+
+Test-first evidence: importing the new guided/random functions initially failed;
+the work-cap test initially failed for missing `GuidanceBudget`. Implementations
+then passed the focused suites. Coverage includes seed repetition, shared bounds,
+duplicates, guard rejection, same-node/ancestor competition, first scheduled
+matches in disjoint siblings, no-overlap/no-template exhaustion, no fallback,
+baseline interfaces without derivations, config compatibility and rehashed
+guidance tampering. The saved M4 fixture was copied from an actual emitted
+synthetic witness after its missing-file test failed.
+
+Actual checks:
+
+- `.venv/Scripts/python.exe -m pytest tests/test_generation_modes.py tests/test_config_generate.py tests/test_audit_replay.py tests/test_experiment_cli.py --basetemp=tmp/pytest-m4-modes`:
+  **48 passed in 27.87 s**.
+- `.venv/Scripts/python.exe -m pytest tests/test_generation_modes.py --basetemp=tmp/pytest-m4-isolation`:
+  **22 passed in 6.03 s** after adding schedule/baseline orchestration cases.
+- `.venv/Scripts/python.exe -m pytest --basetemp=tmp/pytest-m4-full`:
+  **168 passed in 74.70 s**.
+- `.venv/Scripts/python.exe -m pytest tests/test_generation_modes.py::test_saved_m4_guided_witness_replays --basetemp=tmp/pytest-m4-golden-green`:
+  **1 passed in 3.15 s**.
+- Ruff check/format and mypy passed (32 source/test files), including correction
+  of redundant test casts. Final checkpoint verification is recorded below.
+
+Final checkpoint commands: `python -m pytest --basetemp=tmp/pytest-m4-final`
+passed **169 tests in 38.78 s**. After replacing a source-text assertion with a
+behavioral baseline-isolation check, `python -m pytest
+tests/test_generation_modes.py::test_baseline_interfaces_do_not_receive_guidance
+--basetemp=tmp/pytest-m4-baseline-final` passed **1 test in 4.14 s**.
+All Python commands use `.venv/Scripts/python.exe`. `ruff check .`,
+`ruff format --check .` and `mypy src tests` passed (32 files).
+`python -m build --no-isolation` built the sdist and wheel with the documented
+Windows escalation. Help/version passed. A standard-library inspection checked
+local Markdown links and whitespace across 53 source/doc/config/test files and
+the smoke-result count/actual replay statuses; Git whitespace checks passed.
+
+The versioned [M4 smoke matrix](../experiments/m4-smoke-matrix.json) was executed
+using subprocess `python -m ruleaudit audit` for each full config, accepting
+only exit 0/3 and preserving each new directory. A follow-up Python loop called
+`replay` on every emitted witness. [Results](../experiments/m4-smoke-results.json)
+retain raw case rows and all zero/partial trials. All 49 witnesses verified in
+the final sequential pass. The first driver stopped on an inconclusive corpus
+validation during a JOG seed-1 target witness replay while tests ran concurrently;
+that event is retained, not treated as a verified result or assigned an unproven
+cause. See [experiment notes](../experiments/README.md) for exact caps, outcomes
+and reproduction commands. No guidance advantage or source derivability is claimed.
+
+M5/M6 remain: reduction and provenance for changed inputs, resilient status/CSV
+reporting, clean-wheel installation, labeled scenarios, held-out expressions,
+controlled evaluation and research reporting. Linux remains unverified.

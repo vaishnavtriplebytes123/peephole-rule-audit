@@ -1,6 +1,6 @@
 # Product requirements: Peephole Rule Removal Audit
 
-Status: **M1–M3 implemented and verified; M4–M6 pending**. Prepared 2026-10-22.
+Status: **M1–M4 implemented; M5–M6 pending**. Prepared 2026-10-22.
 The user explicitly authorized all six milestones and periodic GitHub pushes on
 2026-10-22. Verification remains required at each milestone.
 
@@ -187,6 +187,25 @@ as primary comparable regression measurements.
 
 M3's concrete single-run configuration, snapshot/replay encoding, and explicit
 storage caps are specified in [docs/EXPERIMENT_FORMAT.md](docs/EXPERIMENT_FORMAT.md).
+
+M4 extends configuration to version 2 with shared `generation.max_nodes` (1–1000)
+and `generation.max_depth` (1–64) bounds for the complete input in every mode.
+Version 1 remains readable with its original defaults and target/hole generation.
+`depth` still caps random/substitution expansion (0–4). Contexts are `hole`,
+`not`, or `OP-left`/`OP-right` for each supported binary operator, with one bounded
+generated sibling. Random and target generation receive no derivations. Guided
+generation checks a concrete verified template, including its endpoint, then
+requires an actual first scheduled target-free match at an intermediate state
+that differs from and overlaps the next declared path step (ancestor, same node,
+or descendant). Record the template, prefix, intermediate tree, expected step,
+competing step and context. This is a scheduling hint; paired execution decides
+whether removal hurts. No overlap or no two-step template yields explicit
+generation exhaustion; there is no baseline fallback. All template scans, failed
+attempts and derivation preparation count against the same end-to-end clock.
+Version 2 also includes `generation.max_match_attempts` (0–1,000,000, default
+100,000) for cumulative guided syntactic matching across the run; deadline and
+match exhaustion stop generation explicitly with partial status. Other modes
+consume zero guidance matches. This work is reported separately from solver calls.
 
 A run references one corpus/configuration and contains candidates, derivations,
 generated cases, paired executions, witnesses, and metrics. A witness refers to

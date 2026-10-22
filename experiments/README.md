@@ -1,4 +1,4 @@
-# M3 smoke configurations
+# Smoke configurations and generator checks
 
 These are small, reproducible single-run configurations, not the M6 evaluation
 matrix. Run from the repository root in the documented virtual environment.
@@ -27,3 +27,59 @@ The four-case source smoke run is not a generator comparison or effectiveness
 benchmark. A positive delta without a checked alternative is recorded separately
 from a derivation-backed regression. Neither bounded misses nor zero findings
 justify deleting a production rule. See the audit's raw records and statuses.
+
+## M4 equal-cap generator smoke
+
+`m4-smoke-matrix.json` records twelve complete configurations: synthetic
+interference and JOG target `jog_pAdd3`, seeds 0/1, all three modes. Each trial
+caps accepted cases at 8, attempts at 200, guidance matches at 10,000, elapsed
+computation at 60 s and solver calls at 100,000 (1,000 ms per query). The shared
+constant domain is 0/1/4294967295, expansion depth 2, complete-input nodes <=63
+and depth <=5, contexts hole/not/add-left/add-right, preorder/corpus priority,
+H=4. Configs were fixed before running this comparison.
+
+`m4-smoke-results.json` retains every raw case row, including costs, provenance,
+hashes, stop/semantic status, timings, attempts and zero-coverage trials. The
+original full reports/witnesses are under ignored `artifacts/m4-smoke/`; configs
+and corpus hashes permit regeneration. The initial replay driver stopped on an
+inconclusive corpus validation during JOG seed-1 target replay, while tests ran
+concurrently. The record preserves that event. A sequential pass after tests
+finished verified **49/49 witnesses**. That observation does not establish the
+cause of the earlier inconclusiveness.
+
+| Corpus / seed | Random findings / tested | Target findings / tested | Guided findings / tested |
+|---|---:|---:|---:|
+| Synthetic / 0 | 1 / 8 | 8 / 8 | 8 / 8 |
+| Synthetic / 1 | 2 / 8 | 8 / 8 | 8 / 8 |
+| JOG / 0 | 0 / 8 | 7 / 8 | 0 / 0 (partial) |
+| JOG / 1 | 0 / 8 | 7 / 8 | 0 / 0 (partial) |
+
+Only the 32 synthetic target/guided findings have a checked initial alternative.
+The source target has no discovered bounded template, so guided generation
+exhausts 200 attempts without fallback. The 14 source target findings and three
+random synthetic findings are unqualified removal regressions. These small
+trials do not demonstrate a guidance advantage, source-rule derivability or
+production runtime impact. M6 adds controlled evaluation and eligibility rates.
+
+To regenerate all trials, use a new root and the installed local interpreter:
+
+```powershell
+@'
+import json, subprocess, sys
+from pathlib import Path
+matrix = json.loads(Path('experiments/m4-smoke-matrix.json').read_text())
+root = Path('artifacts/m4-demo-NEW')
+root.mkdir()
+for trial in matrix['runs']:
+    config = root / (trial['name'] + '.json')
+    config.write_text(json.dumps(trial['config']), encoding='utf-8')
+    result = subprocess.run([sys.executable, '-m', 'ruleaudit', 'audit',
+        '--rules', trial['rules'], '--target', trial['target'],
+        '--config', str(config), '--out', str(root / trial['name'])])
+    if result.returncode not in (0, 3):
+        raise SystemExit(result.returncode)
+'@ | .venv/Scripts/python.exe -
+```
+
+Semantic traces/provenance are repeatable; wall time and solver resource outcomes
+can vary. Output directories are never reused or overwritten.

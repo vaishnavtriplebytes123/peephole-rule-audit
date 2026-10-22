@@ -73,13 +73,28 @@ def paired_document(pair: PairedResult, budget: EncodingBudget) -> dict[str, JSO
 
 
 def case_document(case: Case, budget: EncodingBudget) -> dict[str, JSONValue]:
+    context: dict[str, JSONValue] = {"kind": case.context.kind}
+    if case.context.sibling is not None:
+        context["sibling"] = budget.expression(case.context.sibling)
+    guidance: JSONValue = None
+    if case.guidance is not None:
+        hint = case.guidance
+        guidance = {
+            "template": derivation_document(hint.template, budget),
+            "target_location": list(hint.target_location),
+            "prefix": [step_document(step, budget) for step in hint.prefix],
+            "intermediate": budget.expression(hint.intermediate),
+            "expected_rule": hint.expected_rule,
+            "expected_location": list(hint.expected_location),
+            "competing": step_document(hint.competing, budget),
+        }
     return {
         "strategy": case.strategy,
         "seed": case.seed,
         "attempt": case.attempt,
         "bindings": {name: budget.expression(expr) for name, expr in case.bindings},
-        "context": {"kind": "hole"},
-        "guidance": None,
+        "context": context,
+        "guidance": guidance,
     }
 
 
