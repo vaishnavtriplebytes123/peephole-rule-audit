@@ -1,6 +1,6 @@
 # Product requirements: Peephole Rule Removal Audit
 
-Status: **M1–M4 implemented; M5–M6 pending**. Prepared 2026-10-22.
+Status: **M1–M5 implemented; M6 pending**. Prepared 2026-10-22.
 The user explicitly authorized all six milestones and periodic GitHub pushes on
 2026-10-22. Verification remains required at each milestone.
 
@@ -207,6 +207,13 @@ Version 2 also includes `generation.max_match_attempts` (0–1,000,000, default
 match exhaustion stop generation explicitly with partial status. Other modes
 consume zero guidance matches. This work is reported separately from solver calls.
 
+M5's reduction and CSV contracts are specified in
+[docs/REDUCTION_FORMAT.md](docs/REDUCTION_FORMAT.md). Reduction preserves the
+original generated witness and records changed inputs separately. It requires a
+checked original alternative, positive comparable pairs and a checked alternative
+for every accepted shrink. Report-write errors must not escape error handlers;
+retain available partial files and print a concise error if status cannot be saved.
+
 A run references one corpus/configuration and contains candidates, derivations,
 generated cases, paired executions, witnesses, and metrics. A witness refers to
 one target, one input, and two ordered traces. Include schema/tool versions,
@@ -226,7 +233,7 @@ No HTTP API or external service. Public interface is the local CLI and versioned
 JSON/CSV files. argparse handles syntax; a standard-library schema validator
 handles structural validation without an additional schema-framework dependency.
 
-CLI contracts (`validate`, `derive`, `audit`, `replay` implemented; remaining commands pending):
+CLI contracts (`validate`, `derive`, `audit`, `replay`, `reduce` implemented; `evaluate` pending):
 
 ```text
 ruleaudit validate --rules FILE --out NEW_DIRECTORY

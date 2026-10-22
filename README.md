@@ -3,13 +3,14 @@
 A local research CLI for testing whether removing a derivable peephole
 optimization rule makes a bounded, deterministic optimizer less effective.
 
-**Status: M1–M4 implemented; M5–M6 authorized and pending.**
+**Status: M1–M5 implemented; M6 evaluation remains.**
 The user authorized implementation and periodic GitHub pushes on 2026-10-22.
-The `validate`, `derive`, `audit`, and `replay` commands are implemented.
+The `validate`, `derive`, `audit`, `replay`, and `reduce` commands are implemented.
 All three generation modes and small equal-cap comparisons are implemented.
-Reduction and controlled evaluation remain M5–M6 work. No submission date is assumed.
+Reduction and bounded JSON/CSV reports are available. Controlled evaluation and
+the research report remain M6 work. No submission date is assumed.
 
-The tool pairs a checked alternative rewrite sequence with a replayable
+The tool can pair a checked alternative rewrite sequence with a replayable
 example of worse optimization after rule removal and supports random,
 target-pattern-only, and derivation-guided test generation. Operator count is the
 initial cost measure; it is not a claim about execution speed.
@@ -30,12 +31,12 @@ initial cost measure; it is not a claim about execution speed.
 3. Search for one- or two-step alternatives that exclude a selected rule.
 4. Run the same expressions and optimizer settings with and without that rule.
 5. Inspect and replay traces where removal increases final operator count.
-6. Compare generators under the same limits; M5 adds witness reduction.
+6. Compare generators under the same limits and reduce qualified witnesses.
 
 `ruleaudit validate --rules corpus/jog.json --out artifacts/validation-NEW`
 validates the initial 26-rule source corpus. Output directories must be new.
 See [runnable examples](experiments/README.md) for the complete synthetic
-validate → derive → audit → replay journey. `reduce` and `evaluate` remain
+validate → derive → audit → replay → reduce journey. `evaluate` remains
 unimplemented. There is no server, database, account, or UI.
 
 ## Proposed repository layout
@@ -65,3 +66,5 @@ See [corpus notes](corpus/README.md) for source selection, normalization,
 attribution, and limitations, and [verification evidence](docs/DEVELOPMENT.md)
 for the locked environment and milestone checks. Input/configuration and witness
 contracts are in [EXPERIMENT_FORMAT.md](docs/EXPERIMENT_FORMAT.md).
+Reduction, signal handling and CSV safety are specified in
+[REDUCTION_FORMAT.md](docs/REDUCTION_FORMAT.md).

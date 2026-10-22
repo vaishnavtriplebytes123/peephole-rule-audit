@@ -369,3 +369,100 @@ and reproduction commands. No guidance advantage or source derivability is claim
 M5/M6 remain: reduction and provenance for changed inputs, resilient status/CSV
 reporting, clean-wheel installation, labeled scenarios, held-out expressions,
 controlled evaluation and research reporting. Linux remains unverified.
+
+## M5 — reduction, reporting and interruption (2026-10-23)
+
+The `reduce` command now keeps the original generated witness, records allowed
+strictly decreasing changes in a version-2 envelope, and checks every accepted
+input's target path, paired delta and SMT evidence. Original v1 witnesses still
+replay. Partial/interrupted minimization retains the last verified candidate.
+CSV summaries and all command outputs use one bounded atomic/no-replace writer.
+Audit record accumulation is bounded before another pair executes. Console
+encoding and failure to save status cannot turn into unhandled tracebacks.
+No dependency or semantic/operator/schedule contract changed.
+
+Test-first evidence and fixes:
+
+- Reporting tests initially **13 failed**, exposing missing CSV output, unsafe
+  status-write error handling, separate validation output code and ASCII-console
+  failure. The focused writer/CLI suite then **23 passed in 40.10 s**.
+- Reduction tests initially failed to import the missing module; CLI tests then
+  failed for the missing command. A trace-injected interruption test exposed
+  inconsistent accepted history versus final input. A single tuple assignment
+  now commits the input/evidence/history together. The combined reducer/CLI/
+  reporting suite **35 passed in 20.62 s**.
+- A full run had **202 passed, 2 failed in 72.67 s**: the old unsupported-version
+  check needed a version/kind compatibility message, and a timed interpreter
+  interruption was swallowed by a Z3 object's `__del__`, producing an unraisable
+  traceback. A signal latch with explicit clock checkpoints fixed the latter;
+  the missing-latch test was red first. Follow-up focused checks **51 passed in
+  20.05 s**, and `.venv/Scripts/python.exe -m pytest
+  --basetemp=tmp/pytest-m5-reviewed` **207 passed in 54.53 s**.
+- Further tests cover refusing a smaller input that retains a path but loses
+  its positive delta, refusing a positive delta that loses its initial path,
+  zero solver calls, and a serialized-record preflight cap. The latter failed
+  before implementation, then **1 passed in 3.61 s**. The preserved reduced
+  fixture's missing-file test was red before copying the actual emitted report.
+
+Manual commands, both exit 0:
+
+```powershell
+.venv/Scripts/python.exe -m ruleaudit reduce --witness tests/fixtures/m4-guided-witness-v1.json --config experiments/reduction.json --out artifacts/m5-reduction
+.venv/Scripts/python.exe -m ruleaudit replay --witness artifacts/m5-reduction/witness.json --out artifacts/m5-reduction-replay
+```
+
+Observed: **9 -> 5 nodes**, **3 accepted / 14 attempted**, **delta 2**, **18 shrink
+solver calls**. Origin verification/preparation took 0.1626 s; shrinking took 0.0489 s in this
+small manual run. These are local smoke timings, not performance claims.
+
+Clean-wheel setup used a fresh `tmp/m5-wheel-venv`, workspace-local TEMP/TMP,
+and a cached exact runtime wheel downloaded with hashes. Commands:
+
+```powershell
+.venv/Scripts/python.exe -m pip download --require-hashes --no-deps --only-binary :all: -r requirements.lock --dest tmp/m5-wheelhouse
+.venv/Scripts/python.exe -m venv tmp/m5-wheel-venv
+.venv/Scripts/python.exe -m build --no-isolation
+tmp/m5-wheel-venv/Scripts/python.exe -m pip install --no-index --find-links tmp/m5-wheelhouse --require-hashes -r requirements.lock
+tmp/m5-wheel-venv/Scripts/python.exe -m pip install --no-index --no-deps dist/ruleaudit-0.1.0-py3-none-any.whl
+tmp/m5-wheel-venv/Scripts/python.exe -m pip check
+```
+
+The wheel and sdist built with the documented Windows escalation. Offline clean
+installation and `pip check` passed. From an empty `tmp/m5-clean-cwd`, the clean
+interpreter ran with `-I`: verified `ruleaudit.__file__` is in `site-packages`
+and pytest is absent; validated 26 JOG rules; derived/audited the synthetic
+interference fixture; replayed an emitted audit witness; reduced the saved M4
+witness and replayed the reduced output. All commands exited 0 under new
+`artifacts/m5-clean-*` directories. The installed console entry point reported
+`ruleaudit 0.1.0`. An initial verification helper failed printing its Unicode
+installation path under isolated cp1252; using `ascii(path)` corrected that
+helper. The product separately passes its strict-ASCII-console subprocess test.
+The final record-cap change receives a rebuilt-wheel recheck at checkpoint.
+
+Final regression command `.venv/Scripts/python.exe -m pytest
+--basetemp=tmp/pytest-m5-checkpoint`: **210 passed in 53.95 s**. This includes
+the actual preserved reduced witness and a final-clock interruption test that
+first failed when the last verified input escaped through `KeyboardInterrupt`;
+final timing capture now retains and returns that input. Ruff check/format,
+mypy (37 source/test files), and Git whitespace checks passed.
+
+Final packaging recheck: a forced reinstall in the first test venv failed when
+this shell omitted workspace TEMP/TMP; pip used a protected Windows temporary
+directory and left invalid-distribution warnings. No cleanup of unrelated
+directories was attempted. A fresh `tmp/m5-final-wheel-venv` with workspace
+TEMP/TMP installed the locked runtime and final wheel using the same offline
+commands above and passed `pip check` without those warnings. Every installed
+`.py` file was compared byte-for-byte with `src/ruleaudit/`; all matched.
+The entire `-I` validation/derive/audit/replay/reduce/replay journey was repeated
+from the empty working directory under new `artifacts/m5-final-clean-*` paths.
+All commands exited 0; artifacts confirm **26/26 verified rules**, **4/4 qualified
+synthetic audit findings**, **9 -> 5 nodes with delta 2**, and verified audit and
+reduced replays. The final console entry point reported `ruleaudit 0.1.0`.
+Archive inspection confirmed the reduction config, schema and saved v2 fixture
+in the sdist, and exact current source in the wheel. Whitespace/local links
+passed across 61 source/doc/config/test files after normalizing the new config
+from Windows CRLF to LF.
+
+M6 controlled evaluation, >=100 labeled scenarios, independent held-out inputs,
+pilot sizing and the research report remain. Windows/Python 3.12 is exercised;
+Linux remains unverified.

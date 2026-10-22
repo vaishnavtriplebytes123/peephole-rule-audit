@@ -1,6 +1,8 @@
 """Checked corpora and exactly paired bounded optimizer executions."""
 
+from collections.abc import Callable
 from dataclasses import dataclass
+from time import perf_counter
 
 from ruleaudit.corpus import Corpus
 from ruleaudit.ir import Expr, measure, within_limits
@@ -58,6 +60,7 @@ def audit_case(
     limits: RunLimits,
     *,
     backend: ProofBackend | None = None,
+    now: Callable[[], float] = perf_counter,
 ) -> PairedResult:
     rules = checked.corpus.rules
     if sum(rule.id == target_id for rule in rules) != 1:
@@ -65,7 +68,7 @@ def audit_case(
     if not within_limits(expression, 1000, 64):
         raise ValueError("input exceeds expression limits")
     without_priority = tuple(name for name in schedule.priority if name != target_id)
-    with_target = run(expression, rules, schedule, limits)
+    with_target = run(expression, rules, schedule, limits, now=now)
     if with_target.stop_reason == "interrupted":
         raise KeyboardInterrupt
     without_target = run(
@@ -73,6 +76,7 @@ def audit_case(
         tuple(r for r in rules if r.id != target_id),
         Schedule(schedule.traversal, without_priority),
         limits,
+        now=now,
     )
     if without_target.stop_reason == "interrupted":
         raise KeyboardInterrupt

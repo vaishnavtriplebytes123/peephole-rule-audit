@@ -13,7 +13,9 @@ Version-1 generation has exactly `strategy`, `seed`, `cases`, `attempts`, `depth
 M4 writes version 2, additionally requiring `max_nodes` (1–1000), `max_depth`
 (1–64) and `max_match_attempts` (0–1,000,000, default 100,000). Old version-1
 configs/witnesses retain the original target/hole streams and input limits.
-Unknown versions/fields are rejected. The witness envelope remains version 1.
+Unknown versions/fields are rejected. Original generated witness envelopes remain
+version 1. M5's reduced witnesses use a separate version-2 envelope, specified in
+[REDUCTION_FORMAT.md](REDUCTION_FORMAT.md), retaining their complete original.
 Bounds: unsigned 64-bit seed, 1–10,000 requested unique cases, 0–1,000,000
 attempts, depth 0–4, and 1–16 distinct unsigned 32-bit constants. Each attempt
 uses `depth` expansion levels for expression metavariable substitutions (0 means
@@ -73,6 +75,9 @@ is raised to 300 for snapshots of depth-128 outputs; expression input depth stay
 
 `derive` writes `derivations.json`; `audit` writes `audit.json`, numbered
 `witness-000001.json` files for eligible positive deltas, and `status.json`.
+M5 also writes `cases.csv` for audits and `rules.csv`/`status.json` for validation,
+using the same bounded, no-replacement writer. CSV escaping and cooperative
+interruption are described in [REDUCTION_FORMAT.md](REDUCTION_FORMAT.md).
 The audit records raw per-case costs, stops, comparable flags, input hashes,
 generation attempts and provenance, including zero findings. A checked alternative
 is attached when applicable; its absence does not prove non-derivability.

@@ -86,7 +86,8 @@ class Z3Backend:
     def _solve(
         self, lhs: Pattern, rhs: Pattern, guards: tuple[Guard, ...], *, inequality: bool
     ) -> QueryResult:
-        if self.deadline is not None and self.now() >= self.deadline:
+        current_time = self.now()
+        if self.deadline is not None and current_time >= self.deadline:
             return QueryResult("unknown", reason="solver-deadline")
         if self.calls >= self.limits.max_calls:
             return QueryResult("unknown", reason="solver-call-limit")

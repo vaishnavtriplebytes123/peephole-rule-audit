@@ -83,3 +83,26 @@ for trial in matrix['runs']:
 
 Semantic traces/provenance are repeatable; wall time and solver resource outcomes
 can vary. Output directories are never reused or overwritten.
+
+## M5 reduction
+
+`reduction.json` contains bounded reduction settings, rather than an audit
+configuration. Reduction requires an original witness with a checked alternative;
+the changed input retains separate provenance and every accepted shrink replays.
+
+```powershell
+.venv/Scripts/python.exe -m ruleaudit reduce --witness tests/fixtures/m4-guided-witness-v1.json --config experiments/reduction.json --out artifacts/demo-reduced-NEW
+.venv/Scripts/python.exe -m ruleaudit replay --witness artifacts/demo-reduced-NEW/witness.json --out artifacts/demo-reduced-replay-NEW
+```
+
+The M5 manual run reduced 9 nodes to 5 in three accepted shrinks/14 attempts,
+preserving a checked two-step alternative and delta 2 at H=4. The resulting
+synthetic envelope is preserved in `tests/fixtures/m5-reduced-witness-v2.json`.
+This is a local greedy result, not a global minimum or source-corpus evaluation.
+Zero attempts/time and solver exhaustion return a partial reduction with its
+last verified input. See [schema and caps](../docs/REDUCTION_FORMAT.md).
+
+Audits now include `cases.csv`, validation includes `rules.csv`, and reduction
+includes `summary.csv`. JSON retains full unescaped evidence; CSV protects text
+cells from spreadsheet formula interpretation. Output failures retain `.partial`
+files and explicit status when the filesystem permits it.
