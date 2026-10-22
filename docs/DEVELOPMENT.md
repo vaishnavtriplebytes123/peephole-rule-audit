@@ -635,3 +635,18 @@ invalid-rule negative control, plus the actual source scheduling witness) await
 that run. Static mypy checks pass **52 source/test/supplement-script files**.
 The suffix procedure and seven exact saved-seed configs are prepared/preregistered;
 their actual runs, final archive build/installation and completion audit remain.
+
+The second source batch subsequently finished all 1,440 trials / 4,016 pairs,
+with **957/957 emitted witnesses verified** and 470 partials retained. Curated
+header/case/config reconstruction now matches **3,375 original audit files**
+byte-for-byte. These extend the evidence checkpoint, not the frozen source code.
+The failed network push of 2b8acce was retried with command-local HTTP/1.1 and
+16 MiB post buffering; the push completed and a fresh remote query confirmed
+2b8acce exactly. One intervening approval review timed out before starting;
+its permitted retry succeeded. No global Git setting or identity changed.
+
+Evaluation docs now clarify the already implemented time scopes: base seconds/
+queries cover audit search; replay and reduction have separate recorded caps
+and add to end-to-end time under the overall soft matrix deadline. No numerical
+experiment setting changed. Publication/curation ran alongside some measurements;
+timings remain descriptive of the interactive host, with that limitation explicit.

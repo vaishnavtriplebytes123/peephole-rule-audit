@@ -184,8 +184,8 @@ not yet measured.
 ## Completed first source batch (six removal targets)
 
 The first six targets, Add2/Add3/Add3Sym/Add4/Add4Sym/Add5, were evaluated against
-the complete 26-rule library. All 1,440 declared trials were visited; the other
-20 targets remain in queued/running batches. These are completed full-grid
+the complete 26-rule library. All 1,440 declared trials were visited; at that
+checkpoint 20 targets remained. The later batch outcome is listed below. These are completed full-grid
 cells for this subset, not the final 26-target aggregate.
 
 | Mode | Tested pairs | Positive deltas | Qualified deltas | Eligible cases | H>=4 qualified / eligible |
@@ -235,6 +235,16 @@ the complete production matcher, canonicalization passes or rule library.
 
 ## Pending final results and reproducibility checks
 
+The second source batch has also completed all 1,440 trials / 4,016 pairs.
+Random tested 1,920 with no positives/eligible alternatives; target tested 1,920
+with 879 positives (41 qualified, 320 eligible); guided tested 176, all eligible,
+with 40 qualified positives. H>=4 qualified/eligible counts are 4/160
+for target and 19/88 for guided. All 919 originals and 38 reductions verified;
+470 partial trials remain explicit. Root work took 1,665.025 s wall /
+1,531.516 s CPU and produced 130,888,694 bytes. Its complete data is in
+[jog-02](../experiments/results/jog-02/); the remaining 14 targets are still
+executing or queued. These subset observations are not the final aggregate.
+
 Supplemental held-out and full source results, per-target/per-seed distributions, deduplicated
 yields, alternative-length yields, time-to-first/reduction/resource summaries,
 representative saved-seed reruns, and final replay coverage remain to be filled
@@ -246,6 +256,9 @@ Python 3.12.14, Z3 5.3.1.0, Windows AMD64, 12 visible logical processors and
 8,216,317,952 physical-memory bytes. Timings come from an interactive OneDrive
 workspace; peak memory and four-core performance were not measured. Linux was
 not exercised. These remain limitations rather than inferred achievements.
+Publication/curation activity also ran alongside parts of the sequential study;
+heavy native test runs were deferred. Timing comparisons are therefore
+descriptive measurements of this interactive host, without isolation guarantees.
 
 ## Threats to validity
 

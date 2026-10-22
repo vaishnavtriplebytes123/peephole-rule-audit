@@ -20,6 +20,14 @@ corpus order. Both permutation/order seeds are unsigned 64-bit integers.
 Only schedule, H, generator mode and seed vary from `base`; all other caps,
 domains and bounds are shared. Actual full configs are saved per trial.
 
+The base config's `seconds` and solver-call limit cover the audit/search phase
+within each trial, including validation, derivation discovery and generation.
+Replay uses the witness snapshot's own caps; reduction preparation/replay and
+shrinking retain the separate scopes documented in REDUCTION_FORMAT.md. They
+add to end-to-end trial time. The overall evaluation clock also covers those
+phases, checked at operation boundaries; it is a soft deadline, not an OS kill
+or a promise that every child finishes within the base audit's seconds.
+
 Corpus priority is literal source order. Permuted priority uses an independent,
 recorded seeded shuffle, shared by every mode/seed at that schedule. Trial
 descriptors are independently shuffled using `order_seed` to avoid always

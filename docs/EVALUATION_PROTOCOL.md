@@ -113,7 +113,7 @@ The preregistered selection therefore gives Add5, Add2 (empty one-step stratum
 fallback) and Add3. This is a bounded miss, not proof of non-derivability.
 Catalog discovery took 11.807 s; selected IDs did not use removal outcomes.
 The independent held-out pilot config uses 100 cases, seed 424242, 100,000 attempts,
-depth 4, hole only, 63 nodes/depth 5, 600 s per trial, 5,000 solver calls at 1,000 ms,
+depth 4, hole only, 63 nodes/depth 5, 600 s audit/search per trial, 5,000 solver calls at 1,000 ms,
 64 MiB per trial, and 600 s/128 MiB overall. Search, per-arm limits, reduction
 settings, H=4/preorder/corpus order and constant domain remain as declared above.
 
@@ -130,7 +130,7 @@ Before full execution, the held-out command is fixed at 15 trials (3 targets x
 input slots** (2,000 per seed; cross-seed duplicates remain possible). Keep the
 pilot generation/search/per-arm/timeout/reduction settings; raise the per-trial
 solver cap to 100,000 because the observed ~3 calls/case projects ~6,000 calls
-for 2,000 cases, above the pilot's 5,000 cap. Per-trial time remains 600 s and
+for 2,000 cases, above the pilot's 5,000 cap. Per-trial audit/search remains 600 s and
 output 64 MiB; overall caps are 14,400 s / 512 MiB. Point linear cost is about
 **12.6 minutes / 45.5 MB**, with a factor-four allowance **50.3 minutes / 182 MB**.
 These are pilot extrapolations, not full-run results; rare findings, larger
@@ -154,6 +154,10 @@ generation-incomplete audits and 33 incomplete reductions), all retained. Four
 source batches remain. The source operator-count example and matched traversal
 cell are documented in the draft report; they are model results, not production
 JOG/JVM performance claims.
+The next six targets also completed all 1,440 trials: 4,016 pairs and 957/957
+witnesses verified, with 470 partials retained. Three source batches remain.
+The primary source aggregate is still pending; publication does not filter out
+zero/non-winning cases or incomplete reductions.
 
 The first two full matrices have finished (these are full synthetic runs, not
 the earlier pilot). Both finished all 240 declared trials, with no unstarted
