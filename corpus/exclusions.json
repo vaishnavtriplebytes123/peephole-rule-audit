@@ -1,0 +1,582 @@
+{
+  "schema_version": 1,
+  "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+  "scope": "All methods in AddNodeExample.java and SubNodeExample.java only; other JOG files were not screened.",
+  "sources": [
+    {
+      "path": "tool/src/test/java/AddNodeExample.java",
+      "sha256": "a51ec803a733be4dcef675ca8c5c6a0276d0a2d3378652e1e2842473a5727c70"
+    },
+    {
+      "path": "tool/src/test/java/SubNodeExample.java",
+      "sha256": "5298f059befeca64ae0ad1afef1bb7ad81878b590007559eda52b403d5fc2cf4"
+    }
+  ],
+  "included": 26,
+  "excluded": [
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAdd1",
+      "line": 102,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAdd9",
+      "line": 275,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddAssociative1",
+      "line": 304,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddAssociative2",
+      "line": 330,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddAssociative3",
+      "line": 356,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddAssociative4",
+      "line": 382,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddURShiftThenLShiftToRRotation",
+      "line": 409,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddURShiftThenLShiftToRRotationSym",
+      "line": 440,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddConstantAssociative",
+      "line": 513,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddPushConstantDownSym",
+      "line": 566,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "p_AMaxB_Plus_AMinB_",
+      "line": 598,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "p_AMaxB_Plus_AMinB_Sym",
+      "line": 629,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "p_XLShiftC1_Or_XURShiftC2_",
+      "line": 673,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "p_XURShiftC1_Or_XLShiftC2_",
+      "line": 718,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "p_XLShiftS_Or_XURShift_ConMinusS__",
+      "line": 760,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "p_XURShiftS_Or_XLShift_ConMinusS__",
+      "line": 802,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pMinAssociative",
+      "line": 828,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAddDistributiveOverMin",
+      "line": 879,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pAssociativeThenAddDistributiveOverMin",
+      "line": 948,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddNotXPlusOneToNegX1",
+      "line": 964,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddNotXPlusOneToNegX2",
+      "line": 977,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddNotXPlusOneToNegX3",
+      "line": 990,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddNotXPlusOneToNegX4",
+      "line": 1003,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddAddSub1165",
+      "line": 1016,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddAddSub1156",
+      "line": 1030,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddAddSub1202",
+      "line": 1047,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddAddSub1295Sym",
+      "line": 1072,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddAddSub1309Sym",
+      "line": 1097,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAdd_APlusC1_Plus_C2MinusB_",
+      "line": 1109,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddXModC0PlusXDivC0ModC1MulC0",
+      "line": 1121,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddAddSub1040",
+      "line": 1135,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewAddAddSub1043",
+      "line": 1151,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_XOrC2_PlusC",
+      "line": 1165,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewXPlus_ConMinusY_",
+      "line": 1179,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewXPlus_ConMinusY_Sym",
+      "line": 1191,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewDeMorganWithReassociationOrToAnd",
+      "line": 1216,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNewDeMorganWithReassociationOrToAndSym",
+      "line": 1228,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndB_OrNot_AOrB_",
+      "line": 1240,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndB_OrNot_AOrB_Sym",
+      "line": 1252,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndB_OrNot_BOrA_",
+      "line": 1264,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndB_OrNot_BOrA_Sym",
+      "line": 1276,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AXorB_OrNot_AOrB_",
+      "line": 1288,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AXorB_OrNot_AOrB_Sym",
+      "line": 1300,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AXorB_OrNot_BOrA_",
+      "line": 1312,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AXorB_OrNot_BOrA_Sym",
+      "line": 1324,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndNotB_Or_NotAAndB_1",
+      "line": 1336,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndNotB_Or_NotAAndB_2",
+      "line": 1348,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndNotB_Or_NotAAndB_3",
+      "line": 1360,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_AAndNotB_Or_NotAAndB_4",
+      "line": 1372,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_Or_Not_AOrC_AndB_",
+      "line": 1384,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_Or_Not_BOrC_AndA_",
+      "line": 1396,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_OrNot_AOrC_",
+      "line": 1408,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_OrNot_AOrC_Sym",
+      "line": 1420,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_OrNot_BOrC_",
+      "line": 1432,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_OrNot_BOrC_Sym",
+      "line": 1444,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_OrNot_COr_AXorB__",
+      "line": 1456,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_Not_AOrB_AndC_OrNot_COr_AXorB__Sym",
+      "line": 1468,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew__NotAAndB_AndC_OrNot__AOrB_OrC_",
+      "line": 1480,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew__NotAAndB_AndC_OrNot__AOrB_OrC_Sym",
+      "line": 1492,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_NotAAndBAndC_Or_Not_AOrB_",
+      "line": 1504,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_NotAAndBAndC_Or_Not_AOrB_Sym",
+      "line": 1516,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_NotAAndBAndC_Or_Not_AOrC_",
+      "line": 1528,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/AddNodeExample.java",
+      "method": "pNew_NotAAndBAndC_Or_Not_AOrC_Sym",
+      "line": 1540,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSub1",
+      "line": 63,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSub2",
+      "line": 83,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSub3",
+      "line": 108,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSubXMinus_XPlusY_",
+      "line": 124,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSub7",
+      "line": 167,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSub8",
+      "line": 184,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSub9",
+      "line": 199,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSub13",
+      "line": 254,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSubAssociative1",
+      "line": 283,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSubAssociative2",
+      "line": 310,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSubAssociative3",
+      "line": 337,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSubAssociative4",
+      "line": 364,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pSubNegRShiftToURShift",
+      "line": 385,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSubCMinus_C2MinuxX_",
+      "line": 403,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSubAddSub1564",
+      "line": 457,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSub_APlusB_Minus_AOrB_",
+      "line": 498,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSub_APlusB_Minus_AXorB_",
+      "line": 511,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSub_AAndB_Minus_AOrB_",
+      "line": 524,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSub_AXorB_Minus_AOrB_",
+      "line": 537,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSubAddSub1574",
+      "line": 551,
+      "reason": "guard or compiler-context predicate not reviewed/supported in initial subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSub_XOrY_MinusX",
+      "line": 565,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSub_Op1And_NegX__MinusOp1",
+      "line": 577,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewSub_Op1AndC_MinusOp1",
+      "line": 589,
+      "reason": "not selected for the initial bounded corpus; no incompatibility claim"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewNotXMinus_NotXMinY_",
+      "line": 613,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewNotXMinus_NotXMinY_Sym",
+      "line": 625,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNew_NotXMinY_MinusNotX",
+      "line": 637,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNew_NotXMinY_MinusNotXSym",
+      "line": 649,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewNotXMinus_NotXMaxY_",
+      "line": 661,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNewNotXMinus_NotXMaxY_Sym",
+      "line": 673,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNew_NotXMaxY_MinusNotX",
+      "line": 685,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    },
+    {
+      "source": "tool/src/test/java/SubNodeExample.java",
+      "method": "pNew_NotXMaxY_MinusNotXSym",
+      "line": 697,
+      "reason": "operator or helper outside the supported total bit-vector subset"
+    }
+  ]
+}

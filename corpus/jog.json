@@ -1,0 +1,1584 @@
+{
+  "schema_version": 1,
+  "kind": "source",
+  "rules": [
+    {
+      "id": "jog_pAdd2",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "d",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "d",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L122",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:122 pAdd2",
+        "original": "public void pAdd2(int a, int b, int c, int d) {\n        before((a - b) + (c - d));\n        after((a + c) - (b + d));\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"d\",\"op\":\"meta\"}],\"op\":\"sub\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"}],\"op\":\"add\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"d\",\"op\":\"meta\"}],\"op\":\"add\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd3",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "a",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "c",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L138",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:138 pAdd3",
+        "original": "public void pAdd3(int a, int b, int c) {\n        before((a - b) + (b + c));\n        after(a + c);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"}],\"op\":\"add\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd3Sym",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "c",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "a",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L154",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:154 pAdd3Sym",
+        "original": "public void pAdd3Sym(int a, int b, int c) {\n        before((b + a) + (c - b));\n        after(c + a);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"}],\"op\":\"add\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd4",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "a",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "c",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L170",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:170 pAdd4",
+        "original": "public void pAdd4(int a, int b, int c) {\n        before((a - b) + (c + b));\n        after(a + c);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"add\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd4Sym",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "c",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "a",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L186",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:186 pAdd4Sym",
+        "original": "public void pAdd4Sym(int a, int b, int c) {\n        before((a + b) + (c - b));\n        after(c + a);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"add\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd5",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "a",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "c",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L203",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:203 pAdd5",
+        "original": "public void pAdd5(int a, int b, int c) {\n        before((a - b) + (b - c));\n        after(a - c);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"}],\"op\":\"sub\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd6",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "b",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "c",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "a",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "c",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "b",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L220",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:220 pAdd6",
+        "original": "public void pAdd6(int a, int b, int c) {\n        before((a - b) + (c - a));\n        after(c - b);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"a\",\"op\":\"meta\"}],\"op\":\"sub\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"c\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"b\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd7",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "const",
+                "value": 0
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L234",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:234 pAdd7",
+        "original": "public void pAdd7(int x, int y) {\n        before(x + (0 - y));\n        after(x - y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"args\":[{\"op\":\"const\",\"value\":0},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAdd8",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "const",
+                "value": 0
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L248",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:248 pAdd8",
+        "original": "public void pAdd8(int x, int y) {\n        before((0 - y) + x);\n        after(x - y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"op\":\"const\",\"value\":0},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"},{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAddNotXPlusOne",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "const",
+                "value": 4294967295
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L462",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:462 pAddNotXPlusOne",
+        "original": "public void pAddNotXPlusOne(int x) {\n        before((x ^ -1) + 1);\n        after(0 - x);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"},{\"op\":\"const\",\"value\":1}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"op\":\"const\",\"value\":0},{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAddMoveConstantRight",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "con",
+            "kind": "const"
+          },
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "con",
+            "kind": "const"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L484",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:484 pAddMoveConstantRight",
+        "original": "public void pAddMoveConstantRight(int x, @Constant int con) {\n        before(con + x);\n        after(x + con);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"kind\":\"const\",\"name\":\"con\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"const\",\"name\":\"con\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pAddPushConstantDown",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "con",
+                "kind": "const"
+              }
+            ]
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "meta",
+            "name": "con",
+            "kind": "const"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L539",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:539 pAddPushConstantDown",
+        "original": "public void pAddPushConstantDown(int x, @Constant int con, int y) {\n        before((x + con) + y);\n        after((x + y) + con);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"const\",\"name\":\"con\",\"op\":\"meta\"}],\"op\":\"add\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"add\"},{\"kind\":\"const\",\"name\":\"con\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewAddAddSub1295",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "or",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L1061",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:1061 pNewAddAddSub1295",
+        "original": "public void pNewAddAddSub1295(int x, int y) {\n        before((x & y) + (x ^ y));\n        after(x | y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"and\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"xor\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"or\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewAddAddSub1309",
+      "lhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "or",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L1086",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:1086 pNewAddAddSub1309",
+        "original": "public void pNewAddAddSub1309(int x, int y) {\n        before((x & y) + (x | y));\n        after(x + y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"and\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"or\"}],\"op\":\"add\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewDeMorganLawOrToAnd",
+      "lhs": {
+        "op": "or",
+        "args": [
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "A",
+                "kind": "expr"
+              },
+              {
+                "op": "const",
+                "value": 4294967295
+              }
+            ]
+          },
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "B",
+                "kind": "expr"
+              },
+              {
+                "op": "const",
+                "value": 4294967295
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "meta",
+                "name": "A",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "B",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/AddNodeExample.java#L1204",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/AddNodeExample.java:1204 pNewDeMorganLawOrToAnd",
+        "original": "public void pNewDeMorganLawOrToAnd(int A, int B) {\n        before((A ^ -1) | (B ^ -1));\n        after((A & B) ^ (-1));\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"}],\"op\":\"or\"},\"rhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"and\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pSub_XMinusY_MinusX",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L139",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:139 pSub_XMinusY_MinusX",
+        "original": "public void pSub_XMinusY_MinusX(int x, int y) {\n        before((x - y) - x);\n        after(0 - y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"},{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"op\":\"const\",\"value\":0},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pSubXMinus_YPlusX_",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L153",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:153 pSubXMinus_YPlusX_",
+        "original": "public void pSubXMinus_YPlusX_(int x, int y) {\n        before(x - (y + x));\n        after(0 - y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"}],\"op\":\"add\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"op\":\"const\",\"value\":0},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pSub10",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "A",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "B",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "A",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "B",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L212",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:212 pSub10",
+        "original": "public void pSub10(int X, int A, int B) {\n        before((A + X) - (B + X));\n        after(A - B);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"}],\"op\":\"add\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"}],\"op\":\"add\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pSub11",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "A",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "B",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "A",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "B",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L225",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:225 pSub11",
+        "original": "public void pSub11(int X, int A, int B) {\n        before((A + X) - (X + B));\n        after(A - B);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"}],\"op\":\"add\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"add\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pSub12",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "A",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "meta",
+                "name": "B",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "A",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "B",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L238",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:238 pSub12",
+        "original": "public void pSub12(int X, int A, int B) {\n        before((X + A) - (B + X));\n        after(A - B);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"}],\"op\":\"add\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"}],\"op\":\"add\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewSubAddSub1539",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "const",
+                "value": 0
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L416",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:416 pNewSubAddSub1539",
+        "original": "public void pNewSubAddSub1539(int x, int y) {\n        before(x - (0 - y));\n        after(x + y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"args\":[{\"op\":\"const\",\"value\":0},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"sub\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"add\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewSubAddSub1560",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          }
+        ]
+      },
+      "rhs": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L430",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:430 pNewSubAddSub1560",
+        "original": "public void pNewSubAddSub1560(int x) {\n        before(-1 - x);\n        after(x ^ -1);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"op\":\"const\",\"value\":4294967295},{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewSubNotXMinusNotY",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "const",
+                "value": 4294967295
+              }
+            ]
+          },
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              },
+              {
+                "op": "const",
+                "value": 4294967295
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L443",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:443 pNewSubNotXMinusNotY",
+        "original": "public void pNewSubNotXMinusNotY(int x, int y) {\n        before((x^(-1)) - (y^(-1)));\n        after(y - x);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"}],\"op\":\"sub\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewSub_XOrY_Minus_XXorY_",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "or",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "x",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "y",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "and",
+        "args": [
+          {
+            "op": "meta",
+            "name": "x",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "y",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L472",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:472 pNewSub_XOrY_Minus_XXorY_",
+        "original": "public void pNewSub_XOrY_Minus_XXorY_(int x, int y) {\n        before((x | y) - (x ^ y));\n        after(x & y);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"or\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"xor\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"x\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"y\",\"op\":\"meta\"}],\"op\":\"and\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewSub_AOrB_Minus_AAndB_",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "or",
+            "args": [
+              {
+                "op": "meta",
+                "name": "A",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "B",
+                "kind": "expr"
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "meta",
+                "name": "A",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "B",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "meta",
+            "name": "A",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "B",
+            "kind": "expr"
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L485",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:485 pNewSub_AOrB_Minus_AAndB_",
+        "original": "public void pNewSub_AOrB_Minus_AAndB_(int A, int B) {\n        before((A | B) - (A & B));\n        after(A ^ B);\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"or\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"and\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"A\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"B\",\"op\":\"meta\"}],\"op\":\"xor\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    },
+    {
+      "id": "jog_pNewSubXMinus_XAndY_",
+      "lhs": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              },
+              {
+                "op": "meta",
+                "name": "Y",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "and",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "xor",
+            "args": [
+              {
+                "op": "meta",
+                "name": "Y",
+                "kind": "expr"
+              },
+              {
+                "op": "const",
+                "value": 4294967295
+              }
+            ]
+          }
+        ]
+      },
+      "guards": [],
+      "provenance": {
+        "source_url": "https://github.com/EngineeringSoftware/jog/blob/3011b9de21eae081448517fc77a85f4e8d5113d0/tool/src/test/java/SubNodeExample.java#L601",
+        "revision": "3011b9de21eae081448517fc77a85f4e8d5113d0",
+        "location": "tool/src/test/java/SubNodeExample.java:601 pNewSubXMinus_XAndY_",
+        "original": "public void pNewSubXMinus_XAndY_(int X, int Y) {\n        before(X - (X & Y));\n        after(X & (Y ^ (-1)));\n    }",
+        "normalized": "{\"lhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"},{\"kind\":\"expr\",\"name\":\"Y\",\"op\":\"meta\"}],\"op\":\"and\"}],\"op\":\"sub\"},\"rhs\":{\"args\":[{\"kind\":\"expr\",\"name\":\"X\",\"op\":\"meta\"},{\"args\":[{\"kind\":\"expr\",\"name\":\"Y\",\"op\":\"meta\"},{\"op\":\"const\",\"value\":4294967295}],\"op\":\"xor\"}],\"op\":\"and\"}}",
+        "restrictions": "Java int value identity mapped to total modulo-2^32 expression trees; expression-valued parameters remain opaque. No compiler-context predicates, hidden folding, or DAG sharing. Literal -1 is 4294967295. Constant annotations constrain literal matching only.",
+        "license": "Apache-2.0; see corpus/licenses/JOG-Apache-2.0.txt",
+        "redistribution": "Modified normalized JSON derived from the pinned JOG test patterns. License copied; source attribution and original method retained. No NOTICE file found in pinned checkout."
+      }
+    }
+  ]
+}

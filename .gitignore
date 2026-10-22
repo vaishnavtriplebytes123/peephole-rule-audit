@@ -1,0 +1,60 @@
+# Secrets and local environments; preserve the documentation template.
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Python generated artifacts. Dependency lockfiles are intentionally NOT ignored.
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Local tools and generated experiment output.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+/artifacts/
+/tmp/
+
+# Existing presentation/research workspace: preserve on disk, exclude from app baseline.
+/.ppt-build/
+/research-jog/
+/output/
+
+# Existing unrelated coursework and generated previews (root-scoped exclusions).
+/CN_DA1_Human_Vaishnav_24BCT0065.docx
+/CN_DA1_Revised_Vaishnav_24BCT0065.pdf
+/CN_DA2_Human_Vaishnav_24BCT0065.docx
+/CN_DA2_Revised_Vaishnav_24BCT0065.pdf
+/Computer_Networks_Case_Study_Vaishnav_24BCT0065.docx
+/DNS_FTP_HTTP_SMTP_SNMP_Case_Study_Vaishnav_24BCT0065.docx
+/build_case_study.py
+/build_dns_protocol_case_study.py
+/build_human_case_studies.py
+/export_preview_pdf.ps1
+/case_study_preview.pdf
+/dns_protocol_preview.pdf
+/dns_preview_pages/
+/preview_pages/
+/rendered_case_study/
+/qa_cn_da1/
+/qa_cn_da2/
+/qa_designed_da1/
+/qa_designed_da2/
+/qa_revised_da1/
+/qa_revised_da2/
+/qa_revised_final_da1/
+/qa_revised_final_da2/
+/reference_cn_da1/
