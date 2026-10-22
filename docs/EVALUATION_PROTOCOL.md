@@ -155,3 +155,54 @@ verified, no partial trials. Budget's primary target/guided rates are 0;
 interference's are both 0.25. Random has no eligible alternatives in either
 fixture. The held-out command is active, with five source batches queued.
 These observations do not establish a source-corpus effect or guidance advantage.
+
+## Publication of reproducible evidence
+
+Curate each terminal command separately under `experiments/results/`: preserve
+the exact root evaluation JSON and CSV, every case row (split by held-out trial
+to keep JSON files bounded), every original/reduced witness in JSON-only ZIP
+bundles, the replay ledger, and actual held-out input files. No winning-case
+filter applies to raw records or witness archives. Each bundle is bounded to
+32 MiB of uncompressed witness data before starting the next bundle; source
+files remain unchanged. A manifest records complete-file hashes, witness payload
+hashes, archive entries and replay outcomes. Small deterministic examples may
+additionally be copied for inspection, with their selection stated explicitly.
+Archive copies must be read back and matched byte-for-byte to the originals.
+The original CLI output directories remain untouched under ignored artifacts.
+
+## Held-out primary outcome and coverage supplement
+
+The primary held-out command has finished all 15 declared trials, with one
+partial search. Add5/seed 100003 stopped after input 748 because paired semantic
+validation returned unknown; 14 other sequences completed. Primary totals are
+28,748 tested / 28,747 comparable pairs, 10 unqualified positive deltas, seven
+eligible alternatives with zero qualified deltas, and 10/10 witnesses verified.
+The primary result remains unchanged, including the partial prefix and unknown.
+
+Before inspecting the untouched suffix outcomes, preregister a supplemental
+coverage pass: attempt only the remaining 1,252 saved inputs (positions 749–2000)
+for that same target/seed using the frozen paired-audit APIs and exact native
+timeout, optimizer/search/input settings. Preserve the original unknown without
+retrying it into a favorable result. Unlike the primary CLI's stop-on-inconclusive
+policy, this finite coverage pass continues after individual inconclusive pairs,
+records them explicitly and never counts them as comparable findings. Use a new
+output directory, 600 s / 100,000 native-query / 64 MiB caps, and include validation/
+derivation cost. Every new positive witness must be replayed. Run this pass after
+the main matrices finish so it cannot add solver load to them. Report its metrics
+separately from the fixed primary held-out table; any combined coverage statement
+must identify the original prefix and supplemental suffix and retain the unknown.
+
+## Representative rerun selection
+
+Before inspecting all source outcomes, fix seven reruns after the main matrices:
+budget target/seed 0/H1/preorder/corpus; budget target/seed 0/H4/preorder/corpus;
+interference guided/seed 0/H4/preorder/corpus; Add2 target/seed 0/H1/preorder/corpus;
+Add5 random/seed 0/H8/postorder/permuted; Add5 guided/seed 0/H4/preorder/corpus;
+and the held-out Add5/seed 100003/H4/preorder/corpus trial that had the unknown.
+Use each saved actual config, including its exact priority and caps, under new
+directories. Compare ordered inputs, provenance, costs, stops and witness traces
+over common completed cases, excluding timing. Preserve differences in solver/
+time/resource outcomes and coverage explicitly; never replace the primary
+measurements or claim repeatability for outcomes that differ. Replay and archive
+every newly emitted witness. These are reproducibility checks, not new samples
+to pool silently into primary effect estimates.
