@@ -5,8 +5,8 @@ from typing import Literal, Protocol, cast
 
 import z3  # type: ignore[import-untyped]
 
-from ruleaudit.ir import Const
-from ruleaudit.rules import GuardOperand, Meta, Pattern, PBinary, PUnary, Rule, metavariables
+from ruleaudit.ir import Binary, Const, Expr, Unary, Var
+from ruleaudit.rules import Guard, GuardOperand, Meta, Pattern, PBinary, PUnary, Rule, metavariables
 
 
 @dataclass(frozen=True, slots=True)
@@ -43,16 +43,44 @@ class SemanticBackend(Protocol):
     def query(self, rule: Rule, *, inequality: bool) -> QueryResult: ...
 
 
+class EquivalenceBackend(Protocol):
+    def equivalence(self, left: Expr, right: Expr) -> QueryResult: ...
+
+
+class ProofBackend(SemanticBackend, EquivalenceBackend, Protocol):
+    pass
+
+
+def _runtime_pattern(expr: Expr) -> Pattern:
+    if isinstance(expr, Var):
+        return Meta(expr.name, "expr")
+    if isinstance(expr, Const):
+        return expr
+    if isinstance(expr, Unary):
+        return PUnary("not", _runtime_pattern(expr.operand))
+    assert isinstance(expr, Binary)
+    return PBinary(expr.op, _runtime_pattern(expr.left), _runtime_pattern(expr.right))
+
+
 class Z3Backend:
     def __init__(self, limits: SolverLimits = DEFAULT_SOLVER_LIMITS) -> None:
         self.limits = limits
         self.calls = 0
 
     def query(self, rule: Rule, *, inequality: bool) -> QueryResult:
+        return self._solve(rule.lhs, rule.rhs, rule.guards, inequality=inequality)
+
+    def equivalence(self, left: Expr, right: Expr) -> QueryResult:
+        return self._solve(_runtime_pattern(left), _runtime_pattern(right), (), inequality=True)
+
+    def _solve(
+        self, lhs: Pattern, rhs: Pattern, guards: tuple[Guard, ...], *, inequality: bool
+    ) -> QueryResult:
         if self.calls >= self.limits.max_calls:
             return QueryResult("unknown", reason="solver-call-limit")
         self.calls += 1
-        symbols = {name: z3.BitVec(name, 32) for name in metavariables(rule.lhs)}
+        names = set(metavariables(lhs)) | set(metavariables(rhs))
+        symbols = {name: z3.BitVec(name, 32) for name in sorted(names)}
 
         def term(pattern: Pattern) -> z3.BitVecRef:
             if isinstance(pattern, Meta):
@@ -80,11 +108,11 @@ class Z3Backend:
 
         solver = z3.Solver()
         solver.set(timeout=self.limits.timeout_ms)
-        for guard in rule.guards:
+        for guard in guards:
             equal = guard_operand(guard.left) == guard_operand(guard.right)
             solver.add(equal if guard.op == "eq" else z3.Not(equal))
         if inequality:
-            solver.add(term(rule.lhs) != term(rule.rhs))
+            solver.add(term(lhs) != term(rhs))
         result = solver.check()
         if result == z3.unsat:
             return QueryResult("unsat")
@@ -117,3 +145,19 @@ def check_rule(
         return ValidationResult("invalid", unequal.valuation)
     warning = "identity rule consumes rewrite budget" if rule.identity else ""
     return ValidationResult("verified", warning=warning)
+
+
+def check_equivalence(
+    left: Expr,
+    right: Expr,
+    limits: SolverLimits = DEFAULT_SOLVER_LIMITS,
+    *,
+    backend: EquivalenceBackend | None = None,
+) -> ValidationResult:
+    adapter = backend if backend is not None else Z3Backend(limits)
+    result = adapter.equivalence(left, right)
+    if result.status == "unknown":
+        return ValidationResult("unknown", reason=result.reason)
+    if result.status == "sat":
+        return ValidationResult("invalid", result.valuation)
+    return ValidationResult("verified")

@@ -237,7 +237,8 @@ inferred from these foundation/core checks.
 | M0 | Implementation requested | User instructed implementation on 2026-10-22; foundation evidence in docs/DEVELOPMENT.md. |
 | M1 | Complete | Python 3.12.14 venv, exact runtime/dev SHA-256 locks (23 dev-environment packages), hash-required reinstall and editable installation verified. Typed IR/input contracts, help/version, Ruff, mypy and sdist/wheel build pass. |
 | M2 | Complete | 95 tests pass in the locked environment; Ruff/format/mypy/build pass. Matcher/guards/solver/optimizer and validate CLI verified; 26/26 source rules verified, 94 scoped exclusions recorded. Commands/evidence in docs/DEVELOPMENT.md. |
-| M3–M6 | Authorized, not started | Derivation, audit, replay, all generators, reduction, robust reports and evaluation remain. |
+| M3 | In progress | Bounded derivation and runtime-equivalence library implemented; full 114-test regression, Ruff, formatting and mypy pass. Limits/scope in docs/DERIVATION_FORMAT.md. Paired audit, target generation, snapshots, CLI and replay remain. |
+| M4–M6 | Authorized, not started | All generators, reduction, robust reports and evaluation remain. |
 
 ## Security and operational risks
 

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from time import perf_counter
 from typing import Literal
 
-from ruleaudit.ir import Binary, Expr, Unary, children
+from ruleaudit.ir import Binary, Expr, Unary, children, within_limits
 from ruleaudit.rules import Rule, match, substitute
 
 type Location = tuple[int, ...]
@@ -66,18 +66,6 @@ class RunResult:
     @property
     def completed(self) -> bool:
         return self.stop_reason in {"no-match", "rewrite-budget", "growth-limit"}
-
-
-def _within_growth_limits(expr: Expr, limits: RunLimits) -> bool:
-    count = 0
-    pending = [(expr, 1)]
-    while pending:
-        current, depth = pending.pop()
-        count += 1
-        if count > limits.max_nodes or depth > limits.max_depth:
-            return False
-        pending.extend((child, depth + 1) for child in children(current))
-    return True
 
 
 def locations(
@@ -154,7 +142,7 @@ def run(
                         continue
                     replacement = substitute(rule.rhs, bindings)
                     candidate = replace(current, path, replacement)
-                    if not _within_growth_limits(candidate, limits):
+                    if not within_limits(candidate, limits.max_nodes, limits.max_depth):
                         return finish("growth-limit")
                     step = Step(
                         rule.id, path, subtree, replacement, tuple(sorted(bindings.items())), guards

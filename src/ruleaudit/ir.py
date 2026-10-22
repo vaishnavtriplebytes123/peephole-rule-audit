@@ -86,6 +86,19 @@ class Size(NamedTuple):
     operators: int
 
 
+def within_limits(expr: Expr, max_nodes: int, max_depth: int) -> bool:
+    """Check tree ceilings, stopping at the first excess rather than counting an expansion."""
+    count = 0
+    pending = [(expr, 1)]
+    while pending:
+        current, depth = pending.pop()
+        count += 1
+        if count > max_nodes or depth > max_depth:
+            return False
+        pending.extend((child, depth + 1) for child in children(current))
+    return True
+
+
 def measure(expr: Expr) -> Size:
     """Count occurrences, root-inclusive depth, and operator cost without recursion."""
     nodes = depth = operators = 0

@@ -36,3 +36,15 @@ def test_unknown_timeout_and_call_exhaustion_are_inconclusive() -> None:
     assert result.reason == "timeout"
     assert check_rule(identity, SolverLimits(max_calls=0)).status == "unknown"
     assert check_rule(identity, SolverLimits(max_calls=1)).status == "unknown"
+
+
+def test_runtime_equivalence_uses_variables_on_both_sides() -> None:
+    from ruleaudit.ir import Binary
+    from ruleaudit.solver import check_equivalence
+
+    assert check_equivalence(Binary("sub", Var("x"), Var("x")), Const(0)).status == "verified"
+    result = check_equivalence(Const(0), Var("new_variable"))
+    assert result.status == "invalid"
+    assert evaluate(Const(0), dict(result.valuation)) != evaluate(
+        Var("new_variable"), dict(result.valuation)
+    )

@@ -3,11 +3,12 @@
 A proposed local research CLI for testing whether removing a derivable peephole
 optimization rule makes a bounded, deterministic optimizer less effective.
 
-**Status: M1/M2 implemented and verified; M3–M6 authorized and pending.**
+**Status: M1/M2 implemented and verified; M3 in progress; M4–M6 authorized.**
 The user authorized implementation and periodic GitHub pushes on 2026-10-22.
 The expression library, rule validator, deterministic optimizer and `validate`
-command exist. Derivation, removal audits, replay, generation comparisons,
-reduction and evaluation are not available yet. No submission date is assumed.
+command exist. The bounded derivation library is under development; its CLI,
+paired removal audits, replay, generation comparisons, reduction and evaluation
+are not available yet. No submission date is assumed.
 
 The tool will pair a checked alternative rewrite sequence with a replayable
 example of worse optimization after rule removal. It will compare random,

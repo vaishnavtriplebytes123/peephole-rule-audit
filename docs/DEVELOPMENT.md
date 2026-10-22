@@ -211,3 +211,27 @@ Linux/other-Python verification, derivation/removal experiments, replay,
 generator comparisons, reduction or controlled research evaluation. M3–M6
 remain required; the current tests and 26 solver proofs do not establish those
 features or an empirical advantage.
+
+## M3 core progress — not a completed milestone
+
+The M1/M2 checkpoint `d6855fccec8bfcd66109d9231a0ea51f4965749c` was pushed to
+`origin/master`; `git ls-remote origin refs/heads/master` matched that exact SHA.
+
+Derivation and runtime-equivalence tests were added before their implementations
+and initially failed for the missing module/function. The first search-limit
+test exposed endpoint states missing from the discovered-state counter; that
+was fixed before this checkpoint. The search preserves opaque placeholders,
+excludes the target at every step, requires structural endpoints, checks every
+guard and semantic obligation, and retains explicit inconclusive statuses.
+
+`.venv/Scripts/python.exe -m pytest tests/test_derive.py tests/test_solver.py tests/test_rewrite.py --basetemp=tmp/pytest-m3-derive-bounds`
+passed **42 tests in 11.41 s**. Ruff and strict mypy passed (20 source files).
+`.venv/Scripts/python.exe -m pytest --basetemp=tmp/pytest-m3-core` then passed
+**114 tests in 49.58 s**. `ruff check .`, `ruff format --check .`,
+`mypy src tests`, and `git -c core.autocrlf=false diff --check` all passed.
+No package build was repeated for this partial M3 progress checkpoint; the full
+M3 review will require the build and end-to-end CLI journey.
+
+M3 is still incomplete: no derive/audit/replay CLI, experiment configuration,
+target-only generation, paired executions, snapshots, witness replay, or full
+synthetic acceptance journey exists yet. No empirical removal finding is claimed.

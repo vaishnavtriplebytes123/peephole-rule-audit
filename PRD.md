@@ -1,6 +1,6 @@
 # Product requirements: Peephole Rule Removal Audit
 
-Status: **M1/M2 implemented and verified; M3–M6 pending**. Prepared 2026-10-22.
+Status: **M1/M2 verified; M3 in progress; M4–M6 pending**. Prepared 2026-10-22.
 The user explicitly authorized all six milestones and periodic GitHub pushes on
 2026-10-22. Verification remains required at each milestone.
 
@@ -151,6 +151,9 @@ equivalence under those semantics. UNKNOWN is not a proof. SMT validation does
 not establish that an optimizer will choose a path.
 
 ### Bounded derivation contract
+
+M3's concrete search bounds and template-record contract are recorded in
+[docs/DERIVATION_FORMAT.md](docs/DERIVATION_FORMAT.md).
 
 The MVP uses forward syntactic matching and substitution, not complete general
 composition/unification. Start from a target pattern with symbolic expression
