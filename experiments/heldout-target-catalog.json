@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "kind": "heldout-target-selection",
+  "config": {
+    "generation": {
+      "attempts": 64,
+      "cases": 4,
+      "constants": [
+        0,
+        1,
+        2147483647,
+        2147483648,
+        4294967295
+      ],
+      "contexts": [
+        "hole",
+        "not",
+        "add-left",
+        "add-right"
+      ],
+      "depth": 2,
+      "max_depth": 5,
+      "max_match_attempts": 10000,
+      "max_nodes": 63,
+      "seed": 0,
+      "strategy": "target"
+    },
+    "max_output_bytes": 8388608,
+    "run": {
+      "h": 4,
+      "max_depth": 32,
+      "max_nodes": 1000,
+      "seconds": 2
+    },
+    "schedule": {
+      "priority": [
+        "jog_pAdd2",
+        "jog_pAdd3",
+        "jog_pAdd3Sym",
+        "jog_pAdd4",
+        "jog_pAdd4Sym",
+        "jog_pAdd5",
+        "jog_pAdd6",
+        "jog_pAdd7",
+        "jog_pAdd8",
+        "jog_pAddNotXPlusOne",
+        "jog_pAddMoveConstantRight",
+        "jog_pAddPushConstantDown",
+        "jog_pNewAddAddSub1295",
+        "jog_pNewAddAddSub1309",
+        "jog_pNewDeMorganLawOrToAnd",
+        "jog_pSub_XMinusY_MinusX",
+        "jog_pSubXMinus_YPlusX_",
+        "jog_pSub10",
+        "jog_pSub11",
+        "jog_pSub12",
+        "jog_pNewSubAddSub1539",
+        "jog_pNewSubAddSub1560",
+        "jog_pNewSubNotXMinusNotY",
+        "jog_pNewSub_XOrY_Minus_XXorY_",
+        "jog_pNewSub_AOrB_Minus_AAndB_",
+        "jog_pNewSubXMinus_XAndY_"
+      ],
+      "traversal": "preorder"
+    },
+    "schema_version": 2,
+    "search": {
+      "max_bindings": 64,
+      "max_depth": 32,
+      "max_match_attempts": 10000,
+      "max_nodes": 1000,
+      "max_states": 256,
+      "max_steps": 2,
+      "seconds": 5
+    },
+    "seconds": 15,
+    "solver": {
+      "max_calls": 5000,
+      "timeout_ms": 1000
+    }
+  },
+  "config_hash": "a9d83c54e6135dac199504372dc57f6e2639e07da669b4c00ce4c73443631532",
+  "corpus_hash": "1113c8c0f227e2ade6f3d3bb14b7b9c42d32f15d29baf58280663db988716c12",
+  "catalog": [
+    {
+      "target": "jog_pAdd2",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.4633834999985993,
+      "report_hash": "913ad008c9858d2570b58fee6d341a8759a6a0e88f418ed67ed3c50a6c984d61",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd2"
+    },
+    {
+      "target": "jog_pAdd3",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3748407999519259,
+      "report_hash": "83599d77ae7d30f50bc621ae460bf06e805badc07f744f4c5d7e030ddcfcd8b8",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd3"
+    },
+    {
+      "target": "jog_pAdd3Sym",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.39712990005500615,
+      "report_hash": "064edae8ed7526ddb62ec2fa07ea09994d2c5d19d69b5e9c534150512993e179",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd3Sym"
+    },
+    {
+      "target": "jog_pAdd4",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3841418999945745,
+      "report_hash": "70525d16c7a5532f72f62c61010552b6530e2cf16ba1b416258ea0e188bcb075",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd4"
+    },
+    {
+      "target": "jog_pAdd4Sym",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.43534520000685006,
+      "report_hash": "e45e883dbae2d57de140177fc559775f01378b64961327770110e9bc16df806e",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd4Sym"
+    },
+    {
+      "target": "jog_pAdd5",
+      "status": "found",
+      "reason": "",
+      "one_step": 0,
+      "two_step": 1,
+      "solver_unknowns": 0,
+      "solver_calls": 55,
+      "seconds": 0.43424079997930676,
+      "report_hash": "f66c9f2004b9f1c69f84f2f24af31546240a018aa07137162bb23d560c875baa",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd5"
+    },
+    {
+      "target": "jog_pAdd6",
+      "status": "found",
+      "reason": "",
+      "one_step": 0,
+      "two_step": 1,
+      "solver_unknowns": 0,
+      "solver_calls": 55,
+      "seconds": 0.5605963000562042,
+      "report_hash": "216d43269ba06875b295cdfdf77c6daa79f1a97ef7eab25c0de1d15fda494f2d",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd6"
+    },
+    {
+      "target": "jog_pAdd7",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.4232241000281647,
+      "report_hash": "24aa858397f022a9890e042ce39870e9a8dc4729c69d41043c2465404319a2f0",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd7"
+    },
+    {
+      "target": "jog_pAdd8",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3886820999905467,
+      "report_hash": "c96714a9ea1830500b341c761156bc3a70985be79b60628a305e219ef4067229",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAdd8"
+    },
+    {
+      "target": "jog_pAddMoveConstantRight",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.38288900000043213,
+      "report_hash": "c2ac2e221ac3e80eb283e581614e491c38c345a20264f7514cf04e58ddd98a3b",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAddMoveConstantRight"
+    },
+    {
+      "target": "jog_pAddNotXPlusOne",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3605223000049591,
+      "report_hash": "fba77c701f1c41505827066791c82394254acf1e576a34f7fe6838a378d20785",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAddNotXPlusOne"
+    },
+    {
+      "target": "jog_pAddPushConstantDown",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.37887559994123876,
+      "report_hash": "182eee846d41a90683c4b3833b942d4c90c70f5ebc29cb287cdd42d7d5f62d36",
+      "directory": "artifacts/m6-heldout-catalog/jog_pAddPushConstantDown"
+    },
+    {
+      "target": "jog_pNewAddAddSub1295",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3777460000710562,
+      "report_hash": "d3024049ec77bc554c6765f162cec93fca323eb48eb58675aabcd55b0bf96bb8",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewAddAddSub1295"
+    },
+    {
+      "target": "jog_pNewAddAddSub1309",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3261873999144882,
+      "report_hash": "509d33031e59071b92d2d660c0fda2a630cce6033b88879fcb4422fac7957b1f",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewAddAddSub1309"
+    },
+    {
+      "target": "jog_pNewDeMorganLawOrToAnd",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3856270000105724,
+      "report_hash": "452142b7be57e690efc7172f6bfe5d4318e01771e44aa6ae59d5fd11211964f7",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewDeMorganLawOrToAnd"
+    },
+    {
+      "target": "jog_pNewSubAddSub1539",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.36855609994381666,
+      "report_hash": "d061d47bdf3028647255c6be545b7f16fd55722110e031100c60210b08959fd4",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewSubAddSub1539"
+    },
+    {
+      "target": "jog_pNewSubAddSub1560",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3650579999666661,
+      "report_hash": "0b720ac114d3ea17367152a7c53872dba676a83c38b9cda139a0c35f82e4fa61",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewSubAddSub1560"
+    },
+    {
+      "target": "jog_pNewSubNotXMinusNotY",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3724999000551179,
+      "report_hash": "95c5ae8a53eed1d17fb6a8c755bf7172a08ae39d9d2482c2f7ed439874853e6c",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewSubNotXMinusNotY"
+    },
+    {
+      "target": "jog_pNewSubXMinus_XAndY_",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3535643999930471,
+      "report_hash": "c3b4d73cfacdbb4572913eccb67373a54654d0baa4a1e4f74d3ed1b644aee62b",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewSubXMinus_XAndY_"
+    },
+    {
+      "target": "jog_pNewSub_AOrB_Minus_AAndB_",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3937129999976605,
+      "report_hash": "ccdce1627c4eb5870d9947bfdbf6802858591868041feb347a3326984c956ddc",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewSub_AOrB_Minus_AAndB_"
+    },
+    {
+      "target": "jog_pNewSub_XOrY_Minus_XXorY_",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3586807999527082,
+      "report_hash": "6e71b5bd01e541ddc51186f1ab55e3e875f2f58aff9d32e8d4bd7fc7404e6480",
+      "directory": "artifacts/m6-heldout-catalog/jog_pNewSub_XOrY_Minus_XXorY_"
+    },
+    {
+      "target": "jog_pSub10",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.34989940002560616,
+      "report_hash": "8c18db95385b5bee41f46c90e79a60bf11a346c0bdfb9793f8e79bb8b88aec78",
+      "directory": "artifacts/m6-heldout-catalog/jog_pSub10"
+    },
+    {
+      "target": "jog_pSub11",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.37946379999630153,
+      "report_hash": "fb50634d7ff1e122ba817c0f14c2ab33b5a25c4e6db30da49ed02ff7b19af8e4",
+      "directory": "artifacts/m6-heldout-catalog/jog_pSub11"
+    },
+    {
+      "target": "jog_pSub12",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.3588954999577254,
+      "report_hash": "52317324ba58c79a0a5563722109346a538b806c57a5eca132f71671ef355ed5",
+      "directory": "artifacts/m6-heldout-catalog/jog_pSub12"
+    },
+    {
+      "target": "jog_pSubXMinus_YPlusX_",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.37226540001574904,
+      "report_hash": "a23a8a820c7ebeace748d1e65c3ca3751a4f86edb2dcf90d0cf1b7febd64c25f",
+      "directory": "artifacts/m6-heldout-catalog/jog_pSubXMinus_YPlusX_"
+    },
+    {
+      "target": "jog_pSub_XMinusY_MinusX",
+      "status": "not-found-within-bounds",
+      "reason": "bounded miss is inconclusive",
+      "one_step": 0,
+      "two_step": 0,
+      "solver_unknowns": 0,
+      "solver_calls": 52,
+      "seconds": 0.35752349998801947,
+      "report_hash": "d256a4f46c254ad3e60df7dc03fad85367fe7082c4eb599ef749e57447a6a097",
+      "directory": "artifacts/m6-heldout-catalog/jog_pSub_XMinusY_MinusX"
+    }
+  ],
+  "selection": [
+    {
+      "stratum": "two-step",
+      "target": "jog_pAdd5",
+      "empty_stratum_fallback": false
+    },
+    {
+      "stratum": "one-step",
+      "target": "jog_pAdd2",
+      "empty_stratum_fallback": true
+    },
+    {
+      "stratum": "no-template",
+      "target": "jog_pAdd3",
+      "empty_stratum_fallback": false
+    }
+  ],
+  "selected_targets": [
+    "jog_pAdd5",
+    "jog_pAdd2",
+    "jog_pAdd3"
+  ],
+  "elapsed": 11.806511400034651,
+  "selection_basis": "Bounded derivation strata, then lexicographic IDs; no removal outcomes or held-out inputs used."
+}

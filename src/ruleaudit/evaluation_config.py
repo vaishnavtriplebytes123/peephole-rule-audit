@@ -20,6 +20,7 @@ from ruleaudit.solver import SolverLimits
 class EvaluationConfig:
     base: Config
     targets: tuple[str, ...]
+    kind: Literal["evaluation", "heldout-evaluation"] = "evaluation"
     seeds: tuple[int, ...] = (0, 1, 2, 3, 4)
     h_values: tuple[int, ...] = (1, 2, 4, 8)
     traversals: tuple[Literal["preorder", "postorder"], ...] = ("preorder", "postorder")
@@ -35,6 +36,13 @@ class EvaluationConfig:
     )
 
     def __post_init__(self) -> None:
+        if self.kind not in {"evaluation", "heldout-evaluation"}:
+            raise ValueError("unknown evaluation kind")
+        if self.kind == "heldout-evaluation":
+            if self.base.generation.strategy != "random":
+                raise ValueError("held-out generation must be random")
+            if self.base.generation.contexts != ("hole",):
+                raise ValueError("held-out generation requires only the hole context")
         if (
             not 1 <= len(self.targets) <= 100
             or len(set(self.targets)) != len(self.targets)
@@ -82,8 +90,12 @@ class EvaluationConfig:
             * len(self.h_values)
             * len(self.traversals)
             * len(self.priorities)
-            * 3
+            * len(self.strategies)
         )
+
+    @property
+    def strategies(self) -> tuple[Literal["random", "target", "guided"], ...]:
+        return ("random",) if self.kind == "heldout-evaluation" else ("random", "target", "guided")
 
 
 @dataclass(frozen=True, slots=True)
@@ -95,7 +107,7 @@ class Trial:
 def evaluation_document(settings: EvaluationConfig) -> dict[str, JSONValue]:
     return {
         "schema_version": 1,
-        "kind": "evaluation",
+        "kind": settings.kind,
         "base": config_document(settings.base),
         "targets": list(settings.targets),
         "seeds": list(settings.seeds),
@@ -121,7 +133,7 @@ def parse_evaluation_config(value: JSONValue) -> EvaluationConfig:
     if (
         type(doc["schema_version"]) is not int
         or doc["schema_version"] != 1
-        or doc["kind"] != "evaluation"
+        or doc["kind"] not in ("evaluation", "heldout-evaluation")
     ):
         raise InputError("evaluation_config", "unsupported version or kind")
     for key in ("targets", "seeds", "h_values", "traversals", "priorities"):
@@ -131,6 +143,7 @@ def parse_evaluation_config(value: JSONValue) -> EvaluationConfig:
         return EvaluationConfig(
             base=parse_config(doc["base"]),
             targets=tuple(cast(list[str], doc["targets"])),
+            kind=cast(Literal["evaluation", "heldout-evaluation"], doc["kind"]),
             seeds=tuple(cast(list[int], doc["seeds"])),
             h_values=tuple(cast(list[int], doc["h_values"])),
             traversals=tuple(cast(list[Literal["preorder", "postorder"]], doc["traversals"])),
@@ -167,7 +180,6 @@ def trials(corpus: Corpus, settings: EvaluationConfig) -> Iterator[Trial]:
     permuted = list(ids)
     _rng("priority", settings.permutation_seed).shuffle(permuted)
     priorities = {"corpus": ids, "permuted": tuple(permuted)}
-    strategies: tuple[Literal["random", "target", "guided"], ...] = ("random", "target", "guided")
     descriptors = list(
         product(
             settings.targets,
@@ -175,7 +187,7 @@ def trials(corpus: Corpus, settings: EvaluationConfig) -> Iterator[Trial]:
             settings.h_values,
             settings.traversals,
             settings.priorities,
-            strategies,
+            settings.strategies,
         )
     )
     _rng("order", settings.order_seed).shuffle(descriptors)

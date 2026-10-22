@@ -3,6 +3,7 @@
 import os
 import platform
 from collections.abc import Callable
+from dataclasses import replace
 from importlib.metadata import version
 from time import perf_counter, process_time
 from typing import cast
@@ -12,6 +13,7 @@ from ruleaudit.config import config_document
 from ruleaudit.corpus import Corpus, corpus_document
 from ruleaudit.evaluation_config import EvaluationConfig, Trial, evaluation_document, trials
 from ruleaudit.experiment import audit_experiment, validate_settings
+from ruleaudit.heldout import input_snapshot
 from ruleaudit.io import InputError, JSONValue, canonical_bytes, content_hash, load_json
 from ruleaudit.metrics import rate
 from ruleaudit.reduce import reduce_witness
@@ -56,6 +58,7 @@ def _run_trial(
     deadline: float,
     *,
     now: Callable[[], float],
+    expected_inputs: tuple[str, ...] | None = None,
 ) -> tuple[dict[str, JSONValue], set[str]]:
     started, cpu_started = now(), process_time()
     search_seconds = replay_seconds = reduction_seconds = 0.0
@@ -274,6 +277,19 @@ def _run_trial(
         for r in cast(list[dict[str, JSONValue]], known.get("records", []))
         if r["comparable"] is True and cast(int, r["delta"]) > 0
     }
+    if expected_inputs is not None:
+        if data is None:
+            row["heldout_sequence"] = "unreported"
+        else:
+            records = cast(list[dict[str, JSONValue]], known["records"])
+            actual = tuple(cast(str, case["input_hash"]) for case in records)
+            if actual != expected_inputs[: len(actual)] or len(actual) > len(expected_inputs):
+                row["status"], row["reason"] = "failed", "held-out input sequence mismatch"
+                row["heldout_sequence"] = "mismatch"
+            else:
+                row["heldout_sequence"] = (
+                    "complete" if len(actual) == len(expected_inputs) else "partial-prefix"
+                )
     try:
         child.write("replays.json", {"schema_version": 1, "replays": replays})
         child.write("metrics.json", row)
@@ -360,7 +376,40 @@ def evaluate(
     uniques = {name: set[str]() for name in ("random", "target", "guided")}
     reason = "completed grid"
     root_reserve = min(20 * 1024**2, settings.max_output_bytes // 2)
+    input_files: list[JSONValue] = []
+    sequences: dict[int, tuple[str, ...]] = {}
+    preparation_status = "completed"
+    if settings.kind == "heldout-evaluation":
+        for index, seed in enumerate(settings.seeds, 1):
+            snapshot_inputs = input_snapshot(
+                replace(settings.base.generation, seed=seed), deadline, now=now
+            )
+            if len(canonical_bytes(snapshot_inputs)) > writer.remaining - root_reserve:
+                preparation_status = (
+                    "interrupted" if snapshot_inputs["status"] == "interrupted" else "partial"
+                )
+                reason = "overall-output-limit preparing held-out inputs"
+                break
+            name = f"heldout-inputs-{index:06d}.json"
+            writer.write(name, snapshot_inputs)
+            cases = cast(list[dict[str, JSONValue]], snapshot_inputs["cases"])
+            sequences[seed] = tuple(cast(str, case["input_hash"]) for case in cases)
+            input_files.append(
+                {
+                    "file": name,
+                    "seed": seed,
+                    "hash": content_hash(snapshot_inputs),
+                    "cases": len(cases),
+                    "status": snapshot_inputs["status"],
+                }
+            )
+            if snapshot_inputs["status"] != "completed":
+                preparation_status = cast(str, snapshot_inputs["status"])
+                reason = cast(str, snapshot_inputs["reason"])
+                break
     for index, trial in enumerate(trials(corpus, settings), 1):
+        if preparation_status != "completed":
+            break
         if len(rows) >= settings.max_trials:
             reason = "trial-limit"
             break
@@ -377,7 +426,15 @@ def evaluate(
         trial_started, trial_cpu_started = now(), process_time()
         child = ReportWriter(writer.directory / f"trial-{index:06d}", allocation)
         try:
-            row, keys = _run_trial(corpus, settings, trial, child, deadline, now=now)
+            row, keys = _run_trial(
+                corpus,
+                settings,
+                trial,
+                child,
+                deadline,
+                now=now,
+                expected_inputs=sequences.get(trial.config.generation.seed),
+            )
         finally:
             writer.remaining -= allocation - child.remaining
         row["wall_seconds"] = now() - trial_started
@@ -393,7 +450,7 @@ def evaluate(
         "failed"
         if "failed" in statuses
         else "interrupted"
-        if "interrupted" in statuses
+        if "interrupted" in statuses or preparation_status == "interrupted"
         else "partial"
         if len(rows) < settings.expected_trials or "partial" in statuses
         else "completed"
@@ -420,6 +477,7 @@ def evaluate(
         "finished_trials": len(rows),
         "not_run": settings.expected_trials - len(rows),
         "trials": rows,
+        "heldout_inputs": input_files,
         "aggregates": _aggregates(rows, uniques),
         "elapsed": now() - started,
         "cpu_seconds": process_time() - cpu_started,

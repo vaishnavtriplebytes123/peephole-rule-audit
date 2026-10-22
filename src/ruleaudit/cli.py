@@ -175,7 +175,7 @@ def _main(argv: Sequence[str] | None, now: Callable[[], float]) -> int:
     reduce_command.add_argument("--config", type=Path, required=True)
     reduce_command.add_argument("--out", type=Path, required=True)
     evaluate_command = commands.add_parser(
-        "evaluate", help="compare all three generators under controlled caps"
+        "evaluate", help="run controlled generator comparisons or held-out random inputs"
     )
     evaluate_command.add_argument("--rules", type=Path, required=True)
     evaluate_command.add_argument("--config", type=Path, required=True)

@@ -1,7 +1,7 @@
 # Evaluation protocol and pilot record
 
-Status (2026-10-23): runner and pilot complete; full experiments, labeled
-scenario dataset, held-out execution and final report remain. This document
+Status (2026-10-23): runner, 112 labeled scenarios and both resource pilots are
+complete; full experiments, held-out execution and final report remain. This document
 fixes the main matrix before executing it. Pilot outcomes are preliminary.
 
 ## Resource pilot
@@ -69,10 +69,15 @@ reported. Every final emitted witness must be replayed, including reductions.
 
 ## Remaining independent checks
 
-Create at least 100 labeled parameterized scenarios across semantic, matching,
-guard, schedule and budget categories, with independent expected outcomes.
-They are correctness scenarios, not additional source benchmarks or a substitute
-for the experiment's case denominator.
+The fixed labeled dataset will contain 112 parameterized scenarios: 36 modular
+arithmetic/bitwise boundary cases, 16 equality/inequality guards, 12 structural
+matches (including semantically equal but structurally different inputs), and
+48 paired schedule/budget cases from the two synthetic fixtures, three schedules,
+four H values and two leaf bindings. Expected arithmetic comes from fixed word
+tables; fixture traces come from hand-worked recurrences documented with the
+dataset, without executing the optimizer to generate the oracle. These are
+correctness scenarios, not additional source benchmarks or a substitute for
+the experiment's case denominator.
 
 Preserve the proposed held-out size: 2,000 unique expressions per seed, five
 independent seeds, generated without target patterns or derivations. Fix the
@@ -81,3 +86,53 @@ a separate held-out resource pilot, then execute it. It is not yet run and is
 not included in the main-matrix resource estimate above. A final research report
 must reconcile raw metrics, eligibility, exclusions, reruns, replay outcomes and
 limitations, with no inference from absent or null values.
+
+Held-out preregistration (before generating those inputs): use random-only
+generation, hole context, depth expansion 4, full input 63 nodes/depth 5, the
+same five boundary constants, 100,000 attempt ceiling, and independent seeds
+100003/100019/100043/100049/100057. Save the 2,000 unique concrete input trees,
+attempt indices, hashes and full generator settings per seed before auditing;
+each target must use exactly the same saved sequence, or an explicitly partial
+prefix. No target pattern or derivation participates in input selection.
+
+Choose source targets by a complete bounded derivation catalog using the main
+search caps/domain: lexicographically first target with a two-step template,
+first remaining with a one-step template, and first remaining without a template.
+If a stratum is empty, record it and use the first remaining ID; never select on
+removal findings. Use H=4, corpus priority, preorder. The independent resource
+pilot uses seed 424242 and 100 cases per chosen target, never a final held-out
+seed; time/query/output caps will be fixed from its measured cost before the
+full held-out execution. Held-out is a generalization check, not a new comparison
+of all three generators. Root config kind `heldout-evaluation` will explicitly
+select that mode and preserve the normal three-mode evaluation contract.
+
+The completed 26-target bounded catalog is preserved in
+`experiments/heldout-target-catalog.json`: Add5 and Add6 each have one discovered
+two-step template; no one-step templates were discovered under these bounds.
+The preregistered selection therefore gives Add5, Add2 (empty one-step stratum
+fallback) and Add3. This is a bounded miss, not proof of non-derivability.
+Catalog discovery took 11.807 s; selected IDs did not use removal outcomes.
+The independent held-out pilot config uses 100 cases, seed 424242, 100,000 attempts,
+depth 4, hole only, 63 nodes/depth 5, 600 s per trial, 5,000 solver calls at 1,000 ms,
+64 MiB per trial, and 600 s/128 MiB overall. Search, per-arm limits, reduction
+settings, H=4/preorder/corpus order and constant domain remain as declared above.
+
+The held-out pilot completed all 3 targets / 300 pairs in **7.537 s wall,
+6.313 s CPU**, producing **454,886 bytes**, with no positive deltas, eligible
+cases, solver unknowns or emitted witnesses. Each target checked the same full
+100-input sequence. Search used 304/307/304 solver calls. Raw rows and the saved
+pilot inputs are preserved in `experiments/heldout-pilot-results.json`.
+This seed is excluded from final held-out inputs. Zero eligible cases do not
+show that a target lacks alternatives.
+
+Before full execution, the held-out command is fixed at 15 trials (3 targets x
+5 seeds), 2,000 cases per trial / **30,000 pairs** over **10,000 distinct saved
+input slots** (2,000 per seed; cross-seed duplicates remain possible). Keep the
+pilot generation/search/per-arm/timeout/reduction settings; raise the per-trial
+solver cap to 100,000 because the observed ~3 calls/case projects ~6,000 calls
+for 2,000 cases, above the pilot's 5,000 cap. Per-trial time remains 600 s and
+output 64 MiB; overall caps are 14,400 s / 512 MiB. Point linear cost is about
+**12.6 minutes / 45.5 MB**, with a factor-four allowance **50.3 minutes / 182 MB**.
+These are pilot extrapolations, not full-run results; rare findings, larger
+witnesses and host load can increase actual cost. Every emitted witness must
+still be replayed and every partial/not-run prefix retained.

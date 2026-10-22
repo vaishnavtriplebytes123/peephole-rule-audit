@@ -1,0 +1,5588 @@
+{
+  "schema_version": 1,
+  "kind": "labeled-correctness-scenarios",
+  "oracle": "Fixed word tables and hand-derived fixture recurrences; no application imports or solver/optimizer-generated expected values.",
+  "scenarios": [
+    {
+      "id": "word-add-1",
+      "category": "semantics",
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-add-2",
+      "category": "semantics",
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-add-3",
+      "category": "semantics",
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-add-4",
+      "category": "semantics",
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 2147483648
+          },
+          {
+            "op": "const",
+            "value": 2147483647
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-add-5",
+      "category": "semantics",
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 2863311530
+          },
+          {
+            "op": "const",
+            "value": 1431655765
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-add-6",
+      "category": "semantics",
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 4294967294
+    },
+    {
+      "id": "word-sub-1",
+      "category": "semantics",
+      "input": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-sub-2",
+      "category": "semantics",
+      "input": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 1
+    },
+    {
+      "id": "word-sub-3",
+      "category": "semantics",
+      "input": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "expected": 4294967294
+    },
+    {
+      "id": "word-sub-4",
+      "category": "semantics",
+      "input": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 2147483648
+          },
+          {
+            "op": "const",
+            "value": 2147483647
+          }
+        ]
+      },
+      "expected": 1
+    },
+    {
+      "id": "word-sub-5",
+      "category": "semantics",
+      "input": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 2863311530
+          },
+          {
+            "op": "const",
+            "value": 1431655765
+          }
+        ]
+      },
+      "expected": 1431655765
+    },
+    {
+      "id": "word-sub-6",
+      "category": "semantics",
+      "input": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-and-1",
+      "category": "semantics",
+      "input": {
+        "op": "and",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-and-2",
+      "category": "semantics",
+      "input": {
+        "op": "and",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-and-3",
+      "category": "semantics",
+      "input": {
+        "op": "and",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "expected": 1
+    },
+    {
+      "id": "word-and-4",
+      "category": "semantics",
+      "input": {
+        "op": "and",
+        "args": [
+          {
+            "op": "const",
+            "value": 2147483648
+          },
+          {
+            "op": "const",
+            "value": 2147483647
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-and-5",
+      "category": "semantics",
+      "input": {
+        "op": "and",
+        "args": [
+          {
+            "op": "const",
+            "value": 2863311530
+          },
+          {
+            "op": "const",
+            "value": 1431655765
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-and-6",
+      "category": "semantics",
+      "input": {
+        "op": "and",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-or-1",
+      "category": "semantics",
+      "input": {
+        "op": "or",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-or-2",
+      "category": "semantics",
+      "input": {
+        "op": "or",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-or-3",
+      "category": "semantics",
+      "input": {
+        "op": "or",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-or-4",
+      "category": "semantics",
+      "input": {
+        "op": "or",
+        "args": [
+          {
+            "op": "const",
+            "value": 2147483648
+          },
+          {
+            "op": "const",
+            "value": 2147483647
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-or-5",
+      "category": "semantics",
+      "input": {
+        "op": "or",
+        "args": [
+          {
+            "op": "const",
+            "value": 2863311530
+          },
+          {
+            "op": "const",
+            "value": 1431655765
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-or-6",
+      "category": "semantics",
+      "input": {
+        "op": "or",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-xor-1",
+      "category": "semantics",
+      "input": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-xor-2",
+      "category": "semantics",
+      "input": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-xor-3",
+      "category": "semantics",
+      "input": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "expected": 4294967294
+    },
+    {
+      "id": "word-xor-4",
+      "category": "semantics",
+      "input": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "const",
+            "value": 2147483648
+          },
+          {
+            "op": "const",
+            "value": 2147483647
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-xor-5",
+      "category": "semantics",
+      "input": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "const",
+            "value": 2863311530
+          },
+          {
+            "op": "const",
+            "value": 1431655765
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-xor-6",
+      "category": "semantics",
+      "input": {
+        "op": "xor",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "word-not-1",
+      "category": "semantics",
+      "input": {
+        "op": "not",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": 4294967295
+    },
+    {
+      "id": "word-not-2",
+      "category": "semantics",
+      "input": {
+        "op": "not",
+        "args": [
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "expected": 4294967294
+    },
+    {
+      "id": "word-not-3",
+      "category": "semantics",
+      "input": {
+        "op": "not",
+        "args": [
+          {
+            "op": "const",
+            "value": 2147483647
+          }
+        ]
+      },
+      "expected": 2147483648
+    },
+    {
+      "id": "word-not-4",
+      "category": "semantics",
+      "input": {
+        "op": "not",
+        "args": [
+          {
+            "op": "const",
+            "value": 2147483648
+          }
+        ]
+      },
+      "expected": 2147483647
+    },
+    {
+      "id": "word-not-5",
+      "category": "semantics",
+      "input": {
+        "op": "not",
+        "args": [
+          {
+            "op": "const",
+            "value": 2863311530
+          }
+        ]
+      },
+      "expected": 1431655765
+    },
+    {
+      "id": "word-not-6",
+      "category": "semantics",
+      "input": {
+        "op": "not",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": 0
+    },
+    {
+      "id": "guard-eq-1",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 0,
+        "D": 0
+      },
+      "right": "D",
+      "expected": true
+    },
+    {
+      "id": "guard-eq-2",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 0,
+        "D": 4294967295
+      },
+      "right": 4294967295,
+      "expected": false
+    },
+    {
+      "id": "guard-eq-3",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 4294967295,
+        "D": 4294967295
+      },
+      "right": "D",
+      "expected": true
+    },
+    {
+      "id": "guard-eq-4",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 4294967295,
+        "D": 0
+      },
+      "right": 0,
+      "expected": false
+    },
+    {
+      "id": "guard-eq-5",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 2147483648,
+        "D": 2147483648
+      },
+      "right": "D",
+      "expected": true
+    },
+    {
+      "id": "guard-eq-6",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 2147483648,
+        "D": 2147483647
+      },
+      "right": 2147483647,
+      "expected": false
+    },
+    {
+      "id": "guard-eq-7",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 1,
+        "D": 1
+      },
+      "right": "D",
+      "expected": true
+    },
+    {
+      "id": "guard-eq-8",
+      "category": "guards",
+      "op": "eq",
+      "bindings": {
+        "C": 1,
+        "D": 4294967295
+      },
+      "right": 4294967295,
+      "expected": false
+    },
+    {
+      "id": "guard-ne-1",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 0,
+        "D": 0
+      },
+      "right": "D",
+      "expected": false
+    },
+    {
+      "id": "guard-ne-2",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 0,
+        "D": 4294967295
+      },
+      "right": 4294967295,
+      "expected": true
+    },
+    {
+      "id": "guard-ne-3",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 4294967295,
+        "D": 4294967295
+      },
+      "right": "D",
+      "expected": false
+    },
+    {
+      "id": "guard-ne-4",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 4294967295,
+        "D": 0
+      },
+      "right": 0,
+      "expected": true
+    },
+    {
+      "id": "guard-ne-5",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 2147483648,
+        "D": 2147483648
+      },
+      "right": "D",
+      "expected": false
+    },
+    {
+      "id": "guard-ne-6",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 2147483648,
+        "D": 2147483647
+      },
+      "right": 2147483647,
+      "expected": true
+    },
+    {
+      "id": "guard-ne-7",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 1,
+        "D": 1
+      },
+      "right": "D",
+      "expected": false
+    },
+    {
+      "id": "guard-ne-8",
+      "category": "guards",
+      "op": "ne",
+      "bindings": {
+        "C": 1,
+        "D": 4294967295
+      },
+      "right": 4294967295,
+      "expected": true
+    },
+    {
+      "id": "match-01",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "var",
+            "name": "x"
+          },
+          {
+            "op": "var",
+            "name": "x"
+          }
+        ]
+      },
+      "expected": {
+        "X": {
+          "op": "var",
+          "name": "x"
+        }
+      }
+    },
+    {
+      "id": "match-02",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "var",
+            "name": "x"
+          },
+          {
+            "op": "var",
+            "name": "y"
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "match-03",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 4294967295
+          },
+          {
+            "op": "const",
+            "value": 4294967295
+          }
+        ]
+      },
+      "expected": {
+        "X": {
+          "op": "const",
+          "value": 4294967295
+        }
+      }
+    },
+    {
+      "id": "match-04",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "const",
+            "value": 1
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "match-05",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "X": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "match-06",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "var",
+            "name": "x"
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "match-07",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "C",
+            "kind": "const"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "var",
+            "name": "x"
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": {
+        "X": {
+          "op": "var",
+          "name": "x"
+        },
+        "C": {
+          "op": "const",
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": "match-08",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "C",
+            "kind": "const"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "var",
+            "name": "x"
+          },
+          {
+            "op": "var",
+            "name": "c"
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "match-09",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "meta",
+            "name": "C",
+            "kind": "const"
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "var",
+            "name": "x"
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "const",
+                "value": 0
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "match-10",
+      "category": "matching",
+      "pattern": {
+        "op": "add",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "const",
+            "value": 0
+          },
+          {
+            "op": "var",
+            "name": "x"
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "match-11",
+      "category": "matching",
+      "pattern": {
+        "op": "sub",
+        "args": [
+          {
+            "op": "meta",
+            "name": "X",
+            "kind": "expr"
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "var",
+            "name": "x"
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "match-12",
+      "category": "matching",
+      "pattern": {
+        "op": "not",
+        "args": [
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "meta",
+                "name": "X",
+                "kind": "expr"
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "op": "not",
+        "args": [
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "X": {
+          "op": "var",
+          "name": "x"
+        }
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H0-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H0-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H1-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H1-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H2-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H2-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H4-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    },
+    {
+      "id": "budget-A-first-pre-H4-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H0-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H0-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H1-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H1-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H2-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H2-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H4-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    },
+    {
+      "id": "budget-A-first-post-H4-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H0-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H0-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H1-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H1-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H2-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H2-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H4-variable",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    },
+    {
+      "id": "budget-C-first-pre-H4-maximum",
+      "category": "schedule-budget",
+      "fixture": "budget",
+      "priority": [
+        "C",
+        "A",
+        "B"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H0-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H0-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H1-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H1-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H2-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "D",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H2-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "D",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H4-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "D",
+            "location": []
+          },
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "D",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-pre-H4-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "A",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "D",
+            "location": []
+          },
+          {
+            "rule": "B",
+            "location": []
+          },
+          {
+            "rule": "D",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H0-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H0-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H1-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 3,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "var",
+                      "name": "x"
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 3,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "var",
+                      "name": "x"
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H1-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 3,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "const",
+                      "value": 4294967295
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 3,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "const",
+                      "value": 4294967295
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H2-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 4,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "var",
+                          "name": "x"
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 4,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "var",
+                          "name": "x"
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H2-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 4,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "const",
+                          "value": 4294967295
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 4,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "const",
+                          "value": 4294967295
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H4-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 6,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "add",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "var",
+                                  "name": "x"
+                                },
+                                {
+                                  "op": "const",
+                                  "value": 0
+                                }
+                              ]
+                            },
+                            {
+                              "op": "const",
+                              "value": 0
+                            }
+                          ]
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 6,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "add",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "var",
+                                  "name": "x"
+                                },
+                                {
+                                  "op": "const",
+                                  "value": 0
+                                }
+                              ]
+                            },
+                            {
+                              "op": "const",
+                              "value": 0
+                            }
+                          ]
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-A-first-post-H4-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "A",
+        "B",
+        "D",
+        "C"
+      ],
+      "traversal": "postorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 6,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "add",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "const",
+                                  "value": 4294967295
+                                },
+                                {
+                                  "op": "const",
+                                  "value": 0
+                                }
+                              ]
+                            },
+                            {
+                              "op": "const",
+                              "value": 0
+                            }
+                          ]
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 6,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "add",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "const",
+                                  "value": 4294967295
+                                },
+                                {
+                                  "op": "const",
+                                  "value": 0
+                                }
+                              ]
+                            },
+                            {
+                              "op": "const",
+                              "value": 0
+                            }
+                          ]
+                        },
+                        {
+                          "op": "const",
+                          "value": 0
+                        }
+                      ]
+                    },
+                    {
+                      "op": "const",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "D",
+            "location": [
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "rule": "D",
+            "location": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H0-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "var",
+                  "name": "x"
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H0-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 0,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 2,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "const",
+                  "value": 4294967295
+                },
+                {
+                  "op": "const",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H1-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H1-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 1,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 1,
+        "output": {
+          "op": "add",
+          "args": [
+            {
+              "op": "const",
+              "value": 4294967295
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H2-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H2-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 2,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "rewrite-budget"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H4-variable",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "var",
+                "name": "x"
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "var",
+          "name": "x"
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    },
+    {
+      "id": "interference-C-first-pre-H4-maximum",
+      "category": "schedule-budget",
+      "fixture": "interference",
+      "priority": [
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      "traversal": "preorder",
+      "h": 4,
+      "input": {
+        "op": "add",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "const",
+                "value": 4294967295
+              },
+              {
+                "op": "const",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 0
+          }
+        ]
+      },
+      "with": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      },
+      "without": {
+        "cost": 0,
+        "output": {
+          "op": "const",
+          "value": 4294967295
+        },
+        "trace": [
+          {
+            "rule": "C",
+            "location": []
+          },
+          {
+            "rule": "C",
+            "location": []
+          }
+        ],
+        "stop": "no-match"
+      }
+    }
+  ]
+}

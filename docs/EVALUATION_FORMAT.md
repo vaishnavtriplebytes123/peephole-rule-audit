@@ -6,7 +6,7 @@ experiments. Full study results remain pending.
 
 `ruleaudit evaluate --rules FILE --config FILE --out NEW_DIRECTORY` consumes an
 evaluation configuration, separate from single-run and reduction configurations.
-It has exactly `schema_version: 1`, `kind: "evaluation"`, `base` (full single-run
+It has exactly `schema_version: 1`, `kind` (`evaluation` or `heldout-evaluation`), `base` (full single-run
 config), `targets`, `seeds`, `h_values`, `traversals`, `priorities`,
 `permutation_seed`, `order_seed`, `max_trials`, `seconds`, `max_output_bytes`,
 `reduce_per_trial` and `reduction` (full reduction configuration).
@@ -16,7 +16,7 @@ seeds; 1–6 distinct H values in 0–10,000; nonempty unique traversals from
 preorder/postorder and priorities from corpus/permuted. Base priority must equal
 corpus order. Both permutation/order seeds are unsigned 64-bit integers.
 `max_trials` is 0–10,000; overall seconds 0–86,400; output 8 KiB–1 GiB;
-`reduce_per_trial` is 0–100. Every grid cell evaluates random/target/guided.
+`reduce_per_trial` is 0–100. Each ordinary evaluation grid cell evaluates random/target/guided.
 Only schedule, H, generator mode and seed vary from `base`; all other caps,
 domains and bounds are shared. Actual full configs are saved per trial.
 
@@ -70,3 +70,22 @@ shrinking counters are separate, not an invented total native-query count. No mo
 gets free derivation preparation. Missing trial reports have null measurements,
 never fabricated zeroes. Software/OS/CPU count metadata are recorded; memory
 usage is not inferred from a configured bound.
+
+The explicit `heldout-evaluation` kind evaluates random only. It requires the
+base generator to be random with only the hole context; no baseline modes are
+silently substituted. Before any trial, it saves a target-independent unique
+input sequence per seed in `heldout-inputs-NNNNNN.json`, including full generator
+settings, actual trees/hashes, original attempt indices and counters. Snapshot
+selection receives no corpus, target or derivation. Each snapshot is bounded
+to 100,000 expression nodes and 8 MiB of case records, in addition to the shared
+file/output/time caps. Incomplete preparation saves the available sequence when
+space permits and starts no trials; an output preflight preserves summary space.
+
+Each held-out trial recomputes the baseline stream and verifies its ordered
+input hashes against that saved sequence. A complete run must match the entire
+sequence; an incomplete run may match a labeled partial prefix. A mismatch is
+a failed trial in both child and parent metrics. Missing trial reports have an
+unreported sequence check. The root lists snapshot filenames, hashes and counts.
+Other generator aggregates have zero trials and null rates, not evidence that
+they were evaluated on held-out inputs. Pilot and final held-out seeds are
+distinct and the protocol fixes selection before inspecting those inputs.

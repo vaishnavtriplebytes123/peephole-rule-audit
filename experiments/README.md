@@ -129,3 +129,28 @@ Their frozen snapshots replay in the test suite. Pilot timing scopes and the
 source-subset limitation are explicit; these files are not final study results.
 The examples manifest's `sha256` values are the witness payload hashes, matching
 each envelope's `sha256`; they are not hashes of the complete JSON file bytes.
+
+## M6 fixed full-study configurations
+
+`full-budget.json` and `full-interference.json` each declare 240 trials.
+`full-jog-01.json` through `full-jog-05.json` cover all 26 source targets in
+corpus order, 6/6/6/6/2 targets, totaling 6,240 trials. All use the same main
+caps/domain and five seeds; see the protocol for the pilot-based estimates.
+Use the matching source/fixture corpus and a new output directory, for example:
+
+```powershell
+.venv/Scripts/python.exe -m ruleaudit evaluate --rules corpus/jog.json --config experiments/full-jog-01.json --out artifacts/full-jog-01-NEW
+.venv/Scripts/python.exe -m ruleaudit evaluate --rules corpus/jog.json --config experiments/full-heldout.json --out artifacts/full-heldout-NEW
+```
+
+`full-heldout.json` explicitly uses the random-only held-out kind: 15 trials,
+2,000 saved unique inputs per seed across five independent seeds and three
+targets. `pilot-heldout.json` uses a separate seed/100 cases; its measured raw
+record is `heldout-pilot-results.json`. Selection and its empty one-step stratum
+are recorded in `heldout-target-catalog.json`, with `heldout-catalog-base.json`
+retaining the actual single-run config used for every catalog target.
+Reproduce that catalog with `ruleaudit derive --rules corpus/jog.json --config
+experiments/heldout-catalog-base.json --target ID --out NEW_DIRECTORY` for each
+source ID, then apply the documented lexical/stratum selection. A bounded miss
+does not prove non-derivability. None of these configuration files is itself
+evidence of a completed full run; full results remain pending.

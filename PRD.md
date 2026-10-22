@@ -223,6 +223,10 @@ target, corpus, schedule, H, growth/time limits and the versioned 32-bit semanti
 and exclude generator/seed so cross-seed deduplication is explicit.
 H>=4 defines an eligibility stratum; it does not itself prove interference caused
 a positive delta. Budget effects may remain and require separate trace analysis.
+An explicit heldout-evaluation configuration runs only random generation and
+preserves concrete target-independent inputs before auditing. All selected
+targets share those ordered sequences; incomplete prefixes and mismatches are
+reported separately. Ordinary evaluation still compares all three modes.
 
 A run references one corpus/configuration and contains candidates, derivations,
 generated cases, paired executions, witnesses, and metrics. A witness refers to

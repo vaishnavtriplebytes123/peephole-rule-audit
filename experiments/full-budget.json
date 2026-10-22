@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "kind": "evaluation",
+  "base": {
+    "generation": {
+      "attempts": 64,
+      "cases": 4,
+      "constants": [
+        0,
+        1,
+        2147483647,
+        2147483648,
+        4294967295
+      ],
+      "contexts": [
+        "hole",
+        "not",
+        "add-left",
+        "add-right"
+      ],
+      "depth": 2,
+      "max_depth": 5,
+      "max_match_attempts": 10000,
+      "max_nodes": 63,
+      "seed": 0,
+      "strategy": "target"
+    },
+    "max_output_bytes": 8388608,
+    "run": {
+      "h": 4,
+      "max_depth": 32,
+      "max_nodes": 1000,
+      "seconds": 2
+    },
+    "schedule": {
+      "priority": [
+        "A",
+        "B",
+        "C"
+      ],
+      "traversal": "preorder"
+    },
+    "schema_version": 2,
+    "search": {
+      "max_bindings": 64,
+      "max_depth": 32,
+      "max_match_attempts": 10000,
+      "max_nodes": 1000,
+      "max_states": 256,
+      "max_steps": 2,
+      "seconds": 5
+    },
+    "seconds": 15,
+    "solver": {
+      "max_calls": 5000,
+      "timeout_ms": 1000
+    }
+  },
+  "targets": [
+    "A"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "h_values": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "traversals": [
+    "preorder",
+    "postorder"
+  ],
+  "priorities": [
+    "corpus",
+    "permuted"
+  ],
+  "permutation_seed": 1729,
+  "order_seed": 2718,
+  "max_trials": 10000,
+  "seconds": 1200,
+  "max_output_bytes": 134217728,
+  "reduce_per_trial": 1,
+  "reduction": {
+    "schema_version": 1,
+    "max_attempts": 32,
+    "max_accepted": 8,
+    "seconds": 2,
+    "solver": {
+      "timeout_ms": 1000,
+      "max_calls": 200
+    },
+    "max_output_bytes": 104857600
+  }
+}

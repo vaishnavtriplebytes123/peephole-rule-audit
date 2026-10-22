@@ -532,3 +532,64 @@ The >=100 labeled scenario dataset, independent held-out runs, full matrix,
 representative reruns, professor-facing demo and final research report remain.
 The research record contains targeted primary-source rechecks, with Optgen's
 full-text access limitation retained; no exhaustive novelty claim is made.
+
+## M6B labeled scenarios and held-out preparation (2026-10-23)
+
+The fixed 112-scenario dataset has independent expected word/guard/match/fixture
+outcomes, described in docs/SCENARIOS.md. Collection first failed on the absent
+dataset; after adding the data, all 113 scenario/coverage checks passed in 5.17 s.
+The explicit held-out evaluation kind first failed three tests with unexpected
+`kind`; implementation then passed preservation/sharing/strictness tests. Failure
+tests cover altered input sequences (parent and child both failed), interrupted
+input preparation, zero time, and shared output preflight. No dependencies changed.
+
+Actual regression commands:
+
+```powershell
+.venv/Scripts/python.exe -m ruff check .
+.venv/Scripts/python.exe -m ruff format --check .
+.venv/Scripts/python.exe -m mypy src tests
+.venv/Scripts/python.exe -m pytest --basetemp=tmp/pytest-m6b-checkpoint
+```
+
+Ruff/format pass; mypy passes **49 source/test files**; full suite **346 passed
+in 70.74 s**. The focused held-out/scenario/evaluation suite also passed **127
+tests in 10.69 s**. An intermediate redundant test cast failed mypy and was
+removed after its preceding assertion had already narrowed that value to str.
+
+The bounded catalog ran derivation discovery for all 26 source rules, taking
+11.807 s. Add5/Add6 each have one two-step template; no one-step templates were
+discovered. The preregistered stratum/lexical rule selects Add5/Add2/Add3, explicitly
+recording the empty one-step stratum fallback. Config, counts, limits and report
+hashes are in experiments/heldout-target-catalog.json; this is not a complete
+derivability claim or selection on removal findings.
+
+The actual command
+`.venv/Scripts/python.exe -m ruleaudit evaluate --rules corpus/jog.json --config
+experiments/pilot-heldout.json --out artifacts/m6-pilot-heldout` exited 0. It
+completed **3 trials/300 pairs**, each checking the same full saved 100 inputs;
+**7.537 s wall / 6.313 s CPU / 454,886 output bytes**, no findings, eligible
+cases, solver unknowns or emitted witnesses. Raw records and input trees are in
+experiments/heldout-pilot-results.json. Final held-out seeds exclude this pilot.
+Main and held-out caps/configs were fixed from the measured pilots before any
+full execution, including the documented solver-cap increase for 2,000-case
+held-out trials. Config files alone are not completed experiment evidence.
+
+Final interruption audit added a failing combined interruption/output-cap test:
+the preflight had changed an interrupted preparation to ordinary partial (3).
+It now preserves interruption (130). Repeating all checks above, with pytest
+`--basetemp=tmp/pytest-m6b-final`, passes **347 tests in 68.70 s**, Ruff/format,
+and mypy (49 files). The fixed configs were also checked for shared source caps,
+all 26 targets exactly once across batches, 6,720 main / 15 held-out trials, and
+held-out seeds disjoint from main/pilot seeds.
+
+Final wheel/sdist build passes with the documented Windows escalation. The
+existing clean runtime-only tmp/m6a-wheel-venv was updated with workspace
+TEMP/TMP and the offline/no-dependency forced-wheel install command above;
+`pip check` passes. Every one of 23 installed Python files matches current
+source; pytest is absent. From empty tmp/m6a-clean-cwd, `-I -m ruleaudit evaluate`
+with the small held-out config completed all four target/seed trials under
+artifacts/m6b-clean-heldout, and `-I -m ruleaudit replay` verified the preserved
+interference witness under artifacts/m6b-clean-replay (both exit 0). Both saved
+input sequences contain eight cases and match both target trials. Whitespace
+and local Markdown links pass across 107 source/doc/config/test files.

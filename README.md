@@ -8,7 +8,8 @@ The user authorized implementation and periodic GitHub pushes on 2026-10-22.
 The `validate`, `derive`, `audit`, `replay`, `reduce`, and `evaluate` commands are implemented.
 All three generation modes and small equal-cap comparisons are implemented.
 Reduction, bounded JSON/CSV reports and the controlled evaluation runner are
-available. The full matrix, labeled scenarios, held-out study and research report
+available. The [112 labeled scenarios](docs/SCENARIOS.md) and independent held-out
+runner are verified. The full matrix, held-out execution and research report
 remain M6 work. No submission date is assumed.
 
 The tool can pair a checked alternative rewrite sequence with a replayable
