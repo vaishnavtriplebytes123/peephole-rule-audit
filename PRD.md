@@ -1,6 +1,6 @@
 # Product requirements: Peephole Rule Removal Audit
 
-Status: **M1–M5 implemented; M6 pending**. Prepared 2026-10-22.
+Status: **M1–M5 verified; M6 runner/pilot verified, full study pending**. Prepared 2026-10-22.
 The user explicitly authorized all six milestones and periodic GitHub pushes on
 2026-10-22. Verification remains required at each milestone.
 
@@ -214,6 +214,16 @@ checked original alternative, positive comparable pairs and a checked alternativ
 for every accepted shrink. Report-write errors must not escape error handlers;
 retain available partial files and print a concise error if status cannot be saved.
 
+M6 adds the matrix contract in [docs/EVALUATION_FORMAT.md](docs/EVALUATION_FORMAT.md).
+Alternative eligibility is checked for every comparable case, including zero
+deltas, separately from the legacy positive-finding attachment field. Primary
+interference rates divide qualified positive findings by eligible cases at H>=4;
+zero eligible cases produce null rates. Uniqueness keys include canonical input,
+target, corpus, schedule, H, growth/time limits and the versioned 32-bit semantics,
+and exclude generator/seed so cross-seed deduplication is explicit.
+H>=4 defines an eligibility stratum; it does not itself prove interference caused
+a positive delta. Budget effects may remain and require separate trace analysis.
+
 A run references one corpus/configuration and contains candidates, derivations,
 generated cases, paired executions, witnesses, and metrics. A witness refers to
 one target, one input, and two ordered traces. Include schema/tool versions,
@@ -223,6 +233,8 @@ Store self-contained data snapshots for replay; never serialize executable objec
 
 Proposed input defaults: file <=10 MiB, <=100 rules, expression <=1,000 nodes and
 depth <=64, identifier <=64 ASCII characters from `[A-Za-z_][A-Za-z0-9_]*`.
+Generic JSON object field names are bounded to 64 characters before recursive
+path construction; all declared schema fields and maximum-length binding IDs fit.
 Proposed optimizer growth ceiling: 10,000 nodes and depth 128; H maximum 10,000.
 Validate numeric settings as finite non-negative values with explicit maxima.
 Defaults are reviewable implementation choices, not measurements.
@@ -233,7 +245,7 @@ No HTTP API or external service. Public interface is the local CLI and versioned
 JSON/CSV files. argparse handles syntax; a standard-library schema validator
 handles structural validation without an additional schema-framework dependency.
 
-CLI contracts (`validate`, `derive`, `audit`, `replay`, `reduce` implemented; `evaluate` pending):
+CLI contracts (all six commands implemented; M6 full experiments/report still pending):
 
 ```text
 ruleaudit validate --rules FILE --out NEW_DIRECTORY

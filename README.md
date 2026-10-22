@@ -3,12 +3,13 @@
 A local research CLI for testing whether removing a derivable peephole
 optimization rule makes a bounded, deterministic optimizer less effective.
 
-**Status: M1–M5 implemented; M6 evaluation remains.**
+**Status: M1–M5 verified; M6 runner and resource pilot verified, full study pending.**
 The user authorized implementation and periodic GitHub pushes on 2026-10-22.
-The `validate`, `derive`, `audit`, `replay`, and `reduce` commands are implemented.
+The `validate`, `derive`, `audit`, `replay`, `reduce`, and `evaluate` commands are implemented.
 All three generation modes and small equal-cap comparisons are implemented.
-Reduction and bounded JSON/CSV reports are available. Controlled evaluation and
-the research report remain M6 work. No submission date is assumed.
+Reduction, bounded JSON/CSV reports and the controlled evaluation runner are
+available. The full matrix, labeled scenarios, held-out study and research report
+remain M6 work. No submission date is assumed.
 
 The tool can pair a checked alternative rewrite sequence with a replayable
 example of worse optimization after rule removal and supports random,
@@ -36,8 +37,10 @@ initial cost measure; it is not a claim about execution speed.
 `ruleaudit validate --rules corpus/jog.json --out artifacts/validation-NEW`
 validates the initial 26-rule source corpus. Output directories must be new.
 See [runnable examples](experiments/README.md) for the complete synthetic
-validate → derive → audit → replay → reduce journey. `evaluate` remains
-unimplemented. There is no server, database, account, or UI.
+validate → derive → audit → replay → reduce journey and pilot evaluation commands.
+The [evaluation protocol](docs/EVALUATION_PROTOCOL.md) records actual pilot costs
+and the main matrix fixed before full execution. There is no server, database,
+account, or UI.
 
 ## Proposed repository layout
 

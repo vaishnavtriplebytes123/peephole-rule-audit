@@ -466,3 +466,69 @@ from Windows CRLF to LF.
 M6 controlled evaluation, >=100 labeled scenarios, independent held-out inputs,
 pilot sizing and the research report remain. Windows/Python 3.12 is exercised;
 Linux remains unverified.
+
+## M6A runner and resource-pilot checkpoint (2026-10-23)
+
+Implemented strict controlled evaluation configs, seeded independent trial and
+priority ordering, comparable-case alternative eligibility, explicit denominators
+and censoring, cross-seed case keys, shared output/time caps, automatic replay and
+bounded reduction. Failures, incomplete generation, missing reports and unstarted
+grid cells remain explicit. H>=4 eligibility does not establish causal interference.
+No dependencies changed. M6 remains in progress.
+
+Semantic tests preceded implementation: missing modules/CLI subcommand failed
+before addition; reducer interruption returned 3 instead of 130 before repair;
+publication-inclusive timing assertions failed before adding those fields.
+A final parser resource test failed with DID NOT RAISE before bounding JSON
+field names to 64 characters, before recursive diagnostic-path construction.
+All existing schema field names and full-length binding identifiers fit this bound.
+
+Actual verification commands and results:
+
+```powershell
+.venv/Scripts/python.exe -m pytest --basetemp=tmp/pytest-m6a-reviewed
+.venv/Scripts/python.exe -m ruff check .
+.venv/Scripts/python.exe -m ruff format --check .
+.venv/Scripts/python.exe -m mypy src tests
+.venv/Scripts/python.exe -m pytest tests/test_io.py -q --basetemp=tmp/pytest-m6a-io-final
+.venv/Scripts/python.exe -m build --no-isolation
+```
+
+Full suite: **227 passed in 69.04 s**. The subsequent type-only annotation fix
+passes mypy in **45 source/test files**, Ruff check and format; the focused input
+suite passes **33 tests in 2.51 s**. Build produces wheel and sdist with the
+documented Windows escalation. No application network access was needed; a test
+blocks socket connection APIs through a complete evaluation.
+
+The three pilot commands in experiments/README.md were actually run using
+`artifacts/m6-pilot-interference`, `artifacts/m6-pilot-budget`, and
+`artifacts/m6-pilot-jog`. They finished all **120 trials / 360 pairs**, with
+partial generation retained, and **48/48 emitted original/reduced witnesses
+verified**. All trial/case/replay rows are in experiments/pilot-results.json;
+hardware, timing scopes, measured disk/time, estimates and fixed main protocol
+are in docs/EVALUATION_PROTOCOL.md. Three deterministically selected actual
+witness copies are frozen and independently replay in the test suite.
+
+Clean packaging recheck used workspace-local TEMP/TMP throughout:
+
+```powershell
+.venv/Scripts/python.exe -m venv tmp/m6a-wheel-venv
+tmp/m6a-wheel-venv/Scripts/python.exe -m pip install --no-index --find-links tmp/m5-wheelhouse --require-hashes -r requirements.lock
+tmp/m6a-wheel-venv/Scripts/python.exe -m pip install --no-index --no-deps --force-reinstall dist/ruleaudit-0.1.0-py3-none-any.whl
+tmp/m6a-wheel-venv/Scripts/python.exe -m pip check
+```
+
+Installation/check passed. From the empty tmp/m6a-clean-cwd, the clean interpreter
+with `-I` ran evaluate on the synthetic interference fixture under
+artifacts/m6a-clean-final, then replayed the preserved unqualified source witness
+under artifacts/m6a-clean-source-replay. Both exited 0; the evaluation finished
+3 trials, verified both originals and both reductions, and retained the random
+zero-finding trial. All 22 installed Python files match current source bytes;
+pytest is absent. A verification helper initially confused witness payload hashes
+with whole-file hashes; using the documented envelope hash corrected that helper.
+The three saved files also match their original emitted bytes exactly.
+
+The >=100 labeled scenario dataset, independent held-out runs, full matrix,
+representative reruns, professor-facing demo and final research report remain.
+The research record contains targeted primary-source rechecks, with Optgen's
+full-text access limitation retained; no exhaustive novelty claim is made.

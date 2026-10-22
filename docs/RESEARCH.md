@@ -257,3 +257,30 @@ Previously inspected revision: `3011b9de21eae081448517fc77a85f4e8d5113d0`.
 contains the composition analysis considered in the prior review. Verify any
 implementation-specific statement against this revision rather than an unpinned
 current branch. The existing local checkout is reference material, not application code.
+
+## Implementation-stage source rechecks — 2026-10-23
+
+This is a targeted recheck, not a new exhaustive search or a claim that all 14
+papers were reread in full during implementation.
+
+- [Alive author PDF](https://people.cs.rutgers.edu/~santosh.nagarakatte/papers/alive-pldi15.pdf): abstract confirms automated correctness checks/counterexamples and LLVM-specific semantic concerns.
+- [JOG author PDF](https://users.ece.utexas.edu/~gligoric/papers/ZhiqiangETAL23Jog.pdf): shadow analysis and structure-sensitive matching rechecked, PDF pp. 5–6. Artifact-composition claims still refer to the separately pinned revision above.
+- [Ruler author PDF](https://cnandi.com/docs/oopsla21-cr.pdf): candidate removal by derivability rechecked around `choose_eqs`/Figure 5, PDF p. 11.
+- [Enumo author PDF](https://rtjoa.com/papers/oopsla23-enumo.pdf): useful redundancy under resource limits in Section 4.3 and scheduling limitations in Section 7 rechecked. This project cannot claim either observation as new.
+- [CHOMPY version-of-record repository](https://repositum.tuwien.at/handle/20.500.12708/230508): full PDF retrieved through its full-text link; title discrepancy confirmed. PDF Section V-B/C explicitly leaves downstream performance evaluation for future work. Our deterministic tree model is narrower than that general task.
+- [KBC preprint PDF](https://arxiv.org/pdf/2610.01246): shortcut categorization in Section 3 and remaining bit-vector-domain work in Section 6.1 rechecked. It remains a preprint in this record.
+- Optgen's direct author-PDF request timed out again. Retain the existing limited-access qualification; no specific future-work claim is added.
+
+The remaining references were checked in the same implementation-stage pass:
+
+- [Alive-Infer](https://people.cs.rutgers.edu/~santosh.nagarakatte/papers/pldi2017-alive-infer.pdf) and [Alive2](https://users.cs.utah.edu/~regehr/alive2-pldi21.pdf): author PDFs retrieved; abstracts confirm example-based precondition inference and bounded translation validation respectively. Neither capability is claimed as a new result here.
+- [Termination checking](https://people.cs.rutgers.edu/~santosh.nagarakatte/papers/icse2016-alive-loops.pdf): author PDF retrieved; abstract confirms composition/undo cycles and concrete debugging inputs as prior work.
+- [Equality saturation](https://www.cs.cornell.edu/~lerner/papers/popl09.pdf): author PDF retrieved; abstract/introduction confirm nondestructive alternatives followed by extraction, distinct from this project's first-match tree runner.
+- [egg](https://homes.cs.washington.edu/~cnandi/docs/popl21-cr.pdf): author PDF retrieved; scheduling/backoff discussion rechecked at PDF p. 20.
+- [Isaria](https://sgt-pl.com/papers/compgen.pdf): author PDF retrieved; pruning/completeness trade-off rechecked at PDF pp. 2 and 8.
+- [Small Proofs author PDF](https://ztatlock.net/pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs.pdf): retrieved after the NSF mirror returned 502. Abstract/introduction confirm compact congruence explanations as prior work; no new proof-minimization algorithm is claimed here.
+- [Optgen institutional record](https://pp.ipd.kit.edu/publication.php?id=buchwald15cc&lang=en): title/author/CC-2015 metadata verified; direct PDF timeout and inaccessible publisher DOI remain access limits.
+
+In total, 13 full-text PDFs were retrieved and relevant passages/abstracts
+checked; Optgen remained metadata/previous-introduction access only. This is not
+a claim of a new page-by-page rereading or an exhaustive novelty search.

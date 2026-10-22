@@ -14,6 +14,8 @@ from typing import cast
 from ruleaudit import __version__
 from ruleaudit.config import load_config
 from ruleaudit.corpus import Corpus, corpus_document, load_corpus
+from ruleaudit.evaluate import evaluate
+from ruleaudit.evaluation_config import parse_evaluation_config, validate_evaluation
 from ruleaudit.experiment import audit_experiment, derive_experiment, validate_settings
 from ruleaudit.interrupt import interruptible_clock
 from ruleaudit.io import InputError, JSONValue, content_hash, load_json, parse_expression
@@ -172,6 +174,12 @@ def _main(argv: Sequence[str] | None, now: Callable[[], float]) -> int:
     reduce_command.add_argument("--witness", type=Path, required=True)
     reduce_command.add_argument("--config", type=Path, required=True)
     reduce_command.add_argument("--out", type=Path, required=True)
+    evaluate_command = commands.add_parser(
+        "evaluate", help="compare all three generators under controlled caps"
+    )
+    evaluate_command.add_argument("--rules", type=Path, required=True)
+    evaluate_command.add_argument("--config", type=Path, required=True)
+    evaluate_command.add_argument("--out", type=Path, required=True)
     args = parser.parse_args(argv)
     if args.command is None:
         parser.print_help()
@@ -199,6 +207,12 @@ def _main(argv: Sequence[str] | None, now: Callable[[], float]) -> int:
             limits_reduction = parse_reduction_config(settings)
             writer = ReportWriter(args.out, limits_reduction.max_output_bytes)
             code = _reduce(value, settings, writer, now=now)
+        elif args.command == "evaluate":
+            corpus = load_corpus(args.rules)
+            matrix = parse_evaluation_config(load_json(args.config))
+            validate_evaluation(corpus, matrix)
+            writer = ReportWriter(args.out, matrix.max_output_bytes)
+            code = evaluate(corpus, matrix, writer, now=now)
         else:
             corpus, config = load_corpus(args.rules), load_config(args.config)
             target = validate_settings(corpus, config, args.target)
@@ -210,7 +224,7 @@ def _main(argv: Sequence[str] | None, now: Callable[[], float]) -> int:
             except ValueError as error:
                 raise InputError("experiment", str(error)) from error
         now()
-        status = {0: "completed", 3: "partial", 130: "interrupted"}[code]
+        status = {0: "completed", 3: "partial", 4: "failed", 130: "interrupted"}[code]
         writer.write("status.json", {"status": status}, status=True)
         print(f"{args.command}: {status}; reports={args.out}")
         return code

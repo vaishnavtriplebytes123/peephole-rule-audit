@@ -1,7 +1,7 @@
 # Single-run experiments and removal witnesses
 
-M3 introduces a single-run configuration. M6 will add an explicit matrix of
-these runs. A configuration has exactly `schema_version` (integer 1 or 2),
+M3 introduces a single-run configuration. M6's explicit matrix is specified in
+[EVALUATION_FORMAT.md](EVALUATION_FORMAT.md). A single-run configuration has exactly `schema_version` (integer 1 or 2),
 `schedule`, `run`, `search`, `generation`, `solver`, `seconds`, and
 `max_output_bytes`. The nested schedule/run/search/solver fields are the full
 fields of the corresponding typed library objects; no unknown fields are allowed.

@@ -6,6 +6,7 @@ import pytest
 from ruleaudit.io import (
     InputError,
     InputLimits,
+    JSONValue,
     canonical_bytes,
     content_hash,
     expression_document,
@@ -146,3 +147,14 @@ def test_snapshot_containers_can_hold_growth_depth_without_relaxing_input_depth(
     assert canonical_bytes(loaded).decode("ascii") == encoded
     with pytest.raises(InputError, match="depth"):
         parse_expression(loaded)
+
+
+def test_json_field_names_are_bounded_before_building_nested_error_paths() -> None:
+    text = '{"' + "a" * 65 + '":' + "[" * 200 + "0" + "]" * 200 + "}"
+    with pytest.raises(InputError, match="field name"):
+        parse_json(text)
+
+
+def test_full_length_binding_field_names_remain_supported() -> None:
+    value: dict[str, JSONValue] = {"X" * 64: 0}
+    assert parse_json(canonical_bytes(value).decode("ascii")) == value

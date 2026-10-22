@@ -14,7 +14,14 @@ from ruleaudit.corpus import Corpus, corpus_document
 from ruleaudit.derive import DeriveResult, derive
 from ruleaudit.generate import GuidanceBudget, guided_attempt, random_attempt, target_attempt
 from ruleaudit.io import InputError, JSONValue, canonical_bytes, content_hash, expression_node
-from ruleaudit.records import EncodingBudget, case_document, derivation_document, make_witness
+from ruleaudit.metrics import case_key
+from ruleaudit.records import (
+    EncodingBudget,
+    case_document,
+    derivation_document,
+    ground_alternative,
+    make_witness,
+)
 from ruleaudit.report import Cell, IncompleteError, ReportWriter
 from ruleaudit.rules import Rule
 from ruleaudit.solver import Z3Backend
@@ -141,7 +148,11 @@ def audit_experiment(
     records: list[JSONValue] = []
     seen = set()
     attempts = duplicates = rejections = generated = findings = comparable = qualified = 0
+    eligible = solver_unknowns = 0
     first_finding: float | None = None
+    first_qualified: float | None = None
+    first_trial: int | None = None
+    first_attempt: int | None = None
     guidance_budget = GuidanceBudget(
         config.generation.max_match_attempts,
         allow_work=lambda: now() - started < config.seconds,
@@ -197,21 +208,46 @@ def audit_experiment(
         )
         filename: str | None = None
         checked_alternative: bool | None = None
+        eligibility: bool | None = None
+        alternative_steps: int | None = None
         comparable += int(pair.comparable)
+        solver_unknowns += int(pair.semantic_status == "unknown")
         if pair.comparable and pair.delta > 0:
             filename = f"witness-{findings + 1:06d}.json"
             witness = make_witness(corpus, config, case, pair, derived.witnesses, backend=backend)
-            checked_alternative = (
-                cast(dict[str, JSONValue], witness["payload"])["alternative"] is not None
-            )
+            alternative = cast(dict[str, JSONValue], witness["payload"])["alternative"]
+            checked_alternative = alternative is not None
+            eligibility = checked_alternative
+            if alternative is not None:
+                alternative_steps = len(
+                    cast(list[JSONValue], cast(dict[str, JSONValue], alternative)["steps"])
+                )
             writer.write(filename, witness)
             qualified += int(checked_alternative)
             findings += 1
             if first_finding is None:
                 first_finding = now() - started
+                first_trial, first_attempt = generated, attempt
+            if checked_alternative and first_qualified is None:
+                first_qualified = now() - started
+        elif pair.comparable:
+            eligibility = False
+            for template in derived.witnesses:
+                alternative = ground_alternative(
+                    template, case.expression, target, corpus, config.run, backend, EncodingBudget()
+                )
+                if alternative is not None:
+                    eligibility = True
+                    alternative_steps = len(cast(list[JSONValue], alternative["steps"]))
+                    break
+        eligible += int(eligibility is True)
+        input_hash = content_hash(expression_node(case.expression))
         records.append(
             {
-                "input_hash": content_hash(expression_node(case.expression)),
+                "input_hash": input_hash,
+                "case_key": case_key(
+                    input_hash, target.id, cast(str, fixed_report["corpus_hash"]), config
+                ),
                 "provenance": provenance,
                 "cost_with": pair.cost_with,
                 "cost_without": pair.cost_without,
@@ -222,6 +258,8 @@ def audit_experiment(
                 "stop_without": pair.without_target.stop_reason,
                 "witness": filename,
                 "checked_alternative": checked_alternative,
+                "eligible_alternative": eligibility,
+                "alternative_steps": alternative_steps,
             }
         )
         raw_bytes += len(canonical_bytes(records[-1])) + 1
@@ -250,6 +288,9 @@ def audit_experiment(
         "comparable_cases": comparable,
         "findings": findings,
         "checked_alternative_findings": qualified,
+        "eligible_cases": eligible,
+        "primary_interference_cases": eligible if config.run.h >= 4 else 0,
+        "primary_interference_findings": qualified if config.run.h >= 4 else 0,
         "records": records,
         "generation": {
             "attempts": attempts,
@@ -262,10 +303,15 @@ def audit_experiment(
         "computation_seconds": now() - started,
         "cpu_seconds": process_time() - cpu_started,
         "time_to_first_finding": first_finding,
+        "trial_to_first_finding": first_trial,
+        "attempt_to_first_finding": first_attempt,
+        "time_to_first_qualified_finding": first_qualified,
+        "solver_unknowns": solver_unknowns + derived.solver_unknowns,
     }
     writer.write("audit.json", report)
     columns = (
         "input_hash",
+        "case_key",
         "cost_with",
         "cost_without",
         "delta",
@@ -274,6 +320,8 @@ def audit_experiment(
         "stop_with",
         "stop_without",
         "checked_alternative",
+        "eligible_alternative",
+        "alternative_steps",
         "witness",
     )
     writer.write_csv(

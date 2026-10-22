@@ -53,6 +53,8 @@ def _normalize(value: object, path: str, depth: int = 0) -> JSONValue:
     if isinstance(value, _ObjectPairs):
         result: dict[str, JSONValue] = {}
         for key, item in value.pairs:
+            if len(key) > 64:
+                raise InputError(path, "JSON object field name exceeds 64 characters")
             child_path = f"{path}.{key}"
             if key in result:
                 raise InputError(child_path, f"duplicate JSON field {key!r}")

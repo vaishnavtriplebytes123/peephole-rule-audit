@@ -199,6 +199,26 @@ documentation within an approved milestone.
 
 ## Evaluation protocol proposed for M6
 
+Pilot preregistration (2026-10-23, before pilot execution): versioned
+`experiments/pilot-{jog,budget,interference}.json` use seed 0, H=1/4, both
+traversals and corpus/seeded-permuted priority, all three generators. Source
+targets are chosen structurally: lexicographically first Add and Sub IDs, then
+the remaining rule with most constant metavariables (ID breaks ties), not from
+removal outcomes. There are 72 source and 24 trials per synthetic fixture.
+Shared caps: 4 cases, 64 generation attempts, depth expansion 2, complete inputs
+63 nodes/depth 5, five boundary constants, four contexts, 10,000 guidance matches;
+search 256 states/10,000 matches/64 bindings/5 s; 5,000 solver calls at 1,000 ms;
+optimizer 2 s per arm, 1,000 nodes/depth 32; 15 s per trial. Each pilot command
+caps elapsed time at 600 s and total output at 128 MiB. Replay every emitted
+witness; reduce the first qualified finding per trial with 32 attempts/8 accepted
+shrinks/2 s/200 solver calls, then replay it. No full-matrix caps or claims are
+fixed until these pilot time/disk costs are recorded.
+
+The measured pilot and resulting fixed main matrix are now recorded in
+[docs/EVALUATION_PROTOCOL.md](docs/EVALUATION_PROTOCOL.md). That protocol
+supersedes the provisional 10,000-pair and H=16/32 ceilings below; the older
+proposal is retained here to make the pre-full-run resource adjustment explicit.
+
 - Primary search comparison: each target/schedule/H/seed/strategy receives the
   same maximum 10,000 paired executions, attempt ceiling, and time ceiling.
   A pair means two optimizer runs. Record unique and total attempted cases.
@@ -241,7 +261,7 @@ inferred from these foundation/core checks.
 | M3 | Complete | Derive/audit/replay CLI, strict config, seeded target generation, paired runs, snapshots/hashes and independent replay implemented. Full 146-test regression including saved-v1 replay passes; Ruff/mypy/build and manual CLI journey pass. Synthetic H=1/2 and H=4 criteria reproduced; 9/9 manual witnesses replayed. Detailed commands/results in docs/DEVELOPMENT.md. |
 | M4 | Complete | Seeded random/target/guided modes, shared complete-input/attempt/work bounds, explicit contexts/overlap provenance, independent replay and no-fallback tests. Twelve equal-cap smoke trials on synthetic/source corpora; 49/49 emitted witnesses verified on sequential replay, with an earlier inconclusive replay retained in the record. Checks and limits in docs/DEVELOPMENT.md and experiments/README.md. |
 | M5 | Complete | Original/reduced witness replay, deterministic shrinking with strict decrease and path/delta/SMT checks, last-verified interruption behavior, bounded JSON/CSV and guarded status errors. 210 tests, Ruff/format/mypy and build pass; offline clean-wheel CLI journey passes. Saved 9-to-5-node reduction retains delta 2. Commands/results in docs/DEVELOPMENT.md. |
-| M6 | Authorized, not started | Controlled evaluation and research report remain. |
+| M6 | In progress | Comparable-case eligibility metrics and bounded evaluate CLI verified; 227 tests pass. Pilot executed all 120 trials, recorded 360 pairs and verified all 48 emitted originals/reductions. Main matrix/caps fixed from measured pilot in docs/EVALUATION_PROTOCOL.md. Labeled scenarios, independent held-out data, full runs and research report remain. |
 
 ## Security and operational risks
 

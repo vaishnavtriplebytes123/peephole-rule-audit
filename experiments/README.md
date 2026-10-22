@@ -106,3 +106,26 @@ Audits now include `cases.csv`, validation includes `rules.csv`, and reduction
 includes `summary.csv`. JSON retains full unescaped evidence; CSV protects text
 cells from spreadsheet formula interpretation. Output failures retain `.partial`
 files and explicit status when the filesystem permits it.
+
+## M6 resource pilot
+
+The runner is implemented; the full study is pending. See
+[protocol and measured estimates](../docs/EVALUATION_PROTOCOL.md) for the fixed
+pilot selection, caps, actual costs and full-matrix design.
+
+```powershell
+.venv/Scripts/python.exe -m ruleaudit evaluate --rules tests/fixtures/interference.json --config experiments/pilot-interference.json --out artifacts/demo-pilot-interference-NEW
+.venv/Scripts/python.exe -m ruleaudit evaluate --rules tests/fixtures/budget.json --config experiments/pilot-budget.json --out artifacts/demo-pilot-budget-NEW
+.venv/Scripts/python.exe -m ruleaudit evaluate --rules corpus/jog.json --config experiments/pilot-jog.json --out artifacts/demo-pilot-jog-NEW
+```
+
+Exit 3 is expected for bounded partial generation in the budget/source pilots;
+inspect the actual statuses rather than treating it as a completed fixed-count
+trial. The pilot executed 120 trials / 360 pairs and replayed all 42 originals
+and six reductions. `pilot-results.json` preserves all trial/case/replay rows.
+`pilot-examples.json` records deterministic selection of three actual witness
+fixtures: budget H=1, interference H=4, and an unqualified source regression.
+Their frozen snapshots replay in the test suite. Pilot timing scopes and the
+source-subset limitation are explicit; these files are not final study results.
+The examples manifest's `sha256` values are the witness payload hashes, matching
+each envelope's `sha256`; they are not hashes of the complete JSON file bytes.
