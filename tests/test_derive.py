@@ -142,3 +142,12 @@ def test_growth_exclusions_and_zero_time_are_explicit() -> None:
 def test_search_limits_are_validated(settings: dict[str, int | float]) -> None:
     with pytest.raises(ValueError):
         DeriveLimits(**settings)  # type: ignore[arg-type]
+
+
+def test_alternative_can_rewrite_below_the_root() -> None:
+    from ruleaudit.rules import PUnary
+
+    nested = Rule("nested", PUnary("not", TWO), PUnary("not", X))
+    result = derive(nested, (nested, C))
+    assert result.status == "found"
+    assert [step.location for step in result.witnesses[0].steps] == [(0,), (0,)]

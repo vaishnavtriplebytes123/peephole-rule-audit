@@ -1,6 +1,6 @@
 # Product requirements: Peephole Rule Removal Audit
 
-Status: **M1/M2 verified; M3 in progress; M4–M6 pending**. Prepared 2026-10-22.
+Status: **M1–M3 implemented and verified; M4–M6 pending**. Prepared 2026-10-22.
 The user explicitly authorized all six milestones and periodic GitHub pushes on
 2026-10-22. Verification remains required at each milestone.
 
@@ -185,6 +185,9 @@ as primary comparable regression measurements.
 
 ### Reports and relationships
 
+M3's concrete single-run configuration, snapshot/replay encoding, and explicit
+storage caps are specified in [docs/EXPERIMENT_FORMAT.md](docs/EXPERIMENT_FORMAT.md).
+
 A run references one corpus/configuration and contains candidates, derivations,
 generated cases, paired executions, witnesses, and metrics. A witness refers to
 one target, one input, and two ordered traces. Include schema/tool versions,
@@ -204,7 +207,7 @@ No HTTP API or external service. Public interface is the local CLI and versioned
 JSON/CSV files. argparse handles syntax; a standard-library schema validator
 handles structural validation without an additional schema-framework dependency.
 
-Proposed CLI contracts (not implemented):
+CLI contracts (`validate`, `derive`, `audit`, `replay` implemented; remaining commands pending):
 
 ```text
 ruleaudit validate --rules FILE --out NEW_DIRECTORY

@@ -11,8 +11,12 @@ from pathlib import Path
 from typing import cast
 
 from ruleaudit import __version__
+from ruleaudit.config import load_config
 from ruleaudit.corpus import corpus_document, load_corpus
-from ruleaudit.io import InputError, JSONValue, canonical_bytes, content_hash
+from ruleaudit.experiment import audit_experiment, derive_experiment, validate_settings
+from ruleaudit.io import InputError, JSONValue, canonical_bytes, content_hash, load_json
+from ruleaudit.replay import replay
+from ruleaudit.report import IncompleteError, ReportWriter
 from ruleaudit.solver import SolverLimits, Z3Backend, check_rule
 
 
@@ -84,11 +88,47 @@ def main(argv: Sequence[str] | None = None) -> int:
     validate.add_argument("--out", type=Path, required=True, help="new output directory")
     validate.add_argument("--solver-timeout-ms", type=int, default=1000)
     validate.add_argument("--solver-max-calls", type=int, default=1000)
+    for name in ("derive", "audit"):
+        command = commands.add_parser(name, help=f"run bounded {name} research work")
+        command.add_argument("--rules", type=Path, required=True)
+        command.add_argument("--config", type=Path, required=True)
+        command.add_argument("--target", required=True)
+        command.add_argument("--out", type=Path, required=True)
+    replay_command = commands.add_parser(
+        "replay", help="recompute a self-contained removal witness"
+    )
+    replay_command.add_argument("--witness", type=Path, required=True)
+    replay_command.add_argument("--out", type=Path, required=True)
     args = parser.parse_args(argv)
     if args.command is None:
         parser.print_help()
         return 0
+    writer: ReportWriter | None = None
     try:
+        if args.command != "validate":
+            if args.out.exists():
+                raise InputError("--out", "output path already exists; choose a new directory")
+            if args.command == "replay":
+                data = load_json(args.witness)
+                result = replay(data)
+                writer = ReportWriter(args.out, 8192)
+                writer.write("replay.json", result)
+                code = 0
+            else:
+                corpus, config = load_corpus(args.rules), load_config(args.config)
+                target = validate_settings(corpus, config, args.target)
+                writer = ReportWriter(args.out, config.max_output_bytes)
+                try:
+                    code = (derive_experiment if args.command == "derive" else audit_experiment)(
+                        corpus, config, target, writer
+                    )
+                except ValueError as error:
+                    raise InputError("experiment", str(error)) from error
+            writer.write(
+                "status.json", {"status": "partial" if code == 3 else "completed"}, status=True
+            )
+            print(f"{args.command}: {'partial' if code == 3 else 'completed'}; reports={args.out}")
+            return code
         try:
             limits = SolverLimits(args.solver_timeout_ms, args.solver_max_calls)
         except ValueError as error:
@@ -97,8 +137,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     except (InputError, FileExistsError) as error:
         print(f"ruleaudit: {error}", file=sys.stderr)
         return 2
+    except IncompleteError as error:
+        if writer is not None:
+            writer.write("status.json", {"status": "partial", "reason": str(error)}, status=True)
+        print(f"ruleaudit: partial: {error}", file=sys.stderr)
+        return 3
     except KeyboardInterrupt:
-        print("ruleaudit: interrupted; validation did not complete", file=sys.stderr)
+        if writer is not None:
+            writer.write("status.json", {"status": "interrupted"}, status=True)
+        print("ruleaudit: interrupted; work did not complete", file=sys.stderr)
         return 130
     except OSError as error:
         print(f"ruleaudit: I/O failure: {error}", file=sys.stderr)

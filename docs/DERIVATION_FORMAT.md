@@ -41,4 +41,5 @@ States count unique trees per constant binding, including start and endpoint,
 then sum across examined bindings. A guard rejection counts one rejected target
 binding or matched rule application, rather than individual false predicates.
 
-CLI/configuration and snapshot/replay encoding are still M3 implementation work.
+CLI/configuration and snapshot/replay encoding are specified in
+[EXPERIMENT_FORMAT.md](EXPERIMENT_FORMAT.md).

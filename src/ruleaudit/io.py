@@ -46,7 +46,7 @@ def _nonfinite(token: str) -> None:
 
 def _normalize(value: object, path: str, depth: int = 0) -> JSONValue:
     # Operators have both an object and an args array at each expression level.
-    if depth > 132:
+    if depth > 300:
         raise InputError(path, "JSON nesting depth exceeds supported limit")
     if isinstance(value, float) and not math.isfinite(value):
         raise InputError(path, "non-finite JSON number is not permitted")

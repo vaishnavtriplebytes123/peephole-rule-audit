@@ -1,6 +1,8 @@
 """Local SMT boundary; unknown, resource exhaustion, and unsatisfiable guards differ."""
 
+from collections.abc import Callable
 from dataclasses import dataclass
+from time import perf_counter
 from typing import Literal, Protocol, cast
 
 import z3  # type: ignore[import-untyped]
@@ -63,9 +65,17 @@ def _runtime_pattern(expr: Expr) -> Pattern:
 
 
 class Z3Backend:
-    def __init__(self, limits: SolverLimits = DEFAULT_SOLVER_LIMITS) -> None:
+    def __init__(
+        self,
+        limits: SolverLimits = DEFAULT_SOLVER_LIMITS,
+        *,
+        deadline: float | None = None,
+        now: Callable[[], float] = perf_counter,
+    ) -> None:
         self.limits = limits
         self.calls = 0
+        self.deadline = deadline
+        self.now = now
 
     def query(self, rule: Rule, *, inequality: bool) -> QueryResult:
         return self._solve(rule.lhs, rule.rhs, rule.guards, inequality=inequality)
@@ -76,6 +86,8 @@ class Z3Backend:
     def _solve(
         self, lhs: Pattern, rhs: Pattern, guards: tuple[Guard, ...], *, inequality: bool
     ) -> QueryResult:
+        if self.deadline is not None and self.now() >= self.deadline:
+            return QueryResult("unknown", reason="solver-deadline")
         if self.calls >= self.limits.max_calls:
             return QueryResult("unknown", reason="solver-call-limit")
         self.calls += 1

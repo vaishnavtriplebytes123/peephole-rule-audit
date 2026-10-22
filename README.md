@@ -1,14 +1,13 @@
 # Peephole Rule Removal Audit
 
-A proposed local research CLI for testing whether removing a derivable peephole
+A local research CLI for testing whether removing a derivable peephole
 optimization rule makes a bounded, deterministic optimizer less effective.
 
-**Status: M1/M2 implemented and verified; M3 in progress; M4–M6 authorized.**
+**Status: M1–M3 implemented and verified; M4–M6 authorized and pending.**
 The user authorized implementation and periodic GitHub pushes on 2026-10-22.
-The expression library, rule validator, deterministic optimizer and `validate`
-command exist. The bounded derivation library is under development; its CLI,
-paired removal audits, replay, generation comparisons, reduction and evaluation
-are not available yet. No submission date is assumed.
+The `validate`, `derive`, `audit`, and `replay` commands are implemented.
+Random/guided generation, comparisons, reduction and controlled evaluation remain
+M4–M6 work. No submission date is assumed.
 
 The tool will pair a checked alternative rewrite sequence with a replayable
 example of worse optimization after rule removal. It will compare random,
@@ -24,18 +23,19 @@ initial cost measure; it is not a claim about execution speed.
 - [Research basis](docs/RESEARCH.md): prior work, contribution boundaries, and evaluation discipline.
 - [Agent workflow](docs/WORKFLOW.md): planning and milestone prompts and review checklist.
 
-## Intended workflow — not yet available
+## Workflow
 
 1. Provide an attributed, normalized JSON rule corpus and an experiment configuration.
 2. Validate the supported rules with explicit 32-bit modular semantics.
 3. Search for one- or two-step alternatives that exclude a selected rule.
 4. Run the same expressions and optimizer settings with and without that rule.
 5. Inspect and replay traces where removal increases final operator count.
-6. Compare generators under the same limits and reduce reproducible examples.
+6. M4–M6: compare generators under the same limits and reduce reproducible examples.
 
 `ruleaudit validate --rules corpus/jog.json --out artifacts/validation-NEW`
 validates the initial 26-rule source corpus. Output directories must be new.
-The planned `derive`, `audit`, `replay`, `reduce`, and `evaluate` commands remain
+See [runnable examples](experiments/README.md) for the complete synthetic
+validate → derive → audit → replay journey. `reduce` and `evaluate` remain
 unimplemented. There is no server, database, account, or UI.
 
 ## Proposed repository layout
@@ -63,4 +63,5 @@ The user-created GitHub repository is
 [peephole-rule-audit](https://github.com/vaishnavtriplebytes123/peephole-rule-audit).
 See [corpus notes](corpus/README.md) for source selection, normalization,
 attribution, and limitations, and [verification evidence](docs/DEVELOPMENT.md)
-for the 95-test checkpoint and locked environment.
+for the locked environment and milestone checks. Input/configuration and witness
+contracts are in [EXPERIMENT_FORMAT.md](docs/EXPERIMENT_FORMAT.md).

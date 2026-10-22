@@ -1,0 +1,47 @@
+{
+  "generation": {
+    "attempts": 100,
+    "cases": 4,
+    "constants": [
+      0,
+      1,
+      4294967295
+    ],
+    "contexts": [
+      "hole"
+    ],
+    "depth": 0,
+    "seed": 0,
+    "strategy": "target"
+  },
+  "max_output_bytes": 104857600,
+  "run": {
+    "h": 1,
+    "max_depth": 128,
+    "max_nodes": 10000,
+    "seconds": 60.0
+  },
+  "schedule": {
+    "priority": [
+      "A",
+      "B",
+      "C"
+    ],
+    "traversal": "preorder"
+  },
+  "schema_version": 1,
+  "search": {
+    "max_bindings": 64,
+    "max_depth": 128,
+    "max_match_attempts": 100000,
+    "max_nodes": 10000,
+    "max_states": 1000,
+    "max_steps": 2,
+    "seconds": 60.0
+  },
+  "seconds": 60.0,
+  "solver": {
+    "max_calls": 100000,
+    "timeout_ms": 1000
+  }
+}

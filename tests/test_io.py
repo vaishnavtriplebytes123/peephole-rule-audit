@@ -136,3 +136,13 @@ def test_exact_default_node_ceiling() -> None:
     assert measure(parse_expression(parse_json(document(valid)))).nodes == 1000
     with pytest.raises(InputError, match="node count"):
         parse_expression(parse_json(document(balanced(501))))
+
+
+def test_snapshot_containers_can_hold_growth_depth_without_relaxing_input_depth() -> None:
+    expression = _not_chain(127)
+    snapshot = expression_document(expression)
+    encoded = canonical_bytes(snapshot).decode("ascii")
+    loaded = parse_json(encoded)
+    assert canonical_bytes(loaded).decode("ascii") == encoded
+    with pytest.raises(InputError, match="depth"):
+        parse_expression(loaded)

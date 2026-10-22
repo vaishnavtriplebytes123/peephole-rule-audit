@@ -1,0 +1,70 @@
+{
+  "generation": {
+    "attempts": 100,
+    "cases": 4,
+    "constants": [
+      0,
+      1,
+      4294967295
+    ],
+    "contexts": [
+      "hole"
+    ],
+    "depth": 0,
+    "seed": 0,
+    "strategy": "target"
+  },
+  "max_output_bytes": 104857600,
+  "run": {
+    "h": 2,
+    "max_depth": 128,
+    "max_nodes": 10000,
+    "seconds": 60.0
+  },
+  "schedule": {
+    "priority": [
+      "jog_pAdd2",
+      "jog_pAdd3",
+      "jog_pAdd3Sym",
+      "jog_pAdd4",
+      "jog_pAdd4Sym",
+      "jog_pAdd5",
+      "jog_pAdd6",
+      "jog_pAdd7",
+      "jog_pAdd8",
+      "jog_pAddNotXPlusOne",
+      "jog_pAddMoveConstantRight",
+      "jog_pAddPushConstantDown",
+      "jog_pNewAddAddSub1295",
+      "jog_pNewAddAddSub1309",
+      "jog_pNewDeMorganLawOrToAnd",
+      "jog_pSub_XMinusY_MinusX",
+      "jog_pSubXMinus_YPlusX_",
+      "jog_pSub10",
+      "jog_pSub11",
+      "jog_pSub12",
+      "jog_pNewSubAddSub1539",
+      "jog_pNewSubAddSub1560",
+      "jog_pNewSubNotXMinusNotY",
+      "jog_pNewSub_XOrY_Minus_XXorY_",
+      "jog_pNewSub_AOrB_Minus_AAndB_",
+      "jog_pNewSubXMinus_XAndY_"
+    ],
+    "traversal": "preorder"
+  },
+  "schema_version": 1,
+  "search": {
+    "max_bindings": 64,
+    "max_depth": 128,
+    "max_match_attempts": 100000,
+    "max_nodes": 10000,
+    "max_states": 1000,
+    "max_steps": 2,
+    "seconds": 60.0
+  },
+  "seconds": 60.0,
+  "solver": {
+    "max_calls": 100000,
+    "timeout_ms": 1000
+  }
+}

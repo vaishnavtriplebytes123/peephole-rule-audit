@@ -1,6 +1,6 @@
 # Implementation plan
 
-Status: **all six milestones authorized — M1/M2 implemented and verified**. Prepared 2026-10-22.
+Status: **all six milestones authorized — M1–M3 implemented**. Prepared 2026-10-22.
 On 2026-10-22 the user explicitly authorized continuation through all six
 milestones, periodic pushes, and creation of a new GitHub repository with a name
 other than DesiCompiler. Milestones remain sequential and require recorded
@@ -97,7 +97,7 @@ tests before implementation, and ends with actual verification evidence, diff
 review, updated documentation, and user review. No automatic commits. Dependencies
 are sequential except independent documentation within an approved milestone.
 
-### M0 — Foundation and approval (current)
+### M0 — Foundation and approval
 
 - Deliverables: README, PRD, AGENTS, ignore/environment template, this plan,
   development baseline, research references, reusable workflow prompts.
@@ -105,8 +105,8 @@ are sequential except independent documentation within an approved milestone.
   unrelated changes or secrets introduced; ignore behavior keeps future code,
   tests, corpus, configs and lockfiles trackable; no duplicate Git repository.
 - Acceptance: user reviews the proposed contracts and approves the plan or requests changes.
-- Approval: user requested implementation on 2026-10-22. Periodic pushes are
-  requested, but destination/identity and checkpoint review remain outstanding.
+- Approval: user explicitly authorized all six milestones and periodic pushes,
+  supplied the GitHub destination and author identity; checkpoint commits exist.
 
 ### M1 — Reproducible environment and bounded IR
 
@@ -234,10 +234,10 @@ inferred from these foundation/core checks.
 
 | Milestone | Status | Evidence / remaining gate |
 |---|---|---|
-| M0 | Implementation requested | User instructed implementation on 2026-10-22; foundation evidence in docs/DEVELOPMENT.md. |
+| M0 | Complete | All six milestones and periodic pushes explicitly authorized; foundation evidence in docs/DEVELOPMENT.md. |
 | M1 | Complete | Python 3.12.14 venv, exact runtime/dev SHA-256 locks (23 dev-environment packages), hash-required reinstall and editable installation verified. Typed IR/input contracts, help/version, Ruff, mypy and sdist/wheel build pass. |
 | M2 | Complete | 95 tests pass in the locked environment; Ruff/format/mypy/build pass. Matcher/guards/solver/optimizer and validate CLI verified; 26/26 source rules verified, 94 scoped exclusions recorded. Commands/evidence in docs/DEVELOPMENT.md. |
-| M3 | In progress | Bounded derivation and runtime-equivalence library implemented; full 114-test regression, Ruff, formatting and mypy pass. Limits/scope in docs/DERIVATION_FORMAT.md. Paired audit, target generation, snapshots, CLI and replay remain. |
+| M3 | Complete | Derive/audit/replay CLI, strict config, seeded target generation, paired runs, snapshots/hashes and independent replay implemented. Full 146-test regression including saved-v1 replay passes; Ruff/mypy/build and manual CLI journey pass. Synthetic H=1/2 and H=4 criteria reproduced; 9/9 manual witnesses replayed. Detailed commands/results in docs/DEVELOPMENT.md. |
 | M4–M6 | Authorized, not started | All generators, reduction, robust reports and evaluation remain. |
 
 ## Security and operational risks

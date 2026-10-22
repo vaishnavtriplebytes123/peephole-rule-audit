@@ -48,3 +48,13 @@ def test_runtime_equivalence_uses_variables_on_both_sides() -> None:
     assert evaluate(Const(0), dict(result.valuation)) != evaluate(
         Var("new_variable"), dict(result.valuation)
     )
+
+
+def test_shared_solver_deadline_prevents_new_calls() -> None:
+    from ruleaudit.solver import Z3Backend, check_equivalence
+
+    backend = Z3Backend(deadline=1.0, now=lambda: 1.0)
+    x = Meta("X", "expr")
+    assert check_rule(Rule("identity", x, x), backend=backend).status == "unknown"
+    assert check_equivalence(Var("x"), Var("x"), backend=backend).status == "unknown"
+    assert backend.calls == 0

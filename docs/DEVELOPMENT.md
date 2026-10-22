@@ -235,3 +235,79 @@ M3 review will require the build and end-to-end CLI journey.
 M3 is still incomplete: no derive/audit/replay CLI, experiment configuration,
 target-only generation, paired executions, snapshots, witness replay, or full
 synthetic acceptance journey exists yet. No empirical removal finding is claimed.
+
+## M3 complete — paired audits and replay
+
+The preceding M3-core note describes its earlier partial checkpoint. M3 now
+includes the complete CLI journey, strict single-run configuration, seeded
+target-only generation, paired executions, bounded atomic JSON reports, complete
+witness snapshots/hashes, template/concrete-path checking and independent replay.
+The baseline generator receives no derivation data. No new dependency was added.
+
+Behavioral tests first failed for missing config/audit/replay modules and CLI
+commands. Later tests exposed missing report version metadata, absence of a
+shared solver deadline, and acceptance of a template whose starting tree exceeded
+a modified search limit. Each was fixed after its failing test. Replay tests
+recompute checksums after modifying traces/costs/configuration/provenance, so
+successful hashing alone cannot satisfy them.
+
+Verification commands and actual outcomes:
+
+- `.venv/Scripts/python.exe -m pytest --basetemp=tmp/pytest-m3-reviewed`:
+  **145 passed in 69.65 s**.
+- `.venv/Scripts/python.exe -m pytest tests/test_audit_replay.py::test_saved_m3_v1_fixture_replays_without_regenerating_its_report --basetemp=tmp/pytest-m3-golden-green`:
+  **1 passed in 3.12 s**. This replays the actual preserved schema-v1 report,
+  rather than regenerating the expected evidence with the current producer.
+- `.venv/Scripts/python.exe -m ruff check .` and
+  `.venv/Scripts/python.exe -m ruff format --check .`: **passed**, 31 files.
+- `.venv/Scripts/python.exe -m mypy src tests`: **passed**, 31 source files.
+- `.venv/Scripts/python.exe -m build --no-isolation`: **sdist and wheel built**
+  with the previously documented Windows permission escalation. Review caught
+  the missing experiment-config manifest entry; it was added and the build was
+  repeated with configs/examples included.
+- `.venv/Scripts/python.exe -m ruleaudit --help` and `--version`: **passed**,
+  listing validate/derive/audit/replay and version 0.1.0.
+- `git -c core.autocrlf=false diff --check`: **passed** for tracked changes;
+  untracked/staged files receive additional checks before the checkpoint commit.
+
+Manual commands (all completed with exit 0; each output directory was new):
+
+```powershell
+.venv/Scripts/python.exe -m ruleaudit validate --rules tests/fixtures/interference.json --out artifacts/m3-validate
+.venv/Scripts/python.exe -m ruleaudit derive --rules tests/fixtures/interference.json --config experiments/interference-h4.json --target A --out artifacts/m3-derive
+.venv/Scripts/python.exe -m ruleaudit audit --rules tests/fixtures/budget.json --config experiments/budget-h1.json --target A --out artifacts/m3-budget-h1
+.venv/Scripts/python.exe -m ruleaudit audit --rules tests/fixtures/budget.json --config experiments/budget-h2.json --target A --out artifacts/m3-budget-h2
+.venv/Scripts/python.exe -m ruleaudit audit --rules tests/fixtures/interference.json --config experiments/interference-h4.json --target A --out artifacts/m3-interference-h4
+.venv/Scripts/python.exe -m ruleaudit audit --rules corpus/jog.json --config experiments/jog-smoke.json --target jog_pAdd3 --out artifacts/m3-jog-smoke
+.venv/Scripts/python.exe -m ruleaudit replay --witness artifacts/m3-interference-h4/witness-000001.json --out artifacts/m3-replay
+.venv/Scripts/python.exe -m ruleaudit replay --witness tests/fixtures/m3-witness-v1.json --out artifacts/m3-golden-replay
+```
+
+| Manual run | Tested | Positive deltas | With checked alternative | Deltas |
+|---|---:|---:|---:|---|
+| Synthetic budget H=1 | 4 | 4 | 4 | 1, 1, 1, 1 |
+| Synthetic budget H=2 | 4 | 0 | 0 | 0, 0, 0, 0 |
+| Synthetic interference H=4 | 4 | 4 | 4 | 2, 2, 2, 2 |
+| JOG jog_pAdd3 smoke H=2 | 4 | 1 | 0 | 2, 0, 0, 0 |
+
+A Python stdin loop called `replay(load_json(path))` on every numbered witness
+in those four directories: **9/9 verified**. The JOG smoke produced a bounded
+derivation miss and one unqualified removal regression; it does not demonstrate
+usefulness of a derivable source rule. These are small smoke observations, not
+the M6 controlled evaluation or evidence that guidance outperforms baselines.
+The committed golden witness is synthetic and contains no machine paths/secrets.
+
+Final checkpoint: `.venv/Scripts/python.exe -m pytest
+--basetemp=tmp/pytest-m3-final-evidence` passed **146 tests in 47.55 s**, including
+the saved v1 witness. `ruff check .`, `ruff format --check .`, `mypy src tests`
+and `git -c core.autocrlf=false diff --check` passed (31 formatted/typed files).
+`python -m build --no-isolation` successfully rebuilt the sdist and wheel;
+archive inspection confirmed experiment configs, schema documentation and the
+saved witness in the sdist, and all new modules in the wheel.
+
+The tests also block Python socket connections during an audit, check explicit
+CLI interruption status, reject report collisions without overwriting bytes,
+exercise zero-coverage partial generation, solver exhaustion and snapshot/trace
+tampering, and verify depth-128 report containers without relaxing depth-64
+expression inputs. Linux, clean-wheel installation, CSV/reduction, all three
+generators and the research matrix remain M4–M6 work.
