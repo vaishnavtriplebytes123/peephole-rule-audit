@@ -1,3 +1,5 @@
+# Keep tracked source/configuration hashes stable on Windows and Unix checkouts.
+* text=auto eol=lf
 # Preserve measured artifact bytes so published SHA-256 manifests survive checkout.
 experiments/results/** -text
 # Generated CSV deliberately uses CRLF; keep the normal whitespace checks otherwise.

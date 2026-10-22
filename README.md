@@ -12,6 +12,9 @@ available. The [112 labeled scenarios](docs/SCENARIOS.md) and independent held-o
 runner are verified. Full experiments are running; the research report remains
 M6 work. No submission date is assumed. A [reviewer walkthrough](docs/DEMO.md)
 shows all six commands and the distinction between budget and interference examples.
+Measured outcomes and limitations are being assembled in the [draft research
+report](docs/REPORT.md), with complete curated data and witness archives under
+[experiments/results](experiments/results/).
 
 The tool can pair a checked alternative rewrite sequence with a replayable
 example of worse optimization after rule removal and supports random,
@@ -44,21 +47,22 @@ The [evaluation protocol](docs/EVALUATION_PROTOCOL.md) records actual pilot cost
 and the main matrix fixed before full execution. There is no server, database,
 account, or UI.
 
-## Proposed repository layout
+## Repository layout
 
 ```text
 src/ruleaudit/       # application package, added after plan approval
 tests/              # unit, integration, property, and CLI tests
 corpus/             # attributed normalized rules, added after source/license review
-experiments/        # versioned experiment configurations, not generated results
+experiments/        # versioned configurations and curated measured evidence
 docs/               # development, research, and workflow documentation
 artifacts/          # generated reports; ignored by Git
 ```
 
 Existing presentation materials, a reference JOG checkout, and unrelated
 coursework are preserved and explicitly excluded from this application's Git
-baseline. Small curated test fixtures will live under `tests/fixtures/` and remain
-tracked. Dependency lockfiles will be tracked when created in Milestone 1.
+baseline. Curated test fixtures under `tests/fixtures/` and the exact runtime/
+development dependency lockfiles are tracked. Full temporary run directories
+remain under ignored `artifacts/`; curated results include hashes and witnesses.
 
 ## Next step
 

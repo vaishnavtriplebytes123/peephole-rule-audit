@@ -58,8 +58,10 @@ from approval to implement; do not stage unrelated workspace files.
 
 For the foundation, the intended commit file list consists only of README.md,
 PRD.md, AGENTS.md, PLAN.md, .gitignore, .env.example and the new docs/ files.
-No commit has been created. Choose branch naming at the authorized checkpoint;
-do not initialize a second repository or move existing coursework.
+At foundation planning no commit had been created. The current implementation
+has authorized checkpoint commits on the existing master branch; see Git history.
+For a new project, choose branch naming at its authorized checkpoint. Do not
+initialize a second repository or move existing coursework.
 
 ## Required milestone report
 

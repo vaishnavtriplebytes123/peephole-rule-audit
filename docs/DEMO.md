@@ -65,3 +65,22 @@ Operator count is the declared cost measure, not CPU runtime. A checked template
 covers its listed constants/opaque placeholders; a bounded miss proves nothing
 about whole-rule derivability. Zero observed regressions never justify safe
 production deletion. These limits apply equally to positive and negative results.
+
+## Source-derived scheduling example
+
+The first source batch also produced a checked example for `jog_pAdd5`, selected
+by fixed trial/file order rather than largest delta. Replay its complete saved
+postorder evidence, then audit the existing matching preorder configuration:
+
+```powershell
+& $py -m ruleaudit replay --witness tests/fixtures/source-qualified-witness.json --out "$demo/source-postorder-replay"
+& $py -m ruleaudit audit --rules corpus/jog.json --config experiments/source-example-preorder.json --target jog_pAdd5 --out "$demo/source-preorder"
+```
+
+For input hash `0521ba51931b13ee406e17880aede69b17399acb2efdd72f013b96a20b6a0423`,
+the primary postorder record has costs 3/11 (delta 8); the matching preorder
+record has costs 3/3. Both reach no-match within H=8. Add2 followed by Sub11 is
+a checked alternative; a child constant-commutation step preempts Sub11 in the
+postorder run. See [the report's worked example](REPORT.md) for expressions,
+trace explanation, selection and scope. This is a model result using source
+patterns, not a measured production-compiler regression.

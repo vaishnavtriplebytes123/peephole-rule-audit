@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "kind": "matched-traversal-contrast",
+  "source_batch": "jog-01",
+  "target": "jog_pAdd5",
+  "input_hash": "0521ba51931b13ee406e17880aede69b17399acb2efdd72f013b96a20b6a0423",
+  "selection": "The predefined first H>=4 qualified source example, matched to its existing matrix cell with only traversal changed; not an additional primary sample.",
+  "postorder": {
+    "directory": "trial-000246",
+    "config_hash": "e29c3a898444c86a9b8081ab90c915fbca424f9483a062fb3b056815cd6b89c1",
+    "record": {
+      "alternative_steps": 2,
+      "case_key": "5f73b7f790d434e86f51f220a3dfc21f008dd36ff3e415244ab5fb91b71ef500",
+      "checked_alternative": true,
+      "comparable": true,
+      "cost_with": 3,
+      "cost_without": 11,
+      "delta": 8,
+      "eligible_alternative": true,
+      "input_hash": "0521ba51931b13ee406e17880aede69b17399acb2efdd72f013b96a20b6a0423",
+      "provenance": {
+        "attempt": 10,
+        "bindings": {
+          "a": {
+            "op": "const",
+            "value": 2147483647
+          },
+          "b": {
+            "args": [
+              {
+                "args": [
+                  {
+                    "name": "x",
+                    "op": "var"
+                  },
+                  {
+                    "op": "const",
+                    "value": 2147483648
+                  }
+                ],
+                "op": "add"
+              },
+              {
+                "args": [
+                  {
+                    "name": "z",
+                    "op": "var"
+                  }
+                ],
+                "op": "not"
+              }
+            ],
+            "op": "xor"
+          },
+          "c": {
+            "args": [
+              {
+                "args": [
+                  {
+                    "name": "z",
+                    "op": "var"
+                  },
+                  {
+                    "name": "z",
+                    "op": "var"
+                  }
+                ],
+                "op": "and"
+              }
+            ],
+            "op": "not"
+          }
+        },
+        "context": {
+          "kind": "hole"
+        },
+        "guidance": null,
+        "seed": 4,
+        "strategy": "target"
+      },
+      "semantic_status": "verified",
+      "stop_with": "no-match",
+      "stop_without": "no-match",
+      "witness": "witness-000001.json"
+    }
+  },
+  "preorder": {
+    "directory": "trial-000410",
+    "config_hash": "c0e4c50065477579891dfab2c89f19aa56106ff83b5021ca158e97707c191eea",
+    "record": {
+      "alternative_steps": 2,
+      "case_key": "f3caee85b76429c04b7468a020e3ad7cd2ce404e2730b4d6f9a5b8eb7904a209",
+      "checked_alternative": null,
+      "comparable": true,
+      "cost_with": 3,
+      "cost_without": 3,
+      "delta": 0,
+      "eligible_alternative": true,
+      "input_hash": "0521ba51931b13ee406e17880aede69b17399acb2efdd72f013b96a20b6a0423",
+      "provenance": {
+        "attempt": 10,
+        "bindings": {
+          "a": {
+            "op": "const",
+            "value": 2147483647
+          },
+          "b": {
+            "args": [
+              {
+                "args": [
+                  {
+                    "name": "x",
+                    "op": "var"
+                  },
+                  {
+                    "op": "const",
+                    "value": 2147483648
+                  }
+                ],
+                "op": "add"
+              },
+              {
+                "args": [
+                  {
+                    "name": "z",
+                    "op": "var"
+                  }
+                ],
+                "op": "not"
+              }
+            ],
+            "op": "xor"
+          },
+          "c": {
+            "args": [
+              {
+                "args": [
+                  {
+                    "name": "z",
+                    "op": "var"
+                  },
+                  {
+                    "name": "z",
+                    "op": "var"
+                  }
+                ],
+                "op": "and"
+              }
+            ],
+            "op": "not"
+          }
+        },
+        "context": {
+          "kind": "hole"
+        },
+        "guidance": null,
+        "seed": 4,
+        "strategy": "target"
+      },
+      "semantic_status": "verified",
+      "stop_with": "no-match",
+      "stop_without": "no-match",
+      "witness": null
+    }
+  },
+  "same_fields": "All single-run config fields except schedule.traversal; exact same generated input and provenance."
+}

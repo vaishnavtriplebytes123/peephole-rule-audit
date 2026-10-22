@@ -593,3 +593,45 @@ artifacts/m6b-clean-heldout, and `-I -m ruleaudit replay` verified the preserved
 interference witness under artifacts/m6b-clean-replay (both exit 0). Both saved
 input sequences contain eight cases and match both target trials. Whitespace
 and local Markdown links pass across 107 source/doc/config/test files.
+
+## M6 measured-evidence checkpoint (study still running)
+
+The frozen application remains at `9ae9254`; all 23 Python source-file hashes
+still match the execution manifest. The two full synthetic grids, primary
+held-out grid and first six source targets have visited **1,935 trials / 34,404
+pairs**. All **1,305 emitted original/reduced witnesses from these terminal
+commands verified** on independent replay. Remaining source batches are still
+running, so these are not full-study totals. Preserve the primary held-out
+unknown/partial prefix and all generation/reduction partials.
+
+Curated case/metric/replay/witness manifests were independently reconciled;
+all archived JSON bytes and payload hashes match originals. Audit-header chunks
+now preserve every original audit field except deduplicated corpus/config/records.
+Combining those fields reconstructed **all 1,935 complete original audit files
+byte-for-byte**, including partial-run reasons and scoped derivation details.
+The first three root manifests are immutable; their added header chunks have
+supplementary manifests. Git object checks confirmed all **62 staged raw
+evidence files** match their worktree bytes exactly at this checkpoint.
+
+A real checkout reproducibility probe found that `core.autocrlf=true` changed
+the bytes of `src/ruleaudit/io.py` and `experiments/full-jog-01.json`, invalidating
+recorded hashes; the preserved raw CSV already matched. Repository attributes
+now fix tracked text to LF while preserving measured artifact bytes and CSV CRLF.
+Repeating `git -c core.autocrlf=true checkout-index` into a separate new temporary
+directory preserved all three tested files exactly. No source bytes changed in
+the running experiment. This verifies the sampled checkout behavior, not Linux
+runtime compatibility.
+
+The first qualified H>=4 source example is copied from its original archive,
+with selection and exact matched preorder config/record preserved. It has
+postorder costs 3/11, versus 3/3 for the otherwise identical preorder cell; both
+reach no-match. Selection uses trial/file order, not delta magnitude. The report
+limits this observation to the declared tree model and records all input reuse.
+
+Native tests and demo reruns are deliberately deferred until the matrices finish,
+to avoid additional solver load during measurement. The last full suite remains
+**347 passed in 68.70 s**. Three added tests (generated preservation with an
+invalid-rule negative control, plus the actual source scheduling witness) await
+that run. Static mypy checks pass **52 source/test/supplement-script files**.
+The suffix procedure and seven exact saved-seed configs are prepared/preregistered;
+their actual runs, final archive build/installation and completion audit remain.

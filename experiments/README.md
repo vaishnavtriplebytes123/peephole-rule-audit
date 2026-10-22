@@ -1,7 +1,8 @@
-# Smoke configurations and generator checks
+# Experiments and reproducible examples
 
-These are small, reproducible single-run configurations, not the M6 evaluation
-matrix. Run from the repository root in the documented virtual environment.
+The initial examples below use small single-run configurations. Separate sections
+cover M4 comparisons, M6 pilots and the fixed full-study matrix. Run from the
+repository root in the documented virtual environment.
 Every output directory must be new.
 
 ```powershell

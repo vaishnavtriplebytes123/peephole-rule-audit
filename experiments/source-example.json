@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "selection": "First original qualified positive with H>=4 in sorted source batch/trial/file order; selection does not use delta magnitude; illustrative only, not an additional primary sample.",
+  "source_batch": "jog-01",
+  "archive": "witnesses-0001.zip",
+  "entry": "trial-000246/witness-000001.json",
+  "file": "tests/fixtures/source-qualified-witness.json",
+  "file_sha256": "e4b156c45604bc9f7527f12e497691999a2083d56f8b8ea4a40f8ae0f7158a70",
+  "payload_sha256": "5358f7f966c946b5cb92eb65ed8f46173ff00c7e666bd69e06928374d8da8d7f"
+}

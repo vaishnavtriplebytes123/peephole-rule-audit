@@ -1,0 +1,1 @@
+{"files":{"audit-details-0001.json":"59445b072e1139ba2be026f6dcc5fdf54cf47150a78cc39f3b5114da144a75f1"},"omitted_fields":"Only corpus/config/records are deduplicated into the root snapshot, exact per-trial config and case-record files; all other audit fields and child statuses retained.","original_source":"artifacts/m6-full-heldout","schema_version":1,"trials":15}

@@ -147,6 +147,14 @@ exits. No heavy tests run concurrently. Full output stays under ignored
 `artifacts/m6-full-*`; curated raw records/witnesses will follow completion.
 The execution ledger is `artifacts/m6-full-driver/events.jsonl`.
 
+The first six source targets subsequently completed all 1,440 cells: 4,024
+tested pairs, 74 qualified positive observations across target/guided generation,
+and 1,053/1,053 emitted witnesses verified. There are 473 partial trials (440
+generation-incomplete audits and 33 incomplete reductions), all retained. Four
+source batches remain. The source operator-count example and matched traversal
+cell are documented in the draft report; they are model results, not production
+JOG/JVM performance claims.
+
 The first two full matrices have finished (these are full synthetic runs, not
 the earlier pilot). Both finished all 240 declared trials, with no unstarted
 cells. Budget: 672 pairs, 33/33 original/reduced witnesses verified, 80 partial
@@ -169,6 +177,11 @@ hashes, archive entries and replay outcomes. Small deterministic examples may
 additionally be copied for inspection, with their selection stated explicitly.
 Archive copies must be read back and matched byte-for-byte to the originals.
 The original CLI output directories remain untouched under ignored artifacts.
+Audit-header chunks additionally retain every field except deduplicated corpus,
+config and case records, plus original file hashes and child statuses. Combining
+them with the root corpus, exact per-trial config and case rows reconstructs
+every completed audit byte-for-byte. The first three published root manifests
+stay immutable; their added header chunks have a supplementary manifest.
 
 ## Held-out primary outcome and coverage supplement
 

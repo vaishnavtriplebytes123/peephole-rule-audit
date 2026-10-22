@@ -1,0 +1,1 @@
+{"files":{"audit-details-0001.json":"ccfb63cd281a4c910badaafc631a08143151b2c25d4301ccc961c6da99f0105f"},"omitted_fields":"Only corpus/config/records are deduplicated into the root snapshot, exact per-trial config and case-record files; all other audit fields and child statuses retained.","original_source":"artifacts/m6-full-interference","schema_version":1,"trials":240}

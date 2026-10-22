@@ -11,6 +11,10 @@ study records, separate from the resource pilots and earlier smoke comparisons.
 - `heldout-inputs-NNNNNN.json`: exact saved concrete inputs, settings and attempts.
 - `replays.json`: every recorded independent replay outcome, including any
   unknown/invalid/not-run states; no outcome filtering.
+- `audit-details-NNNN.json`: every original audit-header field and child status,
+  excluding only the deduplicated corpus/config/record fields. Original audit
+  SHA-256 values allow exact reconstruction using root snapshots, actual configs
+  and case rows. `audit-details-manifest.json` binds these bounded chunks.
 - `witnesses-NNNN.zip`: every emitted original and reduced witness as plain JSON,
   split at 32 MiB uncompressed per bundle. Entries retain original trial/file names.
 - `witnesses.json`: archive/entry mapping, file SHA-256, payload SHA-256, size,
@@ -20,6 +24,9 @@ study records, separate from the resource pilots and earlier smoke comparisons.
   missing trial metrics remain null in the authoritative evaluation file.
 
 The archives were read back and compared byte-for-byte with every original.
+Audit details were reconstructed into complete original reports byte-for-byte.
+The first three root manifests remain immutable; their audit-detail files have
+a separate supplementary manifest. Later root manifests include those files too.
 All original CLI directories remain untouched under ignored artifacts. JSON
 files are at most 10 MiB. The archive envelope is not an executable rule format;
 extract only into a new directory so existing work is preserved.
