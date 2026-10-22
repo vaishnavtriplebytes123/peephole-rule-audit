@@ -252,6 +252,11 @@ proposal is retained here to make the pre-full-run resource adjustment explicit.
 See docs/DEVELOPMENT.md for commands and detailed evidence. Tests, lint, typing,
 builds and CLI checks now exist. Remaining milestone capabilities must not be
 inferred from these foundation/core checks.
+Full execution is now running from frozen code `9ae9254`, with hashes/commands
+in experiments/full-run-manifest.json. Both full synthetic matrices finished
+all 480 trials / 1,632 pairs and verified all 242 emitted witnesses; guided
+budget partials remain explicit. Held-out/source results and final reporting
+are still pending; do not mark M6 complete from this checkpoint.
 
 | Milestone | Status | Evidence / remaining gate |
 |---|---|---|

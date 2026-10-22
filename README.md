@@ -9,8 +9,9 @@ The `validate`, `derive`, `audit`, `replay`, `reduce`, and `evaluate` commands a
 All three generation modes and small equal-cap comparisons are implemented.
 Reduction, bounded JSON/CSV reports and the controlled evaluation runner are
 available. The [112 labeled scenarios](docs/SCENARIOS.md) and independent held-out
-runner are verified. The full matrix, held-out execution and research report
-remain M6 work. No submission date is assumed.
+runner are verified. Full experiments are running; the research report remains
+M6 work. No submission date is assumed. A [reviewer walkthrough](docs/DEMO.md)
+shows all six commands and the distinction between budget and interference examples.
 
 The tool can pair a checked alternative rewrite sequence with a replayable
 example of worse optimization after rule removal and supports random,

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "full-study-run-manifest",
+  "started_utc": "2026-10-22T20:15:34.356835+00:00",
+  "code_commit": "9ae92547a50cbb540bce6f85bfbf049e963d2195",
+  "python": "3.12.14",
+  "z3_solver": "5.3.1.0",
+  "os": "Windows-11-10.0.26200-SP0",
+  "source_hashes": {
+    "src/ruleaudit/audit.py": "27c7cd0f1548daacb35c8eba170d9e11115bea7a361152e95d10431b33ec7867",
+    "src/ruleaudit/cli.py": "40d3b5a8ee4ab45b7d8d40892b14ac8eb8a3beeff34983e0381947d63378c003",
+    "src/ruleaudit/config.py": "f9acb9661fb39adf7155d62fa691742cc0fc9d6848b95be08504819d2077df7c",
+    "src/ruleaudit/corpus.py": "a68100318d6dc28226c5fd6408ce05346a7444b0a918021dcb1e55dfc68a18fd",
+    "src/ruleaudit/derive.py": "72c0182f2fb5aa8fec3ff72db0d52eb7297295ac0272d5c443d8153b9115153d",
+    "src/ruleaudit/evaluate.py": "288623cfe6ec81bcd7ed34ef87422203454a3ffa63f9cbea79c4310a6763e3c4",
+    "src/ruleaudit/evaluation_config.py": "28cf124f18357370f65b4929a10a25c16922fc4a1e234cf8786812f38b5af113",
+    "src/ruleaudit/experiment.py": "ef2485b6dd65f4afb258302b9d0c0ab91dd4ba78d4f5b6868734f64d14126a7e",
+    "src/ruleaudit/generate.py": "dac4871516b6c340060d5eb48bd66e031b217d0aa340a92bd245cc432d37cee5",
+    "src/ruleaudit/heldout.py": "81d0f8dba32589045d158f9c79e2b899e80088e597a6c31962e67eb5585eeedb",
+    "src/ruleaudit/interrupt.py": "5f8f47fe53e48b54236bc67b9a09140b55600e87c4f16cc8d062f92e5f62f677",
+    "src/ruleaudit/io.py": "feff7a349a5d230599b0b371e254a2e6a439b340939b16a306b09b0649d8e51a",
+    "src/ruleaudit/ir.py": "9d94ba0cc11826206bcb88570b091e606b48e80b0a236c1fba86d4f9393f48f4",
+    "src/ruleaudit/metrics.py": "033eec4cd7fc44fd6e2c1bcc317226fef4479b4532e8d6e8a1e99ce1270a61e1",
+    "src/ruleaudit/records.py": "865d75fc0fe6c3fcff9d1ee594cd1ab52513ca875111027ced0c7081bc469ec1",
+    "src/ruleaudit/reduce.py": "5e470381762ed9d1eb86e6fb85181cd7a416922a03e3a00de1fb1f6a7503837b",
+    "src/ruleaudit/replay.py": "cef9290c35e35d16eb42274a8d9450f39fc5408a5bf4d8e6f6b0cf763654af50",
+    "src/ruleaudit/report.py": "90045fe8fdd08c48a47d4ae24777171f8f170f8b7a81f8e2fe0fe1dc7a77e521",
+    "src/ruleaudit/rewrite.py": "a4b9938f8a5e680fc9375e3fd6bcdc2b8de704645998e2b00758c69d8ff8465a",
+    "src/ruleaudit/rules.py": "bbde630910db0655f9e79828b2586334405b2cc5f186311d8e309e89960a2814",
+    "src/ruleaudit/solver.py": "880219472904eabeb974e054fcc952fcb665fad6fe559bb5987f93b276dbff0f",
+    "src/ruleaudit/__init__.py": "64cc56781eafd51ce109dbe58f85c7d1570af8c43ff53a043f8fc11ae653f5a4",
+    "src/ruleaudit/__main__.py": "62f1ef0d69b64451dfb8405c86dc11e407c03317324b7e0a7ef931992cf0ea47"
+  },
+  "lock_hashes": {
+    "requirements.lock": "3678616e2730d21d66a4898b7fe05a14e0d3bdabb9852e0b521f794719d203b4",
+    "requirements-dev.lock": "15781ab1dcfb67641dc3e50db3e9e33c031bb7013cbc8dcfa55c11de27e197c3"
+  },
+  "jobs": [
+    {
+      "label": "budget",
+      "rules": "tests/fixtures/budget.json",
+      "rules_sha256": "e83d216ddcf85fded652ca853ddc4e58b6b2b85b64030730a5000ac5ccc1c35f",
+      "config": "experiments/full-budget.json",
+      "config_sha256": "f64cf1135119c5b3703c240b1d3009c86f88bb3346d3da6ff0a128f3909c9d94",
+      "out": "artifacts/m6-full-budget"
+    },
+    {
+      "label": "interference",
+      "rules": "tests/fixtures/interference.json",
+      "rules_sha256": "f398e9edd6cd36f5f84719b0abd43c01617b3eb9e89da833655f110d42ad4504",
+      "config": "experiments/full-interference.json",
+      "config_sha256": "59935afa691bc7205fecd7303fdbb7f15214ca6e2851b8ce9a48071d77145a63",
+      "out": "artifacts/m6-full-interference"
+    },
+    {
+      "label": "heldout",
+      "rules": "corpus/jog.json",
+      "rules_sha256": "bc034068fc4e86416a8673fddf0703484a9f94aeec642520395d95de12120b30",
+      "config": "experiments/full-heldout.json",
+      "config_sha256": "5686c4322a654632ae50a4a2446cad4b64e8a19d1e0fe099751ee1d94a651e3b",
+      "out": "artifacts/m6-full-heldout"
+    },
+    {
+      "label": "jog-01",
+      "rules": "corpus/jog.json",
+      "rules_sha256": "bc034068fc4e86416a8673fddf0703484a9f94aeec642520395d95de12120b30",
+      "config": "experiments/full-jog-01.json",
+      "config_sha256": "993d0d98ba9114b123ed5feef64017e3da288b781c90516087ac6e17a4db2b63",
+      "out": "artifacts/m6-full-jog-01"
+    },
+    {
+      "label": "jog-02",
+      "rules": "corpus/jog.json",
+      "rules_sha256": "bc034068fc4e86416a8673fddf0703484a9f94aeec642520395d95de12120b30",
+      "config": "experiments/full-jog-02.json",
+      "config_sha256": "3b0beb9dd369eb5bcbe976fd2de0695d0fe33f854ea6dd0b656f5488b3592d02",
+      "out": "artifacts/m6-full-jog-02"
+    },
+    {
+      "label": "jog-03",
+      "rules": "corpus/jog.json",
+      "rules_sha256": "bc034068fc4e86416a8673fddf0703484a9f94aeec642520395d95de12120b30",
+      "config": "experiments/full-jog-03.json",
+      "config_sha256": "509ee952e77b276abfafaac0a0818e8a8d6a8e968b23560b72f89f3e694757c6",
+      "out": "artifacts/m6-full-jog-03"
+    },
+    {
+      "label": "jog-04",
+      "rules": "corpus/jog.json",
+      "rules_sha256": "bc034068fc4e86416a8673fddf0703484a9f94aeec642520395d95de12120b30",
+      "config": "experiments/full-jog-04.json",
+      "config_sha256": "15b2d207eb57314b89aa3010a2437ec9515acc186be9db7a26cc5f4d08a78b72",
+      "out": "artifacts/m6-full-jog-04"
+    },
+    {
+      "label": "jog-05",
+      "rules": "corpus/jog.json",
+      "rules_sha256": "bc034068fc4e86416a8673fddf0703484a9f94aeec642520395d95de12120b30",
+      "config": "experiments/full-jog-05.json",
+      "config_sha256": "e2a29bf962cc2a2aab5d417843fa74cff3905d4c04328c27233ce618cb387c8a",
+      "out": "artifacts/m6-full-jog-05"
+    }
+  ]
+}

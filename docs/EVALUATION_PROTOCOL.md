@@ -1,7 +1,7 @@
 # Evaluation protocol and pilot record
 
 Status (2026-10-23): runner, 112 labeled scenarios and both resource pilots are
-complete; full experiments, held-out execution and final report remain. This document
+complete; full experiments are running, and final report work remains. This document
 fixes the main matrix before executing it. Pilot outcomes are preliminary.
 
 ## Resource pilot
@@ -136,3 +136,22 @@ output 64 MiB; overall caps are 14,400 s / 512 MiB. Point linear cost is about
 These are pilot extrapolations, not full-run results; rare findings, larger
 witnesses and host load can increase actual cost. Every emitted witness must
 still be replayed and every partial/not-run prefix retained.
+
+## Full execution in progress
+
+The run began from clean committed code `9ae9254`; its complete source/config/
+corpus/lock hashes and ordered commands are preserved in
+`experiments/full-run-manifest.json`. Commands execute sequentially; the driver
+checks source/input hashes again before each command and stops on unexpected
+exits. No heavy tests run concurrently. Full output stays under ignored
+`artifacts/m6-full-*`; curated raw records/witnesses will follow completion.
+The execution ledger is `artifacts/m6-full-driver/events.jsonl`.
+
+The first two full matrices have finished (these are full synthetic runs, not
+the earlier pilot). Both finished all 240 declared trials, with no unstarted
+cells. Budget: 672 pairs, 33/33 original/reduced witnesses verified, 80 partial
+guided-generation trials retained; interference: 960 pairs, 209/209 witnesses
+verified, no partial trials. Budget's primary target/guided rates are 0;
+interference's are both 0.25. Random has no eligible alternatives in either
+fixture. The held-out command is active, with five source batches queued.
+These observations do not establish a source-corpus effect or guidance advantage.
