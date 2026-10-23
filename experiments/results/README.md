@@ -2,7 +2,7 @@
 
 Each subdirectory represents one terminal command from
 [the frozen run manifest](../full-run-manifest.json). The source batches are
-still executing; their directories will be added when terminal. These are full
+all terminal, with every declared trial visited. These are full
 study records, separate from the resource pilots and earlier smoke comparisons.
 
 - `evaluation.json`, `trials.csv`, `status.json`: exact original root files.
@@ -42,3 +42,25 @@ Example using the first emitted interference witness in trial/file order:
 The witness mapping provides the exact entry for any other case. No positive
 delta, replay verification or safe-deletion conclusion follows from a missing
 file or null denominator. Read actual statuses and the research report.
+
+
+`summary.json` reports all primary scopes, modes, targets and seeds, distributions,
+censoring, uniqueness and resources. `execution.json` preserves terminal driver
+events. `checks/` contains the separate suffix, seven reruns, professor demo and
+first performance smoke (39 additional emitted witnesses, all verified).
+`installation/` contains the isolated wheel journey and same-process-affinity
+smoke (27 additional emitted witnesses, all verified), plus archive replay.
+These checks are not pooled into primary effect estimates.
+
+After installing the package, verify all distributed file hashes, primary
+counters, input prefixes, witness payloads and 6,735 reconstructed audit hashes:
+
+```powershell
+.venv/Scripts/python.exe experiments/verify_results.py
+```
+
+`evidence-manifest.json` binds every published JSON/CSV/ZIP data file, excluding
+itself. This is an integrity check; it reads recorded SMT replay outcomes rather
+than claiming a fresh replay of all 5,535 witnesses. Use the replay command on
+extracted witnesses for a fresh semantic check. Configured solver/time limits can
+produce different inconclusive outcomes on other hosts.

@@ -3,4 +3,4 @@ include requirements.in requirements-dev.in requirements.lock requirements-dev.l
 recursive-include docs *.md
 recursive-include tests *.py *.json
 recursive-include corpus *.md *.json *.txt
-recursive-include experiments *.md *.json
+recursive-include experiments *.md *.json *.csv *.zip *.py

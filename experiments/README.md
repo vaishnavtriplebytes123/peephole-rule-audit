@@ -110,7 +110,7 @@ files and explicit status when the filesystem permits it.
 
 ## M6 resource pilot
 
-The runner is implemented; the full study is pending. See
+The runner and full study are complete. See
 [protocol and measured estimates](../docs/EVALUATION_PROTOCOL.md) for the fixed
 pilot selection, caps, actual costs and full-matrix design.
 
@@ -153,5 +153,5 @@ retaining the actual single-run config used for every catalog target.
 Reproduce that catalog with `ruleaudit derive --rules corpus/jog.json --config
 experiments/heldout-catalog-base.json --target ID --out NEW_DIRECTORY` for each
 source ID, then apply the documented lexical/stratum selection. A bounded miss
-does not prove non-derivability. None of these configuration files is itself
-evidence of a completed full run; full results remain pending.
+does not prove non-derivability. These configuration files alone are not completed-run evidence. Actual completed records and all witness archives are in
+[results](results/); [the report](../docs/REPORT.md) explains outcomes and limitations.

@@ -1,6 +1,6 @@
 # Product requirements: Peephole Rule Removal Audit
 
-Status: **M1–M5 verified; M6 runner/pilot verified, full study pending**. Prepared 2026-10-22.
+Status: **all six milestones implemented and verified**. Prepared 2026-10-22.
 The user explicitly authorized all six milestones and periodic GitHub pushes on
 2026-10-22. Verification remains required at each milestone.
 
@@ -249,7 +249,7 @@ No HTTP API or external service. Public interface is the local CLI and versioned
 JSON/CSV files. argparse handles syntax; a standard-library schema validator
 handles structural validation without an additional schema-framework dependency.
 
-CLI contracts (all six commands implemented; M6 full experiments/report still pending):
+CLI contracts (all six commands, full experiments and report verified):
 
 ```text
 ruleaudit validate --rules FILE --out NEW_DIRECTORY
@@ -360,9 +360,11 @@ The earlier 10–30 CPU-hour estimate is provisional; pilot measurements must si
 the experiment matrix before a full run. No deadline is currently enforced.
 
 All milestones are authorized. M1 fixed exact dependencies; M2 documented the
-initial source subset and redistribution review. Remaining decisions include
-pilot-based experiment caps in M6. User-provided Git identity and origin are
-configured locally. No missing user answer blocks the next implementation step.
+initial source subset and redistribution review. Pilot-based experiment caps and
+all primary outcomes are recorded in [the protocol](docs/EVALUATION_PROTOCOL.md)
+and [report](docs/REPORT.md). User-provided Git identity and origin are configured
+locally. The [completion audit](docs/COMPLETION_AUDIT.md) maps acceptance criteria
+to actual evidence.
 
 ## 18. Future enhancements excluded from MVP
 

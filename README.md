@@ -3,18 +3,21 @@
 A local research CLI for testing whether removing a derivable peephole
 optimization rule makes a bounded, deterministic optimizer less effective.
 
-**Status: M1–M5 verified; M6 runner and resource pilot verified, full study pending.**
+**Status: all six milestones implemented and verified.**
 The user authorized implementation and periodic GitHub pushes on 2026-10-22.
 The `validate`, `derive`, `audit`, `replay`, `reduce`, and `evaluate` commands are implemented.
 All three generation modes and small equal-cap comparisons are implemented.
 Reduction, bounded JSON/CSV reports and the controlled evaluation runner are
 available. The [112 labeled scenarios](docs/SCENARIOS.md) and independent held-out
-runner are verified. Full experiments are running; the research report remains
-M6 work. No submission date is assumed. A [reviewer walkthrough](docs/DEMO.md)
+runner are verified. The full study visited 6,735 trials / 47,380 paired cases;
+all 5,535 primary witnesses verified on replay. The final suite passes 350 tests.
+No submission date is assumed. A [reviewer walkthrough](docs/DEMO.md)
 shows all six commands and the distinction between budget and interference examples.
-Measured outcomes and limitations are being assembled in the [draft research
-report](docs/REPORT.md), with complete curated data and witness archives under
-[experiments/results](experiments/results/).
+Read the [research report](docs/REPORT.md), [completion audit](docs/COMPLETION_AUDIT.md),
+and complete curated data and witness archives under
+[experiments/results](experiments/results/). The clean runtime-only wheel installation
+passes every command and archived-witness replay. The one primary held-out solver
+unknown remains inconclusive and is retained explicitly.
 
 The tool can pair a checked alternative rewrite sequence with a replayable
 example of worse optimization after rule removal and supports random,
@@ -64,9 +67,10 @@ baseline. Curated test fixtures under `tests/fixtures/` and the exact runtime/
 development dependency lockfiles are tracked. Full temporary run directories
 remain under ignored `artifacts/`; curated results include hashes and witnesses.
 
-## Next step
+## Use and review
 
-Follow [PLAN.md](PLAN.md) sequentially, recording checks at each milestone.
+Start with [the reviewer walkthrough](docs/DEMO.md) or inspect the
+[completed milestone evidence](PLAN.md).
 See [the expression format](docs/EXPRESSION_FORMAT.md) for the M1 library contract
 and [development instructions](docs/DEVELOPMENT.md) for setup.
 The user-created GitHub repository is

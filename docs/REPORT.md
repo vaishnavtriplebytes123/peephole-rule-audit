@@ -1,9 +1,17 @@
-# Peephole rule-removal audit: research report
+# Peephole rule-removal audit: measured research report
 
-Draft, 2026-10-23. The implementation, full synthetic matrices and primary
-held-out run are verified; remaining source matrices are still executing. Full-aggregate conclusions, representative
-reruns, final resource totals and the completion audit remain pending. Numerical
-results below identify their completed scope explicitly.
+2026-10-23. All six milestones, the full study, 350-test regression and final
+installation/archive verification are complete. This report separates
+primary measurements from supplementary coverage and reproducibility checks.
+
+The workflow found replayable removal losses for source-derived rules with
+checked two-step alternatives. In the preregistered H>=4 source stratum, guided
+generation produced 32/180 qualified positive observations, versus 12/320 for
+target-only generation. This is a result under the declared model and budgets,
+with sparse coverage and repeated inputs; it does not establish general method
+superiority or production-compiler runtime benefit. All 5,535 primary emitted
+original/reduced witnesses verified on replay. A matched source example shows
+an actual child rewrite blocking cancellation before the H budget is exhausted.
 
 ## Question and claim boundaries
 
@@ -152,61 +160,75 @@ These structural experiments do not measure compiled-program runtime.
 Exact raw metrics/cases and every emitted witness are preserved under
 [results](../experiments/results/), with hashes and read-back-verified archives.
 
-## Completed primary held-out results
+## Full source results: all 26 removal targets
 
-All 15 declared target/seed trials were visited. Fourteen tested the complete
-2,000-input sequence; Add5/seed 100003 stopped at position 748 after one paired
-semantic unknown. The five saved seed sequences contain 10,000 slots and 9,425
-globally unique input hashes (575 cross-seed repeated slots). Counts below retain
-the partial prefix and exclude its unknown from comparable cases.
+All 6,240 declared source trials were visited, with no unstarted cells, against
+the same complete 26-rule library. Counts are observations across actual
+target/schedule/H/seed settings, not independent draws or distinct compiler bugs.
 
-| Target | Tested / comparable pairs | Positive deltas | Eligible cases | Qualified deltas |
-|---|---:|---:|---:|---:|
-| Add2 | 10,000 / 10,000 | 6 | 0 | 0 |
-| Add3 | 10,000 / 10,000 | 4 | 0 | 0 |
-| Add5 | 8,748 / 8,747 | 0 | 7 | 0 |
-
-All ten unqualified original witnesses verified on replay; no reductions were
-eligible. Add5's primary rate is 0/7, while Add2/Add3 rates are null. Seven
-eligible cases are too few to support a broad generalization claim. The
-result neither establishes absence of other alternatives nor safe deletion.
-The primary tested total is **28,748**, not the planned 30,000 ceiling. Root
-work took **290.878 s wall / 281.453 s CPU**, producing **25,281,386 bytes**;
-driver wall was **292.570 s**. Search counters recorded 59,092 calls and one
-semantic unknown, separately from replay query costs.
-
-A preregistered supplemental coverage pass will attempt only the untouched
-1,252-input Add5 suffix after the main matrices, using the same frozen settings.
-It will retain the original unknown and report separately; the original primary
-table above will not be replaced by a more favorable retry. Its outcomes are
-not yet measured.
-
-## Completed first source batch (six removal targets)
-
-The first six targets, Add2/Add3/Add3Sym/Add4/Add4Sym/Add5, were evaluated against
-the complete 26-rule library. All 1,440 declared trials were visited; at that
-checkpoint 20 targets remained. The later batch outcome is listed below. These are completed full-grid
-cells for this subset, not the final 26-target aggregate.
-
-| Mode | Tested pairs | Positive deltas | Qualified deltas | Eligible cases | H>=4 qualified / eligible |
+| Mode | Tested pairs | Positive deltas | Qualified positives | Eligible cases | H>=4 qualified / eligible |
 |---|---:|---:|---:|---:|---:|
-| Random | 1,920 | 0 | 0 | 0 | 0/0 (null) |
-| Target | 1,920 | 985 | 45 | 320 | 8/160 (0.05) |
-| Guided | 184 | 29 | 29 | 184 | 13/92 (0.1413) |
+| Random | 8,320 | 0 | 0 | 0 | 0/0 (null) |
+| Target | 8,320 | 5,137 | 86 | 640 | 12/320 (0.0375) |
+| Guided | 360 | 69 | 69 | 360 | 32/180 (0.1778) |
 
-Counts are case observations across configurations, not independent draws or
-distinct compiler bugs. Canonical input diversity here is 20 random, 117 target
-and 23 guided trees, reused across settings. Guided tested far fewer cases under
-the same four-case/64-attempt ceilings. These conditional rates and tiny inputs
-do not establish statistical significance or an overall guidance advantage.
-All 1,014 originals and 39 reductions verified on replay. The 473 partial trials
-include 440 generation-incomplete audits and 33 incomplete reductions; detailed
-reason flags remain in the audit headers. There were no recorded search solver
-unknowns or replay unknown/invalid/not-run outcomes in this batch.
+Only Add5 and Add6 had discovered short templates under these bounds; all
+eligible source cases used two-step paths. One-step empirical yield was zero,
+although direct one-step discovery is exercised by independent contract tests.
+The remaining targets are bounded misses, not proven non-derivable.
 
-Root work cost **1,717.510 s wall / 1,576.859 s CPU**, output **137,068,528 bytes**;
-driver wall was **1,719.570 s**. Raw cases, full reconstructable audit details,
-actual configs and all witnesses are in [jog-01 evidence](../experiments/results/jog-01/).
+The H>=4 numerator was larger for guidance in this experiment. Across all H,
+target-only found more qualified observations (86 versus 69). Target also
+produced 5,051 positives without a checked initial alternative; these remain
+separate. The sampled populations differ: there were **20 random, 510 target,
+and 45 guided canonical input hashes**, reused across configurations. Guided
+covered far fewer cases under the same four-case/64-attempt ceilings. These
+facts limit comparisons and prevent interpreting thousands of observations as
+thousands of independent inputs. Deduplicated positive configuration keys were
+0/5,073/69 for random/target/guided; the key retains target and actual run settings.
+
+All five seeds, including non-winning results, are retained:
+
+| Seed | Target H>=4 positives / eligible | Guided H>=4 positives / eligible |
+|---|---:|---:|
+| 0 | 6/64 | 2/42 |
+| 1 | 4/64 | 4/36 |
+| 2 | 0/64 | 14/32 |
+| 3 | 0/64 | 6/38 |
+| 4 | 2/64 | 6/32 |
+
+Per-target, per-seed and per-trial values/ranges are preserved in the
+[machine-readable summary](../experiments/results/summary.json) and raw roots.
+No significance test or population-level effect claim is made from these data.
+For observed first-qualified findings across all H, target times ranged
+0.695–1.107 s (median 0.759 s, 38 observed trials); guided ranged 0.539–1.058 s
+(median 0.771 s, 39 observed). The other 2,042/2,041 trials were censored;
+random had no qualified event. These conditional times include preprocessing
+and are not uncensored all-trial performance estimates.
+
+Positive operator deltas ranged 1–9 for target (median 2) and 1–8 for guided
+(median 2). Twelve target-generated cases improved after removal (delta below
+zero), and 3,171 had zero delta; all 8,320 random cases had zero delta. Guided
+had 291 zero deltas. The summary retains the full positive/zero/negative scope.
+
+Source trial statuses were 2,080 completed random; 2,047 completed/33 partial
+target; 50 completed/2,030 partial guided. Partial generation and incomplete
+reduction are explicit in the header bundles. There were no recorded source
+search solver unknowns or replay unknown/invalid/not-run outcomes. Every one
+of **5,206 originals and 77 reductions verified**. Search-phase query counts
+were 233,440/235,360/218,600 for random/target/guided; they exclude replay queries.
+
+## Reduction outcomes
+
+Reduction selected the first qualified findings up to the declared per-trial
+cap, not the smallest examples. Source target/guided reductions numbered 38/39.
+Median node decreases per reduced witness were 4/2, with ranges 0–9/0–7;
+unchanged results are retained. Five target and nine guided reductions completed;
+33/30 were bounded partials with their last verified candidates. Shrinking used
+799/727 recorded solver calls, separate from preparation and replay. All 77
+source reduced envelopes independently replayed. A shrink may alter the detailed
+trace while preserving the required checked path and positive delta; it is not
+a proof of the same causal mechanism or a globally smallest witness.
 
 ### A matched scheduling example
 
@@ -233,32 +255,90 @@ with both stops no-match. This is concrete schedule-sensitive removal usefulness
 in the declared model. It is not a JOG/JVM runtime measurement or evidence about
 the complete production matcher, canonicalization passes or rule library.
 
-## Pending final results and reproducibility checks
+## Primary held-out results and explicit coverage completion
 
-The second source batch has also completed all 1,440 trials / 4,016 pairs.
-Random tested 1,920 with no positives/eligible alternatives; target tested 1,920
-with 879 positives (41 qualified, 320 eligible); guided tested 176, all eligible,
-with 40 qualified positives. H>=4 qualified/eligible counts are 4/160
-for target and 19/88 for guided. All 919 originals and 38 reductions verified;
-470 partial trials remain explicit. Root work took 1,665.025 s wall /
-1,531.516 s CPU and produced 130,888,694 bytes. Its complete data is in
-[jog-02](../experiments/results/jog-02/); the remaining 14 targets are still
-executing or queued. These subset observations are not the final aggregate.
+All 15 declared target/seed trials were visited. Fourteen tested their entire
+2,000-input sequence; Add5/seed 100003 stopped at position 748 after one paired
+semantic unknown. Five saved sequences contain 10,000 slots and 9,425 globally
+unique input hashes (575 cross-seed repeated slots). The primary result remains
+unchanged:
 
-Supplemental held-out and full source results, per-target/per-seed distributions, deduplicated
-yields, alternative-length yields, time-to-first/reduction/resource summaries,
-representative saved-seed reruns, and final replay coverage remain to be filled
-from terminal outputs. No source effectiveness conclusion is drawn yet.
+| Target | Tested / comparable pairs | Positive deltas | Eligible cases | Qualified deltas |
+|---|---:|---:|---:|---:|
+| Add2 | 10,000 / 10,000 | 6 | 0 | 0 |
+| Add3 | 10,000 / 10,000 | 4 | 0 | 0 |
+| Add5 | 8,748 / 8,747 | 0 | 7 | 0 |
 
-Execution is frozen at code `9ae9254`, with source/config/corpus/lock hashes in
-[the run manifest](../experiments/full-run-manifest.json). The environment is
-Python 3.12.14, Z3 5.3.1.0, Windows AMD64, 12 visible logical processors and
-8,216,317,952 physical-memory bytes. Timings come from an interactive OneDrive
-workspace; peak memory and four-core performance were not measured. Linux was
-not exercised. These remain limitations rather than inferred achievements.
-Publication/curation activity also ran alongside parts of the sequential study;
-heavy native test runs were deferred. Timing comparisons are therefore
-descriptive measurements of this interactive host, without isolation guarantees.
+All ten unqualified witnesses verified; no reductions were eligible. Add5's
+primary rate is 0/7, while Add2/Add3 rates are null. Primary counts are 28,748
+tested / 28,747 comparable, with nine negative and 28,728 zero deltas. Seven
+eligible cases do not support a broad generalization or safe-deletion claim.
+
+The preregistered suffix pass then attempted only Add5's untouched positions
+749–2000 using the same saved trees and frozen paired settings. It completed
+all **1,252 pairs**, with one eligible alternative, zero findings and zero
+new unknowns, in 14.015 s wall / 13.641 s CPU. This separate coverage pass
+continued individual inconclusive pairs by policy and retained the original
+unknown rather than retrying it into a favorable primary result. Together,
+primary prefixes and the supplement attempted all 30,000 planned target-pairs;
+29,999 were comparable and the original unknown remains inconclusive. The
+supplement is not pooled silently into the primary effect table above.
+
+## Resources, reproducibility and release verification
+
+| Primary scope | Visited trials | Evaluation work wall s | CPU s | Original output bytes |
+|---|---:|---:|---:|---:|
+| Synthetic budget | 240 | 43.834 | 31.625 | 2,795,857 |
+| Synthetic interference | 240 | 69.825 | 53.828 | 5,914,717 |
+| Source corpus | 6,240 | 7,594.233 | 6,975.234 | 619,130,893 |
+| Primary held-out | 15 | 290.878 | 281.453 | 25,281,386 |
+
+All eight commands visited **6,735 trials / 47,380 pairs** with no unstarted
+cells. Whole-driver wall time was **8,046.822 s (2.24 hours)**; root work times
+exclude process startup and their final summary publication. No mode receives
+free derivation preparation. Base seconds/queries cap audit search; replay
+uses snapshot caps and reduction has its own scope. All phases add to
+end-to-end time under the overall soft matrix deadline. Native-query counters
+cover search only; replay outcomes and shrinking counters remain separate.
+
+Seven protocol-fixed saved-seed reruns reproduced all 769 common cases' inputs,
+provenance, costs/stops and shared positive witness semantics, excluding timing.
+Coverage and classifications also matched. The same held-out case again
+returned unknown under identical caps; both outcomes are retained. All eight
+new rerun witnesses verified. These checks are not additional primary samples.
+
+The 350-test suite passed in 66.97 s, including independent arithmetic/fixture
+oracles, generated rewrite preservation with an invalid-rule negative control,
+tampering/error/unknown/interruption cases and the real source scheduling example.
+The professor walkthrough ran all 11 listed commands successfully and independently
+replayed every one of its 30 emitted original/reduced witnesses. A separate
+four-rule/100-case/H8 smoke completed in 1.962 s CLI wall / 0.625 s audit CPU
+under a four-logical-processor parent/child allocation probe; its one witness
+verified. This is not a result on a different four-physical-core machine.
+
+Primary witness replay was **5,535/5,535**. Raw case/header/config data and
+every emitted original/reduced witness are distributed under
+[results](../experiments/results/) with file/payload hashes and read-back-checked
+ZIP bundles. Original CLI outputs remain untouched under ignored artifacts.
+The main code is frozen at `9ae9254`; source/config/corpus/lock hashes and
+exact ordered commands are in [the execution manifest](../experiments/full-run-manifest.json).
+Windows Git checkout conversion was explicitly tested and fixed so stored
+source/config and raw CSV hashes remain reproducible.
+
+Environment: Python 3.12.14, Z3 5.3.1.0, Windows AMD64, 12 visible logical
+processors, 8,216,317,952 physical-memory bytes. Timings are from an interactive
+OneDrive workspace, with publication/curation alongside some matrix activity;
+heavy native tests were deferred until the matrices finished. They are
+descriptive host measurements without isolation guarantees. Peak memory,
+different four-physical-core hardware and Linux runtime remain unverified.
+The final runtime-only wheel installs offline with the exact runtime hash lock
+and passes `pip check`. From an empty directory with isolated Python (`-I`),
+all six commands pass, all 23 installed Python files match the frozen source,
+pytest is absent, an extracted primary source witness replays, and all 26 newly
+emitted original/reduced witnesses verify. An additional installed 100-case smoke
+queries the auditing process itself: affinity mask 15 (four logical processors),
+2.035 s CLI wall / 0.656 s audit CPU, one emitted witness verified. These
+installation checks are supplementary and do not change primary effect estimates.
 
 ## Threats to validity
 

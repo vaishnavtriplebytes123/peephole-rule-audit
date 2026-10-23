@@ -1,6 +1,6 @@
 # Implementation plan
 
-Status: **all six milestones authorized — M1–M5 implemented**. Prepared 2026-10-22.
+Status: **all six milestones authorized, implemented and verified**. Prepared 2026-10-22.
 On 2026-10-22 the user explicitly authorized continuation through all six
 milestones, periodic pushes, and creation of a new GitHub repository with a name
 other than DesiCompiler. Milestones remain sequential and require recorded
@@ -252,11 +252,15 @@ proposal is retained here to make the pre-full-run resource adjustment explicit.
 See docs/DEVELOPMENT.md for commands and detailed evidence. Tests, lint, typing,
 builds and CLI checks now exist. Remaining milestone capabilities must not be
 inferred from these foundation/core checks.
-Full execution is now running from frozen code `9ae9254`, with hashes/commands
-in experiments/full-run-manifest.json. Both full synthetic matrices finished
-all 480 trials / 1,632 pairs and verified all 242 emitted witnesses; guided
-budget partials remain explicit. Held-out/source results and final reporting
-are still pending; do not mark M6 complete from this checkpoint.
+Full execution completed from frozen code `9ae9254`, with hashes/commands in
+experiments/full-run-manifest.json: all 6,735 trials visited, 47,380 pairs,
+5,535/5,535 primary emitted witnesses verified. All five source batches, both
+synthetic grids and the primary held-out grid are archived. The original held-out
+unknown and every partial remain visible; the separately recorded 1,252-input
+suffix completes attempted coverage without replacing that unknown. Seven saved-seed
+reruns matched 769 common cases. The final 350-test suite, static checks, build,
+clean runtime-only installation and all-command demo passed. See
+[completion evidence](docs/COMPLETION_AUDIT.md) and [report](docs/REPORT.md).
 
 | Milestone | Status | Evidence / remaining gate |
 |---|---|---|
@@ -266,7 +270,7 @@ are still pending; do not mark M6 complete from this checkpoint.
 | M3 | Complete | Derive/audit/replay CLI, strict config, seeded target generation, paired runs, snapshots/hashes and independent replay implemented. Full 146-test regression including saved-v1 replay passes; Ruff/mypy/build and manual CLI journey pass. Synthetic H=1/2 and H=4 criteria reproduced; 9/9 manual witnesses replayed. Detailed commands/results in docs/DEVELOPMENT.md. |
 | M4 | Complete | Seeded random/target/guided modes, shared complete-input/attempt/work bounds, explicit contexts/overlap provenance, independent replay and no-fallback tests. Twelve equal-cap smoke trials on synthetic/source corpora; 49/49 emitted witnesses verified on sequential replay, with an earlier inconclusive replay retained in the record. Checks and limits in docs/DEVELOPMENT.md and experiments/README.md. |
 | M5 | Complete | Original/reduced witness replay, deterministic shrinking with strict decrease and path/delta/SMT checks, last-verified interruption behavior, bounded JSON/CSV and guarded status errors. 210 tests, Ruff/format/mypy and build pass; offline clean-wheel CLI journey passes. Saved 9-to-5-node reduction retains delta 2. Commands/results in docs/DEVELOPMENT.md. |
-| M6 | In progress | 347 tests pass, including 112 labeled scenarios, held-out input preservation/sharing, failure paths and all earlier contracts. Main pilot: 120 trials/360 pairs, 48/48 emitted witnesses verified. Separate held-out pilot: 3 trials/300 pairs, all shared sequences complete. All full configs/caps and target selection fixed before execution in docs/EVALUATION_PROTOCOL.md. Full runs, representative reruns, final held-out data, demo and research report remain. |
+| M6 | Complete | 26 attributed rules, 112 labeled scenarios, measured pilots and preregistered full configs. All 6,735 trials / 47,380 pairs visited; 5,535/5,535 primary witnesses replayed. Independent suffix, seven saved-seed reruns, all-command demo and clean-wheel/archive replay verified. Final suite: 350 passed in 66.97 s; Ruff, mypy and package build pass. Complete data/report and requirement evidence are in docs/COMPLETION_AUDIT.md. Windows measured; Linux/peak memory remain unverified. |
 
 ## Security and operational risks
 
@@ -291,3 +295,52 @@ against spreadsheet formula interpretation. No executable deserialization.
   existing branch; do not create another repository or alter global identity.
 - Continuation through all six milestones and creation of a new repository are
   authorized. Record verified destination/account attribution before publishing.
+
+
+## M6 final verified evidence (2026-10-23)
+
+All eight primary commands are terminal: **6,735 trials / 47,380 pairs**, zero
+unstarted cells and **5,535/5,535 primary original/reduced witnesses verified**.
+Every zero/negative result, generation/reduction partial and held-out unknown is
+retained. The separate suffix attempts all 1,252 untouched inputs with no new
+unknown/finding, so all 30,000 planned held-out target-pairs were attempted;
+29,999 are comparable. The original unknown is never replaced.
+
+The seven preregistered saved-seed reruns match all 769 common cases, including
+the repeated inconclusive held-out prefix; all eight new witnesses replay.
+The professor demo passes all 11 commands and all 30 emitted witness replays.
+The isolated runtime-only wheel journey passes all six commands, archived-source
+extraction replay and all 26 emitted witness replays. All 23 installed Python
+files equal frozen source bytes; pytest is absent; offline `pip check` passes.
+The installed four-rule/100-case smoke confirms the actual auditing process's
+four-logical-processor mask 15, completing in 2.035 s wall / 0.656 s audit CPU;
+its one emitted witness verifies. This is not a different four-physical-core host.
+
+Actual final commands:
+
+```powershell
+.venv/Scripts/python.exe -m pytest --basetemp=tmp/pytest-final-all
+.venv/Scripts/python.exe -m ruff check .
+.venv/Scripts/python.exe -m ruff format --check .
+.venv/Scripts/python.exe -m mypy src tests experiments/complete_heldout_suffix.py experiments/verify_results.py
+.venv/Scripts/python.exe -m build --no-isolation
+.venv/Scripts/python.exe -m venv tmp/m6-final-wheel-venv
+tmp/m6-final-wheel-venv/Scripts/python.exe -m pip install --no-index --find-links tmp/m5-wheelhouse --require-hashes -r requirements.lock
+tmp/m6-final-wheel-venv/Scripts/python.exe -m pip install --no-index --no-deps dist/ruleaudit-0.1.0-py3-none-any.whl
+tmp/m6-final-wheel-venv/Scripts/python.exe -m pip check
+.venv/Scripts/python.exe experiments/verify_results.py
+git diff --check
+```
+
+The full suite passes **350 tests in 66.97 s**. New generated rewrite-preservation
+and invalid-rule negative-control tests plus actual source traversal contrast
+passed after measurements ended. Ruff check/format and strict mypy pass. Build
+produces the wheel and complete evidence-bearing sdist with workspace TEMP/TMP.
+The tracked result verifier checks hashes, counters, saved inputs, witness ZIP
+payloads and all original audit reconstructions offline, without re-running SMT.
+Actual replay logs and manifests are separate from this integrity verification.
+See docs/REPORT.md, experiments/results/ and docs/COMPLETION_AUDIT.md.
+
+Windows/Python 3.12/Unicode paths are verified. Linux, peak RSS and different
+four-physical-core hardware remain unverified; no production runtime or safe
+deletion claim is made. Earlier in-progress entries above are dated history.

@@ -650,3 +650,53 @@ queries cover audit search; replay and reduction have separate recorded caps
 and add to end-to-end time under the overall soft matrix deadline. No numerical
 experiment setting changed. Publication/curation ran alongside some measurements;
 timings remain descriptive of the interactive host, with that limitation explicit.
+
+
+## M6 final verified evidence (2026-10-23)
+
+All eight primary commands are terminal: **6,735 trials / 47,380 pairs**, zero
+unstarted cells and **5,535/5,535 primary original/reduced witnesses verified**.
+Every zero/negative result, generation/reduction partial and held-out unknown is
+retained. The separate suffix attempts all 1,252 untouched inputs with no new
+unknown/finding, so all 30,000 planned held-out target-pairs were attempted;
+29,999 are comparable. The original unknown is never replaced.
+
+The seven preregistered saved-seed reruns match all 769 common cases, including
+the repeated inconclusive held-out prefix; all eight new witnesses replay.
+The professor demo passes all 11 commands and all 30 emitted witness replays.
+The isolated runtime-only wheel journey passes all six commands, archived-source
+extraction replay and all 26 emitted witness replays. All 23 installed Python
+files equal frozen source bytes; pytest is absent; offline `pip check` passes.
+The installed four-rule/100-case smoke confirms the actual auditing process's
+four-logical-processor mask 15, completing in 2.035 s wall / 0.656 s audit CPU;
+its one emitted witness verifies. This is not a different four-physical-core host.
+
+Actual final commands:
+
+```powershell
+.venv/Scripts/python.exe -m pytest --basetemp=tmp/pytest-final-all
+.venv/Scripts/python.exe -m ruff check .
+.venv/Scripts/python.exe -m ruff format --check .
+.venv/Scripts/python.exe -m mypy src tests experiments/complete_heldout_suffix.py experiments/verify_results.py
+.venv/Scripts/python.exe -m build --no-isolation
+.venv/Scripts/python.exe -m venv tmp/m6-final-wheel-venv
+tmp/m6-final-wheel-venv/Scripts/python.exe -m pip install --no-index --find-links tmp/m5-wheelhouse --require-hashes -r requirements.lock
+tmp/m6-final-wheel-venv/Scripts/python.exe -m pip install --no-index --no-deps dist/ruleaudit-0.1.0-py3-none-any.whl
+tmp/m6-final-wheel-venv/Scripts/python.exe -m pip check
+.venv/Scripts/python.exe experiments/verify_results.py
+git diff --check
+```
+
+The full suite passes **350 tests in 66.97 s**. New generated rewrite-preservation
+and invalid-rule negative-control tests plus actual source traversal contrast
+passed after measurements ended. Ruff check/format and strict mypy pass. Build
+produces the wheel and complete evidence-bearing sdist with workspace TEMP/TMP.
+The tracked result verifier checks hashes, counters, saved inputs, witness ZIP
+payloads and all original audit reconstructions offline, without re-running SMT.
+Actual replay logs and manifests are separate from this integrity verification.
+See [report](REPORT.md), [results](../experiments/results/) and
+[completion audit](COMPLETION_AUDIT.md).
+
+Windows/Python 3.12/Unicode paths are verified. Linux, peak RSS and different
+four-physical-core hardware remain unverified; no production runtime or safe
+deletion claim is made. Earlier in-progress entries above are dated history.

@@ -223,3 +223,44 @@ time/resource outcomes and coverage explicitly; never replace the primary
 measurements or claim repeatability for outcomes that differ. Replay and archive
 every newly emitted witness. These are reproducibility checks, not new samples
 to pool silently into primary effect estimates.
+
+## Final installation/performance smoke
+
+After the measured matrices and reruns, run a separate four-rule synthetic
+audit with 100 random cases, H=8, seed 20261023, the same five boundary constants,
+hole context/depth 2, 63 input nodes/depth 5, 10,000 attempts, 60 s search,
+5,000 queries at 1,000 ms and 16 MiB output. It is a functionality/performance
+smoke, not another primary generator sample. On Windows, restrict only this
+probe process and its child to four allowed logical processors and verify the
+actual child affinity. The physical host remains the recorded 12-logical-CPU
+machine; this does not establish results on different four-physical-core CPUs.
+Replay every emitted smoke witness. Record actual wall/CPU, allocation and
+hardware rather than treating the proposed 60 s target as already achieved.
+
+
+## Terminal execution and release outcome
+
+All eight full-study commands are terminal: 6,735 visited trials, zero unstarted
+cells, 47,380 tested pairs and 5,535/5,535 primary emitted witnesses verified.
+The full main source grid covers every one of the 26 declared targets under all
+fixed settings. The primary held-out unknown at position 748 remains unchanged.
+The preregistered suffix subsequently attempted the untouched 1,252 positions,
+with one eligible case, no positive delta and no new unknown, completing attempted
+coverage of all 30,000 target-pairs without silently changing the primary table.
+
+All seven fixed reruns matched coverage/classifications and all 769 common
+semantic cases, including the repeated unknown; eight new witnesses verified.
+The all-command professor demo passed and verified its 30 new witnesses. A clean
+runtime-only installed-wheel journey passed every command, extracted-source
+archive replay and 26 emitted witness replays. The initial four-logical-processor
+allocation smoke took 1.962 s; a separate installed smoke then queried the
+actual auditing process's own mask 15/four logical processors and took 2.035 s
+wall / 0.656 s audit CPU for 100 cases, with one verified witness. Both use the
+same recorded host, not a different physical four-core CPU. Supplementary checks
+are archived separately and excluded from primary effect estimates.
+
+The final report and results/summary.json contain complete per-mode/target/seed
+outcomes, censoring, input reuse, negative/zero cases, reductions and resources.
+Earlier future-tense sections above preserve the protocol as registered before
+execution; they do not indicate unfinished matrices. Linux/peak RSS remain
+unmeasured. No numerical experiment cap was retuned from observed winners.
